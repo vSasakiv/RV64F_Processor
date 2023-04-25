@@ -2,14 +2,14 @@
 /* Testbench para teste do Decodificador de instruções do tipo B (branches), que confere
 todas as saídas do módulo com as saídas corretas, e ao final retorna o número
 de erros, se houver. */
-module DecoderBINSN_TB ();
+module decoder_b_insn_tb ();
 
 reg [31:0] insn; // reg que contém a instrução
 reg pc_alu_sel_c; // reg que contém o valor correto da saída do módulo
 reg EQ, LS, LU; // regs que contém o resultado das comparações
 
 // net que contém o sinal de Clock proveniente do gerador
-wire clk;
+reg clk;
 
 // net contendo a saída do módulo em teste
 wire pc_alu_sel;
@@ -28,7 +28,7 @@ task Check;
 endtask
 
 // Unidade em teste: decoder de instruções do tipo B
-DecoderBINSN UUT (
+decoder_b_insn UUT (
   .insn(insn),
   .pc_alu_sel(pc_alu_sel),
   .EQ(EQ),
@@ -37,10 +37,11 @@ DecoderBINSN UUT (
 );
 
 // gerador de Clock
-ClockGen C0 (.clk(clk));
+always #5000 clk = ~clk;
 
 initial begin
   errors = 0;
+  clk = 0;
   #10
   // Instrução arbitrária: compara registrador x5 e x4, e caso sejam iguais avança o pc em 8.
   insn = 32'h00520463;
@@ -65,6 +66,6 @@ initial begin
   Check(pc_alu_sel_c);
 
   $display("Finished, got %d errors", errors);
-  $stop;
+  $finish;
 end
 endmodule

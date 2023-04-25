@@ -1,7 +1,7 @@
 /* Módulo para decodificação de instruções do tipo I com instruções da ALU de acordo com
 o ISA do risc-v. O módulo recebe a instrução e retorna todas as saídas relevantes a serem enviadas ao circuito
 */
-module DecoderIINSN_alu (
+module decoder_i_insn_alu (
   input wire [31:0] insn, // instrução de 32 bits
   output wire sub_sra // controle de adição/subtração e de logical/arithmetic shift
 );

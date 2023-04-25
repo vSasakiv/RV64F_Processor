@@ -2,7 +2,7 @@
 /* Testbench para teste do Decodificador de instruções do tipo R, que confere
 todas as saídas do módulo com as saídas corretas, e ao final retorna o número
 de erros, se houver. */
-module DecoderRINSN_TB ();
+module decoder_r_insn_tb ();
 
 reg [31:0] insn; // reg que contém a instrução
 
@@ -26,7 +26,7 @@ task Check;
 endtask
 
 // Unidade em teste: decoder de instruções do tipo R
-DecoderRINSN UUT (
+decoder_r_insn UUT (
   .insn(insn),
   .sub_sra(sub_sra)
 );
@@ -50,6 +50,6 @@ initial begin
   Check(sub_sra_c);
 
   $display("Finished, got %d errors", errors);
-  $stop;
+  $finish;
 end
 endmodule

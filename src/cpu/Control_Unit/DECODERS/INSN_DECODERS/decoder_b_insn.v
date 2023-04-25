@@ -3,7 +3,7 @@ Módulo para decodificação de instruções do tipo B branches com instruções
 o ISA do risc-v. O módulo recebe a instrução e o sinal de clock
 do processador, e retorna todas as saídas relevantes para serem enviadas ao circuito
 */
-module DecoderBINSN (
+module decoder_b_insn (
   input wire [31:0] insn, // instrução de 32 bits
   input wire EQ, LS, LU, // entradas de comparação  
   output reg pc_alu_sel // Sinal que seleciona se qual incremeto será dado ao PC

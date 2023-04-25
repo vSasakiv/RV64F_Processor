@@ -1,6 +1,6 @@
 /* Módulo para decodificação de instruções do tipo R de acordo com
 o ISA do risc-v. O módulo recebe a instrução e retorna todas as saídas relevantes a serem enviadas ao circuito */
-module DecoderRINSN (
+module decoder_r_insn (
   input wire [31:0] insn, // instrução de 32 bits
   output wire sub_sra // controle de adição/subtração e de logical/arithmetic shift
 );
