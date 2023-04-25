@@ -4,7 +4,7 @@ Para dois números de 32 bits, A e B (parâmetros arbitrários), performa todas 
 passando por todos os valores de FUNC, tanto para sub_sra = 0 ou sub_sra = 1.
 Caso algum resultado seja diferente do esperado ("xpect"), mostra os valores obtidos na saída e aumenta a contagem de erros.  
 Ao final, mostra a quantidade total de erros obtidos */
-module ALU_TB ();
+module alu_tb ();
 reg [31:0] A, B; // Entradas A e B da ALU unsigned
 reg signed [31:0] As, Bs; // Entradas A e B signed
 reg [2:0] FUNC; // Selector de função
@@ -41,7 +41,7 @@ task Check;
 endtask
 
 // Unidade em teste: ALU
-ALU UUT (.A(A), .B(B), .FUNC(FUNC), .sub_sra(sub_sra), .S(S), .EQ(EQ), .LU(LU), .LS(LS));
+alu UUT (.A(A), .B(B), .FUNC(FUNC), .sub_sra(sub_sra), .S(S), .EQ(EQ), .LU(LU), .LS(LS));
 
 initial begin
 errors = 0;

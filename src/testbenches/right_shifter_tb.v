@@ -3,7 +3,7 @@
 Shifta um valor A para direita B = i vezes, com i = {0, 1, ... , 32}, e compara o resultado com a saida do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module RightShifter_TB ();
+module right_shifter_tb ();
 reg signed [31:0] A, B, correct;
 wire signed [31:0] C;
 integer errors, i;
@@ -19,7 +19,7 @@ task Check;
 endtask
 
 // módulo testado
-RightShifter UUT (.A(A), .B(B), .SRA(S), .Shifted(C));
+right_shifter UUT (.A(A), .B(B), .SRA(S), .Shifted(C));
 
 initial begin
     errors = 0;

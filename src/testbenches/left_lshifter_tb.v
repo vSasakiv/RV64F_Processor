@@ -3,7 +3,7 @@
 Shifta um valor A para esquerda B = i vezes, com i = {0, 1, ... , 32}, e compara o resultado com a saida do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module LeftLShifter_TB ();
+module left_lshifter_tb ();
 reg [31:0] A, B, correct;
 wire [31:0] C;
 integer i, errors;
@@ -18,8 +18,7 @@ task Check;
 endtask
 
 // módulo testado
-LeftLShifter UUT (.A(A), .B(B), .S(C));
- 
+left_lshifter UUT (.A(A), .B(B), .S(C));
 
 initial begin
     errors = 0;
