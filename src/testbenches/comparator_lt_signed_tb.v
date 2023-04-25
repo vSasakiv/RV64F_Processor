@@ -21,13 +21,14 @@ task Check;
 endtask
 
 // Unidade em teste: comparador de igualdade
-ComparatorLTSigned UUT (.A_S(A[31]), .B_S(B[31]), .S_S(S[31]), .EQ(EQ), .R(LESS));
+comparator_lt_signed UUT (.A_S(A[31]), .B_S(B[31]), .S_S(S[31]), .EQ(EQ), .R(LESS));
 // Utilização do módulo de soma para obter a subtração
-Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1), .COUT(COUT));
+adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
 // utilização do módulo de comparação igual para obter a igualdade.
-ComparatorEQ E1 (.S(S), .EQ(EQ));
+comparator_eq E1 (.S(S), .EQ(EQ));
 initial begin
     errors = 0;
+    
   
     for (i = -128; i < 128; i = i + 1) begin
       for (j = -128; j < 128; j = j + 1) begin
@@ -39,7 +40,6 @@ initial begin
       end
     end
     $display ("Finished, got %2d errors", errors);
-    $stop;
 end
 
 endmodule

@@ -34,6 +34,7 @@ cla_adder8b UUT (.A(A), .B(B), .CIN(CIN), .S(S), .COUT(COUT));
 initial begin 
     errors = 0;
     CIN = 1; // Parâmetro para teste: 0 para fazer A + B com carry in igual a 0; 1 para fazer o mesmo com carry igual a 1
+    
 
     // Laços for que passam por todas as somas possíveis entre os números de 0 a 255 
     for (i = 0; i < 256; i = i + 1)

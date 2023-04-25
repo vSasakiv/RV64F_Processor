@@ -6,7 +6,7 @@ combinações de A e B, sendo A e B números signed em complemento de 2
 de 8 bits, já que executar este programa
 para todas as combinações A e B de 32 bits é inviável
 */
-module Comparator_TB ();
+module comparator_tb ();
 reg [31:0] A, B; // A, B
 reg signed [31:0] As, Bs; // A e B signed
 wire [31:0] S; // Subtração A - B
@@ -34,12 +34,13 @@ task Check_eq;
 endtask
 
 // Unidade em test: comparador completo
-Comparator UUT (.A_S(A[31]), .B_S(B[31]), .S(S), .COUT(COUT), .EQ(EQ), .LS(LS), .LU(LU));
+comparator UUT (.A_S(A[31]), .B_S(B[31]), .S(S), .COUT(COUT), .EQ(EQ), .LS(LS), .LU(LU));
 // Utilização do módulo de soma para obter a subtração
-Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1), .COUT(COUT));
+adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
 
 initial begin
     errors = 0;
+    
   
     for (i = -128; i < 128; i = i + 1) begin
       for (j = -128; j < 128; j = j + 1) begin
@@ -57,7 +58,6 @@ initial begin
       end
     end
     $display ("Finished, got %2d errors", errors);
-    $stop;
 end
 
 endmodule

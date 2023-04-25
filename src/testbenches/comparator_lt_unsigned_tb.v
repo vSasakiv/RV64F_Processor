@@ -4,7 +4,7 @@ Testbench para o comparador de desigualdade menor que, roda para todos as possí
 combinações de A e B, sendo A e B números de 8 bits, já que executar este programa
 para todas as combinações A e B de 32 bits é inviável
  */
-module ComparatorLTUnsigned_TB ();
+module comparator_lt_unsigned_tb ();
 reg [31:0] A, B; // A, B
 wire [31:0] S; // Subtração A - B
 reg correct; // Valor correto
@@ -20,13 +20,14 @@ task Check;
 endtask
 
 // Unidade em teste: comparador de desigualdade menor que
-ComparatorLTUnsigned UUT (.COUT(COUT), .EQ(EQ), .R(LESS));
+comparator_lt_unsigned UUT (.COUT(COUT), .EQ(EQ), .R(LESS));
 // Utilização do módulo de soma para obter a subtração
-Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1), .COUT(COUT));
+adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
 // Utilização do módulo de comparação igual para obter a igualdade.
-ComparatorEQ E1 (.S(S), .EQ(EQ));
+comparator_eq E1 (.S(S), .EQ(EQ));
 initial begin
     errors = 0;
+    
   
     for (i = 0; i < 256; i = i + 1) begin
       for (j = -256; j < 256; j = j + 1) begin
@@ -38,7 +39,6 @@ initial begin
       end
     end
     $display ("Finished, got %2d errors", errors);
-    $stop;
 end
 
 endmodule

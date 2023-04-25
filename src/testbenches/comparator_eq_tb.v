@@ -4,7 +4,7 @@ Testbench para o comparador de igualdade, roda para todos as possíveis
 saídas de uma subtração entre A e B, porém apenas todas de 16 bits,
 já que todas as combinações de 32 bits não é viável
  */
-module ComparatorEQ_TB ();
+module comparator_eq_tb ();
 reg [31:0] S; // Subtração A - B
 reg correct; // Valor correto
 wire EQ; // Valor entregue pelo módulo
@@ -19,10 +19,11 @@ task Check;
 endtask
 
 // Unidade em teste: comparador de igualdade
-ComparatorEQ UUT (.S(A), .EQ(EQ));
+comparator_eq UUT (.S(S), .EQ(EQ));
 
 initial begin
     errors = 0;
+    
   
     for (i = 0; i < 65536; i = i + 1) begin
       S = i;
@@ -34,7 +35,6 @@ initial begin
     end
     
     $display ("Finished, got %2d errors", errors);
-    $stop;
 end
 
 endmodule

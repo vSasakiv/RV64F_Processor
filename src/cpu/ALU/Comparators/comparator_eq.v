@@ -2,7 +2,7 @@
 Módulo responsável por verificar a igualdade entre duas entradas,
 dada o resultado da subtração (S) entre as duas
 */
-module ComparatorEQ (
+module comparator_eq (
   input wire [31:0] S, // Subtração de A por B
   output wire EQ // Saída resultado
 );

@@ -3,7 +3,7 @@
 Para todos dois números entre 0 e 255, faz um bitwise XOR deles e compara o resultado com a saída X do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module Xor32b_TB ();
+module xor32b_tb ();
 reg [31:0] A, B, correctXor;
 wire [31:0] Xor;
 integer errors, i, j;
@@ -18,7 +18,7 @@ task Check;
 endtask
 
 // módulo testado
-Xor32b UUT (.A(A), .B(B), .Xor(Xor));
+xor32b UUT (.A(A), .B(B), .Xor(Xor));
 
 
 initial begin
