@@ -4,7 +4,7 @@
 Faz todas as somas possíves com os números de 0 a 255 e verifica se a soma S e o carry out COUT são iguais aos da saída do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros 
 Ao final, mostra a quantidade total de erros obtidos */
-module CLAAdder8b_TB ();
+module cla_adder8b_tb ();
 reg [7:0] A, B, correctS;
 reg [8:0] Sum; // Variável responsável por armazenar a soma A + B 
 reg CIN, correctCOUT;
@@ -29,7 +29,7 @@ task Check;
 endtask
 
 // módulo testado
-CLAAdder8b UUT (.A(A), .B(B), .CIN(CIN), .S(S), .COUT(COUT));
+cla_adder8b UUT (.A(A), .B(B), .CIN(CIN), .S(S), .COUT(COUT));
 
 initial begin 
     errors = 0;

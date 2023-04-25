@@ -4,7 +4,7 @@
 Performa todas as somas com os números de 0 a 255 e compara os resultados da soma S e do COUT com os obtidos no módulo.
 Caso algum resultado seja diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem de erros.  
 Ao final, mostra a quantidade total de erros obtidos */
-module Adder32b_TB ();
+module adder32b_tb ();
 reg [31:0] A, B, correctS;
 reg [32:0] Sum; // Variável responsável por armazenar a soma A + B ou A + (-B)
 reg SUB, correctCOUT;
@@ -22,14 +22,14 @@ task Check;
             errors = errors + 1;
         end
         if (COUT != xpectCOUT) begin
-             $display ("Error A: %32b, B: %32b, expected %b, got COUT: %b", A, B, xpectCOUT, COUT);
+            $display ("Error A: %32b, B: %32b, expected %b, got COUT: %b", A, B, xpectCOUT, COUT);
             errors = errors + 1;
         end
     end
 endtask
 
 // módulo testado
-Adder32b UUT (.A(A), .B(B), .SUB(SUB), .S(S), .COUT(COUT));
+adder32b UUT (.A(A), .B(B), .SUB(SUB), .S(S), .COUT(COUT));
 
 initial begin
     errors = 0;
