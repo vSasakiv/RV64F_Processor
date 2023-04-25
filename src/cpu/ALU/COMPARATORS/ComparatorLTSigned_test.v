@@ -1,7 +1,4 @@
 `timescale 1ns / 100ps
-`include "src/cpu/ALU/Comparators/ComparatorLTSigned_mod.v"
-`include "src/cpu/ALU/Comparators/ComparatorEQ_mod.v"
-`include "src/cpu/ALU/Adder_32b/Adder32b_mod.v"
 /* 
 Testbench para o comparador de desigualdade menor que, roda para todos as possíveis
 combinações de A e B, sendo A e B números signed em complemento de 2 

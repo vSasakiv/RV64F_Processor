@@ -1,5 +1,4 @@
 `timescale 1ns / 100ps
-`include "src/cpu/ALU/Shifters/RightShifter_mod.v"
 /* Testbench para o módulo de Right Logical/Arithmetic Shift
 Shifta um valor A para direita B = i vezes, com i = {0, 1, ... , 32}, e compara o resultado com a saida do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.

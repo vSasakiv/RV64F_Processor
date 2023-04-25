@@ -1,7 +1,3 @@
-`include "src/cpu/ALU/Comparators/ComparatorEQ_mod.v"
-`include "src/cpu/ALU/Comparators/ComparatorLTSigned_mod.v"
-`include "src/cpu/ALU/Comparators/ComparatorLTUnsigned_mod.v"
-
 /* 
 Módulo que junta todos os 3 comparadores feitos
 em um único módulo 

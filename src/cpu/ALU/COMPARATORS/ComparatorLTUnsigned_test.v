@@ -1,7 +1,4 @@
 `timescale 1ns / 100ps
-`include "src/cpu/ALU/Comparators/ComparatorLTUnsigned_mod.v"
-`include "src/cpu/ALU/Comparators/ComparatorEQ_mod.v"
-`include "src/cpu/ALU/Adder_32b/Adder32b_mod.v"
 /* 
 Testbench para o comparador de desigualdade menor que, roda para todos as possíveis
 combinações de A e B, sendo A e B números de 8 bits, já que executar este programa
@@ -25,7 +22,7 @@ endtask
 // Unidade em teste: comparador de desigualdade menor que
 ComparatorLTUnsigned UUT (.COUT(COUT), .EQ(EQ), .R(LESS));
 // Utilização do módulo de soma para obter a subtração
-Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
+Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1), .COUT(COUT));
 // Utilização do módulo de comparação igual para obter a igualdade.
 ComparatorEQ E1 (.S(S), .EQ(EQ));
 initial begin

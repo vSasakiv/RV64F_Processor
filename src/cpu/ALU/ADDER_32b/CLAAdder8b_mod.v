@@ -1,4 +1,3 @@
-`include "src/cpu/ALU/Adder_32b/PartialFullAdder1b_mod.v"
 /* Módulo do somador Carry Look-Ahead de 8bits.
 Recebe dois números de 8 bits, A e B e um carry in CIN e devolve a soma A + B no S, assim como o carry out dela no COUT.
 O somador carry look ahead calcula os carries fazendo 
@@ -63,4 +62,5 @@ module CLAAdder8b(A, B, CIN, S, COUT);
     PartialFullAdder1b U5 (.A(A[5]), .B(B[5]), .CIN(C5), .S(S[5]), .P(P5), .G(G6));
     PartialFullAdder1b U6 (.A(A[6]), .B(B[6]), .CIN(C6), .S(S[6]), .P(P6), .G(G7));
     PartialFullAdder1b U7 (.A(A[7]), .B(B[7]), .CIN(C7), .S(S[7]), .P(P7), .G(G8));
+
 endmodule

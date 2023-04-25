@@ -9,6 +9,6 @@ module ComparatorLTUnsigned (
   output wire R // Saída
 );
 
-  assign R = (COUT | EQ); // Expressão lógica derivada de tabela verdade
+  assign R = ~(COUT | EQ); // Expressão lógica derivada de tabela verdade
   
 endmodule

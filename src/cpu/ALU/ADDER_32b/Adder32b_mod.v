@@ -1,4 +1,3 @@
-`include "src/cpu/ALU/Adder_32b/CLAAdder8b_mod.v"
 /* Módulo responsável por adicionar dois números de 32 bits, A e B.
 A soma sai na saída S e o carry out dela no COUT.
 O sinal SUB, quando igual a 1, indica que será realizada uma operação de subtração (A - B)

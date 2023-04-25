@@ -1,5 +1,4 @@
 `timescale 1ns / 100ps
-`include "src/cpu/ALU/Comparators/ComparatorEQ_mod.v"
 /* 
 Testbench para o comparador de igualdade, roda para todos as possíveis
 saídas de uma subtração entre A e B, porém apenas todas de 16 bits,
@@ -20,7 +19,7 @@ task Check;
 endtask
 
 // Unidade em teste: comparador de igualdade
-ComparatorEQ UUT (.S(S), .EQ(EQ));
+ComparatorEQ UUT (.S(A), .EQ(EQ));
 
 initial begin
     errors = 0;

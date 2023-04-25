@@ -1,5 +1,4 @@
 `timescale  1ns / 100ps
-`include "src/cpu/ALU/ALU_mod.v"
 /* Testbench para o módulo da Unidade Lógica Aritmética - ALU
 Para dois números de 32 bits, A e B (parâmetros arbitrários), performa todas as operações lógicas e aritméticas,
 passando por todos os valores de FUNC, tanto para sub_sra = 0 ou sub_sra = 1.
@@ -22,19 +21,19 @@ task Check;
     input [31:0] xpectS;
     input xpectEQ, xpectLU, xpectLS;
     begin 
-        if (S !== xpectS) begin 
+        if (S != xpectS) begin 
             $display ("Error A: %32b, B: %32b, expected %32b, got S: %32b, FUNC: %3b", A, B, xpectS, S, FUNC);
             errors = errors + 1; 
             end
-        if (EQ !== xpectEQ) begin 
+        if (EQ != xpectEQ) begin 
             $display ("Error A: %32b, B: %32b, expectedEQ %b, got EQ: %b", A, B, xpectEQ, EQ);
             errors = errors + 1; 
         end
-        if (LU !== xpectLU) begin 
+        if (LU != xpectLU) begin 
             $display ("Error A: %32b, B: %32b, expectedLU %b, got LU: %b", A, B, xpectLU, LU);
             errors = errors + 1; 
         end
-        if (LS !== xpectLS) begin 
+        if (LS != xpectLS) begin 
             $display ("Error A: %32b, B: %32b, expectedLS %b, got LS: %b", A, B, xpectLS, LS);
             errors = errors + 1; 
         end
@@ -42,7 +41,7 @@ task Check;
 endtask
 
 // Unidade em teste: ALU
-ALU UUT (.A(A), .B(B), .func(FUNC), .sub_sra(sub_sra), .S(S), .EQ(EQ), .LU(LU), .LS(LS));
+ALU UUT (.A(A), .B(B), .FUNC(FUNC), .sub_sra(sub_sra), .S(S), .EQ(EQ), .LU(LU), .LS(LS));
 
 initial begin
 errors = 0;
@@ -51,12 +50,12 @@ A = {2'b11, 30'b0}; // entradas arbitrárias de teste, já que todos os módulos
 B = {20'b11111111111111111111, 12'b0}; 
 As = A;
 Bs = B;
-sub_sra = 0;
+
 for (i = 0; i < 8; i = i + 1) begin
   // percorremos todos os valores de FUNC e testamos se os valores estão realmente corretos
   FUNC = i;
   case (FUNC)
-    3'b000: correct = A + B;
+    3'b000: correct = A - B;
     3'b001: correct = A << B[4:0];
     3'b010: correct = A < B;
     3'b011: correct = As < Bs;
@@ -69,7 +68,7 @@ for (i = 0; i < 8; i = i + 1) begin
   correctLS = As < Bs;
   correctLU = A < B;
   #10
-  Check((correct), correctEQ, correctLU, correctLS);
+  Check(correct, correctEQ, correctLU, correctLS);
 end
 // ativamos o sub_sra e testamos novamente todos os valores de FUNC
 sub_sra = 1;

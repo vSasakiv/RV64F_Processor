@@ -1,5 +1,4 @@
 `timescale 1ns / 100ps
-`include "src/cpu/ALU/Shifters/LeftLShifter_mod.v"
 /* Testbench para o módulo do Left Logical Shift.
 Shifta um valor A para esquerda B = i vezes, com i = {0, 1, ... , 32}, e compara o resultado com a saida do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
