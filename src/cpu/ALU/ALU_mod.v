@@ -42,6 +42,7 @@ module ALU (
       3'b101: S = SR;
       3'b110: S = bOR;
       3'b111: S = bAND;
+      default: S = 32'bx;
     endcase
   end
 
