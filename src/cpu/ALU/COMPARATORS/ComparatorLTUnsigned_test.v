@@ -16,7 +16,7 @@ integer i, j, errors; // Contadores
 
 task Check;
     input xpectLESS;
-    if (LESS !== xpectLESS) begin 
+    if (LESS != xpectLESS) begin 
         $display ("Error A: %32b, B: %32B, COUT: %b, xpect: %b, EQ: %b", A, B, COUT, xpectLESS, EQ);
         errors = errors + 1;
     end
