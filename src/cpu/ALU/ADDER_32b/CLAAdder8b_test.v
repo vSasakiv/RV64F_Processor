@@ -1,4 +1,5 @@
 `timescale 1ns / 100ps
+`include "src/cpu/ALU/Adder_32b/CLAAdder8b_mod.v"
 
 /* Testbench que testa o módulo do somador Carry Look-Ahead de 8 bits.
 Faz todas as somas possíves com os números de 0 a 255 e verifica se a soma S e o carry out COUT são iguais aos da saída do módulo.

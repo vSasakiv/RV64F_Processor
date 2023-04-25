@@ -1,4 +1,5 @@
 `timescale  1ns / 100ps
+`include "src/cpu/ALU/Adder_32b/Adder32b_mod.v"
 
 /* Testbench para o módulo do somador de 32 bits Adder32B.
 Performa todas as somas com os números de 0 a 255 e compara os resultados da soma S e do COUT com os obtidos no módulo.
@@ -22,7 +23,7 @@ task Check;
             errors = errors + 1;
         end
         if (COUT != xpectCOUT) begin
-             $display ("Error A: %32b, B: %32b, expected %b, got COUT: %b", A, B, xpectCOUT, COUT);
+            $display ("Error A: %32b, B: %32b, expected %b, got COUT: %b", A, B, xpectCOUT, COUT);
             errors = errors + 1;
         end
     end

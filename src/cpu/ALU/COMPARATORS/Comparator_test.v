@@ -1,4 +1,6 @@
 `timescale 1ns / 100ps
+`include "src/cpu/ALU/Comparators/Comparator_mod.v"
+`include "src/cpu/ALU/Adder_32b/Adder32b_mod.v"
 /* 
 Testbench para o comparador, que devolve igualdades
 signed e unsigned, que roda para todos as possíveis
@@ -16,19 +18,19 @@ integer i, j, errors; // Contadores
 
 task Check_u;
   input expect_lu;
-  if (expect_lu != LU) begin
+  if (expect_lu !== LU) begin
     $display("unsigned: A: %32b, B: %32b, expect: %b", A, B, LU);
   end
 endtask
 task Check_s; 
   input expect_ls;
-  if (expect_ls != LS) begin
+  if (expect_ls !== LS) begin
     $display("signed: A: %32b, B: %32b, expect: %b", A, B, LS);
   end
 endtask
 task Check_eq;
   input expect_eq;
-  if (expect_eq != EQ) begin
+  if (expect_eq !== EQ) begin
     $display("equality: A: %32b, B: %32b, expect: %b", A, B, EQ);
   end
 endtask
@@ -36,7 +38,7 @@ endtask
 // Unidade em test: comparador completo
 Comparator UUT (.A_S(A[31]), .B_S(B[31]), .S(S), .COUT(COUT), .EQ(EQ), .LS(LS), .LU(LU));
 // Utilização do módulo de soma para obter a subtração
-Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1), .COUT(COUT));
+Adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
 
 initial begin
     errors = 0;

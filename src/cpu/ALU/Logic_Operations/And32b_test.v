@@ -1,4 +1,5 @@
 `timescale 1ns / 100ps
+`include "src/cpu/ALU/Logic_Operations/And32b_mod.v"
 /* Testbench para o módulo AND de 32bits
 Para todos dois números entre 0 e 255, faz um bitwise AND deles e compara o resultado com a saída And do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
