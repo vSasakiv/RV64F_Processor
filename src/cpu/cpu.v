@@ -1,4 +1,4 @@
-module CPU (
+module cpu (
   input reset,
 	input wire [31:0] data_o, // saida da memoria
 	output mem_clk, 
@@ -19,9 +19,9 @@ module CPU (
   wire EQ, LS, LU; // entradas de comparação
   wire clk; // sinal de clock
 
-  ClockGen CLK0 (.clk(clk));
+  clock_gen CLK0 (.clk(clk));
 
-  CU CONTROL0 (
+  control_unit CONTROL0 (
     .addr_sel(addr_sel)
     ,.insn(insn)
     ,.pc_next_sel(pc_next_sel)
@@ -43,8 +43,8 @@ module CPU (
     ,.EQ(EQ)
     ,.LS(LS)
     ,.LU(LU)
-	 ,.imm(imm)
-   ,.clk(clk));
+    ,.imm(imm)
+    ,.clk(clk));
   
   dataflow DF0 (
     .sub_sra(sub_sra)
@@ -70,7 +70,7 @@ module CPU (
     ,.EQ(EQ)
     ,.LS(LS)
     ,.LU(LU)
-	 ,.imm(imm)
+    ,.imm(imm)
   );
 
 

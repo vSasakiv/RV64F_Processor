@@ -1,13 +1,13 @@
 `timescale 1 ns / 100 ps
 
-module CPU_TB ();
+module cpu_tb ();
   wire [31:0] data_o; // saida da memoria
 	wire mem_clk;
 	wire [1:0] mem_size;
 	wire [31:0] addr, data_i;
   reg reset;
 
-  CPU CPU0 (
+  cpu CPU0 (
     .reset(reset)
     ,.data_o(data_o)
     ,.mem_clk(mem_clk)
@@ -17,7 +17,7 @@ module CPU_TB ();
   );
   
 /* Dentro do módulo "RAM_mod.c", escolha o teste a ser executado seguindo as instruções dadas */ 
-  RAM MEM0 (
+  ram MEM0 (
     .mem_clk(mem_clk)
     ,.mem_size(mem_size)
     ,.addr(addr)
