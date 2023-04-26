@@ -3,7 +3,7 @@
 Para cada valor que code pode assumir, verifica se o sinal recebido do módulo é igual ao esperado.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module ALUSelA_TB ();
+module alu_sel_a_tb ();
 reg [9:0] code;
 reg correctASel;
 reg [31:0] insn;
@@ -20,7 +20,7 @@ task Check;
 endtask
 
 // módulo testado
-ALUSelA UUT (.code(code), .alu_sel_a(alu_sel_a), .insn(insn));
+alu_sel_a UUT (.code(code), .alu_sel_a(alu_sel_a), .insn(insn));
 
 // Atribui todos os valores que code pode assumir, especifica o resultado correto em correctAsel e verifica se o módulo funciona para esse valor.
 initial begin
@@ -99,5 +99,6 @@ initial begin
 
 
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 endmodule

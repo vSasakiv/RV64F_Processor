@@ -3,7 +3,7 @@
 Testa, para cada valor possível de code, se o valor recebido é igual ao valor de FUNC esperado. 
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module funcMux_TB ();
+module func_mux_tb ();
 reg [2:0] insn, correctFUNC;
 reg [9:0] code;
 wire [2:0] func;
@@ -19,7 +19,7 @@ task Check;
 endtask
 
 // módulo testado
-funcMux UUT (.insn(insn), .code(code), .func(func));
+func_mux UUT (.insn(insn), .code(code), .func(func));
 
 // Atribui todos os valores possíveis ao code, especifica o resultado correto e verifica se o módulo funciona para esse valor.
 initial begin 
@@ -87,6 +87,7 @@ initial begin
     Check (correctFUNC);
 
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

@@ -27,7 +27,7 @@ Tabela verdade do circuito (função em mintermos com A sendo msb e J lsb):
     * 1000000000  0 ou 1
 
 Função = (~A&~B&~C&~D&~E&~F&~G&~H&~I&J)|(~A&~B&~C&~D&~E&~F&G&~H&~I&~J) */
-module ALUSelA (code, alu_sel_a, insn);
+module alu_sel_a (code, alu_sel_a, insn);
 input [9:0] code;
 input [31:0] insn;
 output alu_sel_a;

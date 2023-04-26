@@ -1,7 +1,7 @@
 /* Módulo "gate" responsável por gerar o sinal func 
 Força a saída ser 000 caso code seja um entre: 0000000001, 0000000010, 0000001000, 0000010000, 0001000000, 0100000000.
 Caso contrário, apenas transmite direto o sinal recebido da instrução insn */
-module funcMux (
+module func_mux (
     code, insn, func
 );
     input [2:0] insn; // Instrução

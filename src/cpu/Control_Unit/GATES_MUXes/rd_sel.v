@@ -26,7 +26,7 @@ Função (output direita) = (~A&~B&~C&~D&~E&~F&~G&~H&~I&J) | (~A&~B&~C&~D&~E&~F&
 Função (output esquerda) = (A|B|C|D|E|F|G|~H|I|J) & (A|~B|C|D|E|F|G|H|I|J)
 */
 
-module RdSel (code, rd_sel);
+module rd_sel (code, rd_sel);
 input [9:0] code;
 output [1:0] rd_sel;
 
