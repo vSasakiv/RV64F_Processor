@@ -3,7 +3,7 @@
 Para uma quantidade "CICLOS" de ciclos do sinal CLOCK, a cada tempo especificado pelo DELAY, verifica se o sinal recebido do módulo é igual ao esperado.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros. 
 Ao final, mostra a quantidade total de erros obtidos. */
-module ClockGen_TB ();
+module clock_gen_tb ();
 reg correctclk; // Armazena o valor esperado do sinal CLOCK.
 wire clk;
 integer errors, C;
@@ -20,7 +20,7 @@ task Check;
 endtask
 
 // módulo testado
-ClockGen #(.delay(DELAY)) UUT (.clk(clk));
+clock_gen #(.delay(DELAY)) UUT (.clk(clk));
 
 
 initial begin
@@ -35,7 +35,7 @@ initial begin
         #DELAY;
     end
     $display ("Finished, got %2d errors", errors);
-    $stop;
+    $finish;
 end
 
 endmodule

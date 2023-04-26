@@ -2,7 +2,7 @@
 /* Testbench para o módulo da Control Unit (CU). 
 Para cada tipo de instrução, diferenciada pelos OPCODES, verifica se os sinais recebidos da CU são iguais aos esperados.
 Caso algum sinal não seja igual, exibe a instrução, o valor esperado e o valor recebido, aumentando a contagem de erros. */
-module CU_TB ();
+module control_unit_tb ();
 reg [31:0] insn; 
 reg LU, LS, EQ;
 wire addr_sel, pc_next_sel, sub_sra, pc_alu_sel;
@@ -25,7 +25,7 @@ wire [2:0] mem_extend_c;
 wire [4:0] rs1_c, rs2_c, rd_c;
 
 wire clk;
-ClockGen C0 (.clk(clk)); // Módulo que gera o sinal clock
+clock_gen C0 (.clk(clk)); // Módulo que gera o sinal clock
 
 /* Task responsável por verificar se o valor de um sinal recebido é igual ao valor esperado */
 task Check;
@@ -110,7 +110,7 @@ task Check;
 endtask
 
 /* Unidade sendo testada : CU */
-CU UTT (.insn(insn), .LU(LU), .LS(LS), .EQ(EQ), .addr_sel(addr_sel), .pc_next_sel(pc_next_sel), 
+control_unit UTT (.insn(insn), .LU(LU), .LS(LS), .EQ(EQ), .addr_sel(addr_sel), .pc_next_sel(pc_next_sel), 
 .sub_sra(sub_sra), .pc_alu_sel(pc_alu_sel), .rd_clk(rd_clk), .mem_clk(mem_clk), .alu_sel_a(alu_sel_a),
 .alu_sel_b(alu_sel_b), .pc_clk(pc_clk), .insn_clk(insn_clk), .mem_size(mem_size), .mem_extend(mem_extend), 
 .func(func), .rd_sel(rd_sel), .rs1(rs1), .rs2(rs2), .rd(rd), .clk(clk));
@@ -202,6 +202,6 @@ initial begin
     Check (1'b0, 1'b0, 1'b0, 1'b0 , 1'b1, 1'b0, 1'b0, 1'b1, 3'b000, 2'b00, pc_clk_c, insn_clk_c, mem_size_c, mem_extend_c, rs1_c, rs2_c, rd_c);
     $display("Tipo I LOAD - errors: %2d ", errors);
 
-    $stop;
+    $finish;
 end
 endmodule 

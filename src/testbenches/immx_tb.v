@@ -1,7 +1,7 @@
 `timescale 1 ns / 100 ps
 /* Testbench para o módulo responsável por decodificar o imediato de uma instrução. 
 Para opcodes e instruções escolhidas aleatoriamente, exibe o imediato obtido através do "$monitor" para verificação. */
-module immxTB ();
+module immx_tb ();
     wire [31:0] imm; // Imediato gerado
     reg [31:0] insn; // Instrução
     reg [6:0] opcodes [0:8]; // Array com todos os opcodes de instruções que possuem campo para um imediato
@@ -28,7 +28,7 @@ module immxTB ();
             #10;
         end
         $display("Finished");
-        $stop;
+        $finish;
     end
     
 
