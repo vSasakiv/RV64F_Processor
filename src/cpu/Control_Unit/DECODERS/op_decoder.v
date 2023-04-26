@@ -41,7 +41,7 @@ O "algoritmo" de decodificação é descrito abaixo:
     4. Se enquadra no grupo 1. Grupo atual: 1110011.
     Assim, como toda vez que um opcode "entra em grupo" os AND de saída dos OPCODE de outros grupos geram 0, temos que o único que gerará 1 será o AND de saída do OPCODE da instrução tipo I (CSR).
 */
-module OPDecoder (
+module op_decoder (
     input [31:0] insn,
     output [9:0] code
 );

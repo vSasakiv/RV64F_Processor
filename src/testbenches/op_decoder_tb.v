@@ -3,7 +3,7 @@
 Testa, para cada valor de OPCODE que INSN pode ter, se o valor gerado pelo decodificador é igual ao esperado. 
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module OPDecoder_TB ();
+module op_decoder_tb ();
 reg [31:0] insn; // Instrução recebida, com OPCODE nos 7 LSB
 reg [9:0] correctCODE;
 wire [9:0] code; // Palavra gerada pelo decodificador
@@ -21,7 +21,7 @@ task Check;
 endtask
 
 // módulo testado
-OPDecoder UUT (.insn(insn), .code(code));
+op_decoder UUT (.insn(insn), .code(code));
 
 // Atribui todos os valores possíveis de OPCODE ao insn, especifica o resultado correto e verifica se o módulo funciona para esse valor.
 initial begin 
@@ -78,6 +78,7 @@ initial begin
     Check (correctCODE);
 
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

@@ -3,7 +3,7 @@
 Testa, para dois valores de code e Dec_Data arbitrários, se o valor gerado pelo gate é igual ao esperado. 
 Se algum valor for diferente do esperado, mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module Gate_TB ();
+module gate_tb ();
 
 reg [9:0] code, Dec_Data; // Código recebido do OPDECODER e os sinais concatenados dos decodificadores
 wire S; // net com o sinal que sai do gate
@@ -21,7 +21,7 @@ task Check;
 endtask
 
 // módulo testado
-Gate UUT (.code(code), .Dec_Data(Dec_Data), .S(S));
+gate UUT (.code(code), .Dec_Data(Dec_Data), .S(S));
 
 /* Atribui valores a code e Dec_Data e registra qual é o valor certo. Após isso, testa o módulo
 OBS: Valores arbitrários de code e Dec_Data. Para testar outros, ficar atento a qual valor o correctS deve assumir. */
@@ -42,6 +42,6 @@ initial begin
 
 
   $display("Finished, got %d errors", errors);
-  $stop;
+  $finish;
 end
 endmodule

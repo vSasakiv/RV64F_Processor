@@ -1,7 +1,7 @@
 /* Módulo de uma Gate (um "mux" com seletor sendo um código de 10 bits), utilizado para selecionar os sinais
 que deveram passar dos decodificados para o resto do circuito,
 onde os sinais "code" vem dos OPDecoders, e Dec_Data vem do sinal concatenado dos decodificados */
-module Gate (
+module gate (
   input wire [9:0] code, Dec_Data,
   output wire S
 );

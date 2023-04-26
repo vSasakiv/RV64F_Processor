@@ -3,12 +3,12 @@
 Para um instrução arbitrária, testa se os valores dos sinais recebidos são iguais aos esperados. 
 Se algum valor for diferente do esperado, mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module INSNDecoderClks_TB ();
+module insn_decoder_clks_tb ();
   reg [31:0] insn; // Instrução 
   reg [9:0] code; // code gerado pelo OPDecoder
   reg EQ, LS, LU; // Sinais recebidos da alu, resultados de comparações
   wire addr_sel, pc_next_sel, sub_sra, pc_alu_sel, rd_clk, mem_clk; // Sinais gerados
-  wire clk; // Sinal de clock
+  reg clk; // Sinal de clock
   reg addr_sel_correct, pc_next_sel_correct, sub_sra_correct, pc_alu_sel_correct, rd_clk_correct, mem_clk_correct; // Regs que registram os valores corretos que os sinais devem assumir
   integer errors;
 
@@ -46,14 +46,14 @@ task Check;
 endtask
 
 // Módulo testado
-INSNDecoderClks UUT (.insn(insn), .code(code), .clk(clk), .EQ(EQ), .LS(LS), .LU(LU), .addr_sel(addr_sel), .pc_alu_sel(pc_alu_sel), .pc_next_sel(pc_next_sel), .sub_sra(sub_sra), .rd_clk(rd_clk), .mem_clk(mem_clk));
+insn_decoder_clks UUT (.insn(insn), .code(code), .clk(clk), .EQ(EQ), .LS(LS), .LU(LU), .addr_sel(addr_sel), .pc_alu_sel(pc_alu_sel), .pc_next_sel(pc_next_sel), .sub_sra(sub_sra), .rd_clk(rd_clk), .mem_clk(mem_clk));
 
 // Gerador de Clock
-ClockGen C0 (.clk(clk));
+always #5000 clk = ~clk;
 
   /* Para uma instrução arbitrária, e seu respectivo code, atribui os valores corretos aos sinais reg "_correct" e em seguida, testa o módulo */
   initial begin
-    
+    clk = 0;
     errors = 0;
     #10
     // Instrução arbitrária: compara registrador x5 e x4, e caso sejam iguais avança o pc em 8.
@@ -82,7 +82,7 @@ ClockGen C0 (.clk(clk));
     );
 
     $display("Finished, got %3d errors", errors);
-    $stop;
+    $finish;
   end
 
 

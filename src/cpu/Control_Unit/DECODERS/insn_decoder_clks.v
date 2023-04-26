@@ -1,4 +1,4 @@
-module INSNDecoderClks (
+module insn_decoder_clks (
   input wire [31:0] insn, // Entrada da instrução
   input wire [9:0] code, // Código proveniente do OPDecoder
   input wire clk, // Sinal de Clock
@@ -16,9 +16,9 @@ module INSNDecoderClks (
   wire [9:0] addr_sel_c, pc_next_sel_c, sub_sra_c, pc_alu_sel_c, rd_clk_c, mem_clk_c;
 
   // instanciação de todos os módulos de decoder
-  DecoderBINSN D0 (.insn(insn), .EQ(EQ), .LS(LS), .LU(LU), .pc_alu_sel(pc_alu_sel_B));
-  DecoderIINSN_alu D1 (.insn(insn), .sub_sra(sub_sra_IA));
-  DecoderRINSN D5 (.insn(insn), .sub_sra(sub_sra_R));
+  decoder_b_insn D0 (.insn(insn), .EQ(EQ), .LS(LS), .LU(LU), .pc_alu_sel(pc_alu_sel_B));
+  decoder_i_insn_alu D1 (.insn(insn), .sub_sra(sub_sra_IA));
+  decoder_r_insn D5 (.insn(insn), .sub_sra(sub_sra_R));
 
   // concatenação de todos os sinais de saída para ser utilizado no Gate
   assign addr_sel_c = {1'b0, ~clk, 1'b0, ~clk, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0};
@@ -29,11 +29,11 @@ module INSNDecoderClks (
   assign mem_clk_c = {1'b0, 1'b0, 1'b0, clk, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0};
 
   // instanciação dos gates para cada sinal, os quais retornam diretamente as saídas.
-  Gate G0 (.code(code), .Dec_Data(addr_sel_c), .S(addr_sel));
-  Gate G1 (.code(code), .Dec_Data(pc_next_sel_c), .S(pc_next_sel));
-  Gate G2 (.code(code), .Dec_Data(sub_sra_c), .S(sub_sra));
-  Gate G3 (.code(code), .Dec_Data(pc_alu_sel_c), .S(pc_alu_sel));
-  Gate G4 (.code(code), .Dec_Data(rd_clk_c), .S(rd_clk));
-  Gate G5 (.code(code), .Dec_Data(mem_clk_c), .S(mem_clk));
+  gate G0 (.code(code), .Dec_Data(addr_sel_c), .S(addr_sel));
+  gate G1 (.code(code), .Dec_Data(pc_next_sel_c), .S(pc_next_sel));
+  gate G2 (.code(code), .Dec_Data(sub_sra_c), .S(sub_sra));
+  gate G3 (.code(code), .Dec_Data(pc_alu_sel_c), .S(pc_alu_sel));
+  gate G4 (.code(code), .Dec_Data(rd_clk_c), .S(rd_clk));
+  gate G5 (.code(code), .Dec_Data(mem_clk_c), .S(mem_clk));
 
 endmodule
