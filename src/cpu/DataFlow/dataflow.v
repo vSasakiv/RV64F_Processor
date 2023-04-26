@@ -40,7 +40,7 @@ module dataflow (
   // registrador para o Program Counter (PC)
   reg32bit PCreg (.clk(pc_clk), .rs_i(reset), .data_i(pc_selected), .data_o(pc));
   // ALU do Program Counter, neste caso sendo apenas um somador de 32bits.
-  Adder32b PCADD (.A(pc), .B(pc_alu_selected), .SUB(1'b0), .S(pc_inc));
+  adder32b PCADD (.A(pc), .B(pc_alu_selected), .SUB(1'b0), .S(pc_inc));
   // multiplexador para seleção da segunda entrada da ALU do Program Counter
   mux2to1 PCALUSEL (.select(pc_alu_sel), .I0(32'h00000004), .I1(imm), .data_o(pc_alu_selected));
   // multiplexador para selecionar qual valor deverá ser gravado no registrador destino presente na Regfile
@@ -52,7 +52,7 @@ module dataflow (
   // multiplexador para selecionar qual valor irá entrar na ALU geral, podendo ser um imediato ou o valor do rs2
   mux2to1 ALUBSEL (.select(alu_sel_b), .I0(rs2_val), .I1(imm), .data_o(alu_val_b));
   // ALU
-  ALU ALU0 (.A(alu_val_a), .B(alu_val_b), .func(func), .sub_sra(sub_sra), .alu_val(alu_val), .EQ(EQ), .LS(LS), .LU(LU));
+  alu ALU0 (.A(alu_val_a), .B(alu_val_b), .func(func), .sub_sra(sub_sra), .alu_val(alu_val), .EQ(EQ), .LS(LS), .LU(LU));
   // multiplexador para selecionar endereço, utilizado em função de store para gravar algum valor.
   mux2to1 ADDRSEL (.select(addr_sel), .I0(pc), .I1(alu_val), .data_o(addr));
 

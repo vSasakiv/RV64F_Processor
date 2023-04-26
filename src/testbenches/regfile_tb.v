@@ -3,7 +3,7 @@ para export os valores. Também é gerado um .vcd, que pode ser visualizado em p
 gtk wave, que nos permitem visualizar o diagrama de tempo do registrador. */
 `timescale 1 ns / 100 ps
 
-module regfile_TB ();
+module regfile_tb ();
     reg clk; // entrada de sinal de clock
     wire [31:0] rs1_out; // saída 1 do registrador
     wire [31:0] rs2_out; // saída 2 do registrador
@@ -32,7 +32,7 @@ module regfile_TB ();
             clk = ~clk;
         end
         $display("Finished");
-        $stop;
+        $finish;
     end
     
 

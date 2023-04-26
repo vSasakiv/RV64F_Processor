@@ -3,7 +3,7 @@ e o tamanho da extensão, são expostos, juntamente com a saída do módulo ao t
 do $monitor */
 `timescale 1 ns / 100 ps
 
-module memsx_TB ();
+module memsx_tb ();
     wire [31:0] mem_extend; // resultado de saída do módulo
     reg [31:0] mem_value; // valor da memória
     reg [2:0] mem_size; // tamanho da extensão
@@ -23,7 +23,7 @@ module memsx_TB ();
             #10;
         end
         $display("Finished");
-        $stop;
+        $finish;
     end
     
 

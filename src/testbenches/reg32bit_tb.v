@@ -3,7 +3,7 @@ do registrador, verificamos se o valor realmente foi armazenado e por fim ativam
 e verificamos se o valor dele realmente está igual a 0 */
 `timescale 1 ns / 100 ps
 
-module reg32bit_TB ();
+module reg32bit_tb ();
     reg clk; // entrada sinal de clock
     reg reset; // sinal de reset
     wire [31:0] data_o; // saída do registrador
@@ -34,6 +34,6 @@ module reg32bit_TB ();
           $display("Error: data_o = %d data_i = %d", data_o, data_i);
         end
         $display("Finished");
-        $stop;
+        $finish;
     end
 endmodule
