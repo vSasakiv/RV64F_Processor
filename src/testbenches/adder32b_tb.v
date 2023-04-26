@@ -49,6 +49,7 @@ initial begin
             Check (correctS, correctCOUT);
         end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

@@ -8,7 +8,7 @@ module ram (
     output [31:0] data_o
 );
 
-reg [7:0] memory [0 : 65540]; // precisaria ser 32'hffffffff, mas não é conveniente ter uma memória de tamanho máximo na simulação. 
+reg [7:0] memory [0 : 5]; // precisaria ser 32'hffffffff, mas não é conveniente ter uma memória de tamanho máximo na simulação. 
 
   /* Escolha do teste para ser executado 
     Formato da setença: $readmemh({"tests/","teste","/RAM.hex"}, memory);
@@ -59,10 +59,12 @@ always @(posedge mem_clk) begin
 end
 /* APENAS PARA A REALIZAÇÃO DE TESTES*/
 /*!!!!!!*/
+/*
 always @(*) begin
   // cada vez que qualquer sinal muda, escreve/sobrescreve um arquivo .hex contendo o conteúdo da memória RAM
   $writememh("RAMOUT.hex", memory);
-end
+end 
+*/
 /*!!!!!!*/
 assign data_o = {memory[addr+3], memory[addr+2], memory[addr+1], memory[addr]};
 
