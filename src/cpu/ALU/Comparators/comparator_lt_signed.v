@@ -5,10 +5,10 @@ dados os bits de sinal de A e B e da subtração,
 além do sinal de igualdade
  */
 module comparator_lt_signed (
-  input wire A_S, B_S, S_S, EQ, // Entradas de sinal e igualdade
-  output wire R // Saída
+  input wire a_sign, b_sign, s_sign, eq, // Entradas de sinal e igualdade
+  output wire ls // Saída
 );
 
-  assign R = (A_S & ~B_S) | (~EQ & S_S) & (~B_S | A_S); // Expressão lógica derivada de tabela verdade
-  
+  assign R = (a_sign & ~b_sign) | (~eq & s_sign) & (~b_sign | a_sign); // Expressão lógica derivada de tabela verdade
+
 endmodule

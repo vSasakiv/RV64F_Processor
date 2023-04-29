@@ -6,37 +6,35 @@ de 8 bits, já que executar este programa
 para todas as combinações A e B de 32 bits é inviável
  */
 module ComparatorLTSigned_TB ();
-reg signed [31:0] A, B; // A, B
-wire [31:0] S; // subtração A - B
+reg signed [63:0] a, b; // A, B
+wire [63:0] s; // subtração A - B
 reg correct; // Valor correto
-wire EQ, COUT, LESS; // Valores entregues por módulos, igualdade, Carry out e Resultado
+wire eq, c_o, ls; // Valores entregues por módulos, igualdade, Carry out e Resultado
 integer i, j, errors; // Contadores
 
-task Check;
-    input xpectLESS;
-    if (LESS != xpectLESS) begin 
-        $display ("Error A: %32b, B: %32B, COUT: %b, xpect: %b, EQ: %b", A, B, COUT, xpectLESS, EQ);
+task check;
+    input xpect_ls;
+    if (ls != xpect_ls) begin 
+        $display ("Error A: %32b, B: %32B, COUT: %b, xpect: %b, EQ: %b", a, b, c_o, xpect_ls, eq);
         errors = errors + 1;
     end
 endtask
 
 // Unidade em teste: comparador de igualdade
-comparator_lt_signed UUT (.A_S(A[31]), .B_S(B[31]), .S_S(S[31]), .EQ(EQ), .R(LESS));
+comparator_lt_signed UUT (.a_sign(a[31]), .b_sign(b[31]), .s_sign(s[31]), .eq, .ls);
 // Utilização do módulo de soma para obter a subtração
-adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
+adder64b a1 (.a, .b, .s, .sub(1'b1), .c_o);
 // utilização do módulo de comparação igual para obter a igualdade.
-comparator_eq E1 (.S(S), .EQ(EQ));
+comparator_eq e1 (.s, .eq);
 initial begin
     errors = 0;
-    
-  
     for (i = -128; i < 128; i = i + 1) begin
       for (j = -128; j < 128; j = j + 1) begin
-        A = i;
-        B = j;
-        correct = A < B;
+        a = i;
+        b = j;
+        correct = a < b;
         #1
-        Check (correct);
+        check (correct);
       end
     end
     $display ("Finished, got %2d errors", errors);

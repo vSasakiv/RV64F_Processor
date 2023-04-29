@@ -7,57 +7,57 @@ de 8 bits, já que executar este programa
 para todas as combinações A e B de 32 bits é inviável
 */
 module comparator_tb ();
-reg [31:0] A, B; // A, B
-reg signed [31:0] As, Bs; // A e B signed
-wire [31:0] S; // Subtração A - B
-reg correct_u, correct_s, correct_eq; // Valor correto
-wire EQ, COUT, LS, LU; // Valores entregues por módulos, igualdade, Carry out e Resultado
+reg [63:0] a, b; // A, B
+reg signed [63:0] a_signed, b_signed; // A e B signed
+wire [63:0] s; // Subtração A - B
+reg correct_lu, correct_ls, correct_eq; // Valor correto
+wire eq, c_o, ls, lu; // Valores entregues por módulos, igualdade, Carry out e Resultado
 integer i, j, errors; // Contadores
 
-task Check_u;
+task check_u;
   input expect_lu;
-  if (expect_lu != LU) begin
-    $display("unsigned: A: %32b, B: %32b, expect: %b", A, B, LU);
+  if (expect_lu != lu) begin
+    $display("unsigned: A: %64b, B: %64b, expect: %b", a, b, lu);
+    errors = errors + 1;
   end
 endtask
-task Check_s; 
+task check_s; 
   input expect_ls;
-  if (expect_ls != LS) begin
-    $display("signed: A: %32b, B: %32b, expect: %b", A, B, LS);
+  if (expect_ls != ls) begin
+    $display("signed: A: %64b, B: %64b, expect: %b", a, b, ls);
+    errors = errors + 1;
   end
 endtask
-task Check_eq;
+task check_eq;
   input expect_eq;
-  if (expect_eq != EQ) begin
-    $display("equality: A: %32b, B: %32b, expect: %b", A, B, EQ);
+  if (expect_eq != eq) begin
+    $display("equality: A: %64b, B: %64b, expect: %b", a, b, eq);
+    errors = errors + 1;
   end
 endtask
 
 // Unidade em test: comparador completo
-comparator UUT (.A_S(A[31]), .B_S(B[31]), .S(S), .COUT(COUT), .EQ(EQ), .LS(LS), .LU(LU));
+comparator UUT (.a_sign(a_signed[31]), .b_sign(b_signed[31]), .s, .c_o, .eq, .ls, .lu);
 // Utilização do módulo de soma para obter a subtração
-adder32b A1 (.A(A), .B(B), .S(S), .SUB(1'b1), .COUT(COUT));
+adder64b A1 (.a, .b, .s, .sub(1'b1), .c_o);
 
 initial begin
     errors = 0;
-    
-  
-    for (i = -128; i < 128; i = i + 1) begin
-      for (j = -128; j < 128; j = j + 1) begin
-        A = i;
-        B = j;
-        As = i;
-        Bs = j;
-        correct_u = A < B;
-        correct_s = As < Bs;
-        correct_eq = A == B;
+    for (i = 0; i < 1000; i = i + 1) begin
+        a = {$urandom, $urandom};
+        b = {$urandom, $urandom};
+        a_signed = {$urandom, $urandom};
+        b_signed = {$urandom, $urandom};
+        correct_lu = a < b;
+        correct_ls = a_signed < b_signed;
+        correct_eq = a == b;
         #1
-        Check_u (correct_u);
-        Check_s (correct_s);
-        Check_eq(correct_eq);
-      end
+        check_u (correct_lu);
+        check_s (correct_ls);
+        check_eq(correct_eq);
     end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

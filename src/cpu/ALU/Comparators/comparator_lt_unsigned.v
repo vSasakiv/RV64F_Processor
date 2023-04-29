@@ -5,10 +5,10 @@ dados o Carry out da soma pelo complemento de dois
 do segundo (subtração) e a igualdade.
  */
 module comparator_lt_unsigned (
-  input wire COUT, EQ, // Entradas COUT e igualdade
-  output wire R // Saída
+  input wire c_o, eq, // Entradas COUT e igualdade
+  output wire lu // Saída
 );
 
-  assign R = ~(COUT | EQ); // Expressão lógica derivada de tabela verdade
+  assign lu = ~(c_o | eq); // Expressão lógica derivada de tabela verdade
   
 endmodule

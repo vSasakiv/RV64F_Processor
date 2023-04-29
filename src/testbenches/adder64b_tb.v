@@ -13,7 +13,7 @@ wire c_o;
 integer errors, i; 
 
 // task que verifica se a saída do módulo é igual ao valor esperado*/
-task Check; 
+task check; 
     input [63:0] xpect_s;
     input xpect_cout; 
     begin 
@@ -44,7 +44,7 @@ initial begin
       correct_s = sum[63:0];
       correct_cout = sum[64];
       #10;
-      Check (correct_s, correct_cout);
+      check (correct_s, correct_cout);
     end
 
     $display ("Finished, got %2d errors", errors);
