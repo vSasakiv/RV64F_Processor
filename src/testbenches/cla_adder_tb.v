@@ -1,7 +1,7 @@
 `timescale  1ns / 100ps
 
 //Testbench para o módulo do somador de n bits "adder".
-module adder_tb ();
+module cla_adder_tb ();
 parameter InputSize = 64;
 reg [InputSize - 1:0] a, b, correct_s;
 reg [InputSize:0] sum; // Variável responsável por armazenar a soma A + B ou A + (-B)
@@ -27,7 +27,7 @@ task check;
 endtask
 
 // módulo testado
-  adder #(InputSize) UUT (.a, .b, .sub, .s, .c_o);
+  cla_adder #(InputSize) UUT (.a, .b, .sub, .s, .c_o);
 
 initial begin
     errors = 0;

@@ -1,4 +1,4 @@
-module adder #(
+module cla_adder #(
     parameter InputSize = 64
 ) (
     input [InputSize - 1:0] a, b,
