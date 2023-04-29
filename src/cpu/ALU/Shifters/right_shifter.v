@@ -3,14 +3,12 @@ Recebe dois números de 32 bits, A e B, e shifta A para direita na quantidade es
 Resultado é atribuido na saída Shifted.
 Caso SRA for 1, executa um arithmetic shift, caso contrário (igual a 0) executa um logical shift */
 module right_shifter (
-    input signed [31:0] A, B,
-    input SRA,
-    output reg [31:0] Shifted
+    input signed [63:0] a, b,
+    input sra,
+    output reg [63:0] s
 );
-    always @ (A, B, SRA)
-        if (SRA == 0) 
-            Shifted = A >> B[4:0];
-        else 
-            Shifted = A >>> B[4:0];
+    always @ (a, b, sra)
+        if (sra == 1'b0) s = a >> b[5:0];
+        else s = a >>> b[5:0];
 
 endmodule

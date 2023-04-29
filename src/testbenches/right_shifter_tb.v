@@ -4,39 +4,37 @@ Shifta um valor A para direita B = i vezes, com i = {0, 1, ... , 32}, e compara 
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
 module right_shifter_tb ();
-reg signed [31:0] A, B, correct;
-wire signed [31:0] C;
+reg signed [63:0] a, b, correct;
+wire signed [63:0] s;
 integer errors, i;
-reg S; 
+reg sra; 
 
 // task que verifica se a saída do módulo é igual ao valor esperado 
-task Check;
-    input [31:0] xpect;
-    if (C != xpect) begin
-        $display ("Error A: %32b, B: %5b, got %32b", A, B, C);
+task check;
+    input [63:0] xpect;
+    if (s !== xpect) begin
+        $display ("Error A: %64b, B: %6b, got %64b", a, b, s);
         errors = errors + 1;
     end
 endtask
 
 // módulo testado
-right_shifter UUT (.A(A), .B(B), .SRA(S), .Shifted(C));
+right_shifter UUT (.a, .b, .sra, .s);
 
 initial begin
     errors = 0;
-    S = 1'b0; // Parâmetro, 0 se é logical shift, 1 se é arithmetic shift
-    A = {1'b1, 31'b0}; // Parâmetro, valor que será shiftado para a direita
+    sra = 1'b1; // Parâmetro, 0 se é logical shift, 1 se é arithmetic shift
+    a = {1'b1, 63'b0}; // Parâmetro, valor que será shiftado para a direita
 
     // Laços for que passa por todos os valores de i em que é necessário dar shift 
-    for (i = 0; i < 32; i = i +1) begin
-        B = i;
-        if (S == 0)
-            correct = A >> i;
-        else 
-            correct = A >>> i;
+    for (i = 0; i < 64; i = i +1) begin
+        b = i;
+        if (sra == 0) correct = a >> i;
+        else correct = a >>> i;
         #10 
-        $display ("A: %32b, B: %5b", A, B);
-        $display ("correct: %32b, C: %32b", correct, C);
-        Check (correct);
+        $display ("A: %64b, B: %6b", a, b);
+        $display ("correct: %64b, C: %64b", correct, s);
+        check (correct);
     end
     $display ("Finished, got %2d errors", errors);
 end
