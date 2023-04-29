@@ -3,22 +3,22 @@
 Para todos dois números entre 0 e 255, faz um bitwise OR deles e compara o resultado com a saída O do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
-module or32b_tb ();
-reg [31:0] A, B, correctO;
-wire [31:0] O;
+module or64b_tb ();
+reg [63:0] a, b, correct_s;
+wire [63:0] s;
 integer errors, i, j;
 
 // task que verifica se a saída do módulo é igual ao valor esperado
-task Check;
-    input [31:0] xpectO;
-    if (O != xpectO) begin 
-        $display ("Error A: %32b, B: %32b, expected %32b, got O: %32b", A, B, xpectO, O);
+task check;
+    input [63:0] xpect_s;
+    if (s != xpect_s) begin 
+        $display ("Error A: %64b, B: %64b, expected %64b, got O: %64b", a, b, xpect_s, s);
         errors = errors + 1;
     end
 endtask
 
 // módulo testado
-or32b UUT (.A(A), .B(B), .O(O));
+or64b UUT (.a, .b, .s);
 
 initial begin
     errors = 0;
@@ -26,11 +26,11 @@ initial begin
     // Laços for que passam por todas as somas possíveis entre os números de 0 a 255
     for (i = 0; i < 256; i = i + 1)
         for (j = 0; j < 256; j = j + 1) begin
-            A = i;
-            B = j;
-            correctO = A | B;
+            a = i;
+            b = j;
+            correct_s = a | b;
             #10
-            Check (correctO);
+            check (correct_s);
         end
     $display ("Finished, got %2d errors", errors);
 end

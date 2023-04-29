@@ -1,10 +1,10 @@
 /* Módulo XOR de 32 bits.
 Faz um bitwise XOR entre dois valores de 32 bits, A e B.
 Resultado vai para saída Xor. */
-module xor32b (
-    input [31:0] A, B,
-    output [31:0] Xor
+module xor64b (
+    input [63:0] a, b,
+    output [63:0] s
 );
-    assign Xor = A ^ B;
+    assign s = a ^ b;
 
 endmodule 
