@@ -2,7 +2,7 @@
 /* 
 Testbench para o comparador de igualdade, roda para todos as possíveis
 saídas de uma subtração entre A e B, porém apenas todas de 16 bits,
-já que todas as combinações de 32 bits não é viável
+já que todas as combinações de 64 bits não é viável
  */
 module comparator_eq_tb ();
 reg [63:0] s; // Subtração A - B
@@ -12,8 +12,8 @@ integer i, errors; // Contadores
 
 task check;
     input xpect_eq;
-    if (eq != xpect_eq) begin 
-        $display ("Error S: %32b, xpect: %b", s, eq);
+    if (eq !== xpect_eq) begin 
+        $display ("Error S: %64b, xpect: %b", s, eq);
         errors = errors + 1;
     end
 endtask

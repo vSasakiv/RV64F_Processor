@@ -4,7 +4,7 @@ Testbench para o comparador, que devolve igualdades
 signed e unsigned, que roda para todos as possíveis
 combinações de A e B, sendo A e B números signed em complemento de 2 
 de 8 bits, já que executar este programa
-para todas as combinações A e B de 32 bits é inviável
+para todas as combinações A e B de 64 bits é inviável
 */
 module comparator_tb ();
 reg [63:0] a, b; // A, B
@@ -16,28 +16,28 @@ integer i, j, errors; // Contadores
 
 task check_u;
   input expect_lu;
-  if (expect_lu != lu) begin
+  if (expect_lu !== lu) begin
     $display("unsigned: A: %64b, B: %64b, expect: %b", a, b, lu);
     errors = errors + 1;
   end
 endtask
 task check_s; 
   input expect_ls;
-  if (expect_ls != ls) begin
+  if (expect_ls !== ls) begin
     $display("signed: A: %64b, B: %64b, expect: %b", a, b, ls);
     errors = errors + 1;
   end
 endtask
 task check_eq;
   input expect_eq;
-  if (expect_eq != eq) begin
+  if (expect_eq !== eq) begin
     $display("equality: A: %64b, B: %64b, expect: %b", a, b, eq);
     errors = errors + 1;
   end
 endtask
 
 // Unidade em test: comparador completo
-comparator UUT (.a_sign(a_signed[31]), .b_sign(b_signed[31]), .s, .c_o, .eq, .ls, .lu);
+comparator UUT (.a_sign(a_signed[63]), .b_sign(b_signed[63]), .s, .c_o, .eq, .ls, .lu);
 // Utilização do módulo de soma para obter a subtração
 adder64b A1 (.a, .b, .s, .sub(1'b1), .c_o);
 

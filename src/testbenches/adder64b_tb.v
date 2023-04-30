@@ -1,7 +1,7 @@
 `timescale  1ns / 100ps
 
-/* Testbench para o módulo do somador de 32 bits Adder32B.
-Performa todas as somas com os números de 0 a 255 e compara os resultados da soma S e do COUT com os obtidos no módulo.
+/* Testbench para o módulo do somador de 64 bits Adder64B.
+Performa somas aleatórias com números de 64 bits e compara os resultados da soma S e do c_o (carry out) com os obtidos no módulo.
 Caso algum resultado seja diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem de erros.  
 Ao final, mostra a quantidade total de erros obtidos */
 module adder64b_tb ();
@@ -34,7 +34,6 @@ adder64b UUT (.a, .b, .sub, .s, .c_o);
 initial begin
     errors = 0;
     sub = 1'b1; //Parâmetro para teste: 0 para fazer A + B, 1 para A + (-B)
-    // Laços for que passam por todas as somas possíveis entre os números de 0 a 255
 
     for (i = 0; i < 1000; i = i + 1) begin
       a = {$urandom, $urandom};

@@ -2,7 +2,7 @@
 /* 
 Testbench para o comparador de desigualdade menor que, roda para todos as possíveis
 combinações de A e B, sendo A e B números de 8 bits, já que executar este programa
-para todas as combinações A e B de 32 bits é inviável
+para todas as combinações A e B de 64 bits é inviável
  */
 module comparator_lt_unsigned_tb ();
 reg [63:0] a, b; // A, B
@@ -13,7 +13,7 @@ integer i, j, errors; // Contadores
 
 task check;
     input expect_lu;
-    if (lu != expect_lu) begin 
+    if (lu !== expect_lu) begin 
         $display ("Error A: %32b, B: %32B, COUT: %b, xpect: %b, EQ: %b", a, b, c_o, expect_lu, eq);
         errors = errors + 1;
     end

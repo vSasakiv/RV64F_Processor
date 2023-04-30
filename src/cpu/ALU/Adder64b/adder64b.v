@@ -14,11 +14,11 @@ module adder64b (
     wire [63:0] c;
     wire c1, c2, c3, c4, c5, c6, c7;
 
-    /* XOR entre cada bit de B e o SUB, responsável por complementar B caso SUB = 1*/
+    /* XOR entre cada bit de b e o sub, responsável por complementar b caso sub = 1*/
     assign c = b ^ {64{sub}};
 
     /* Sequencia de Carry Look-Ahead Adders de 8 bits, interligados de modo Ripple Carry */
-    cla_adder8b u7_0 (.a(a[7:0]), .b(c[7:0]), .c_i(sub), .s(s[7:0]), .c_o(c1)); // Sinal SUB ligado diretamente no CIN, para somar 1 do 2's complement caso SUB = 1 
+    cla_adder8b u7_0 (.a(a[7:0]), .b(c[7:0]), .c_i(sub), .s(s[7:0]), .c_o(c1)); // Sinal sub ligado diretamente no c_i (carry in), para somar 1 do 2's complement caso sub = 1 
     cla_adder8b u15_8 (.a(a[15:8]), .b(c[15:8]), .c_i(c1), .s(s[15:8]), .c_o(c2));
     cla_adder8b u23_16 (.a(a[23:16]), .b(c[23:16]), .c_i(c2), .s(s[23:16]), .c_o(c3));
     cla_adder8b u31_24 (.a(a[31:24]), .b(c[31:24]), .c_i(c3), .s(s[31:24]), .c_o(c4));
