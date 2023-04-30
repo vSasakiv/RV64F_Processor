@@ -1,6 +1,6 @@
 `timescale 1ns / 100ps
 /* Testbench para o módulo do Left Logical Shift.
-Shifta um valor A para esquerda B = i vezes, com i = {0, 1, ... , 32}, e compara o resultado com a saida do módulo.
+Shifta um valor A para esquerda B = i vezes, com i = {0, 1, ... , 64}, e compara o resultado com a saida do módulo.
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros.
 Ao final, mostra a quantidade total de erros obtidos */
 module left_lshifter_tb ();
