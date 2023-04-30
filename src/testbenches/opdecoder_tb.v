@@ -1,5 +1,6 @@
 `timescale 1 ns / 100 ps
 
+//Testbench para o decodificador do opcode. Verifica a saída "code" para todos os opcodes possíveis
 module opdecoder_tb ();
     reg [6:0]   opcode;
     reg [31:0]  correct_code;
