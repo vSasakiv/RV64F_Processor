@@ -1,5 +1,5 @@
 /* Módulo do somador Carry Look-Ahead de 8bits.
-Recebe dois números de 8 bits, A e B e um carry in CIN e devolve a soma A + B no S, assim como o carry out dela no COUT.
+Recebe dois números de 8 bits, a e b e um carry in c_i (carry in) e devolve a soma a + b no s, assim como o carry out dela no c_o.
 O somador carry look ahead calcula os carries fazendo 
 Ci = Gi + Pi*Ci-1 
 sendo:
@@ -7,7 +7,7 @@ sendo:
     Pi =  Ai + Bi (propagate, verifica se Ai e Bi propagam um carry)
     Ci-1 = carry anterior
 
-cada carry i é somado com os bits Ai e Bi no somador parcial de um bit (PartialFullAdder1b)
+cada carry i é somado com os bits Ai e Bi no somador parcial de um bit (partial_full_adder1b)
 */
 
 module cla_adder8b(

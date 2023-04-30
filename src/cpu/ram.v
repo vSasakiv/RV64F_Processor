@@ -1,7 +1,7 @@
 /* Módulo da memória RAM utilizada para simulação do projeto, não sendo um
 módulo convencional, mas apenas uma forma de realizar os testes. */
 module ram (
-    input mem_clk,
+    input clk_mem,
     input [31:0] data_i,
     input [1:0] mem_size,
     input [31:0] addr,
