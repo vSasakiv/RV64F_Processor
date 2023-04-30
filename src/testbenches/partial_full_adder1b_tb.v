@@ -4,48 +4,48 @@ Faz todas as combinações de somas possíves com números de 1 bit e verifica s
 Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem do erros 
 Ao final, mostra a quantidade total de erros obtidos */
 module partial_full_adder1b_tb ();
-reg A, B, CIN, correctS, correctP, correctG;
-wire S, P, G;
+reg a, b, c_i, correct_s, correct_p, correct_g;
+wire s, p, g;
 integer errors, i , j;
 
 /* task que verifica se a saída do módulo é igual ao valor esperado */
-task Check; 
-    input xpectS, xpectP, xpectG;
+task check; 
+    input expected_s, expected_p, expected_g;
     begin 
-        if (S != xpectS) begin 
-            $display ("Error A: %b, B: %b, expected %b, got S: %b", A, B, xpectS, S);
+        if (s != expected_s) begin 
+            $display ("Error A: %b, B: %b, expected %b, got S: %b", a, a, expected_s, s);
             errors = errors + 1;
         end
-        if (P != xpectP) begin 
-            $display ("Error A: %b, B: %b, expected %b, got P: %b", A, B, xpectP, P);
+        if (p != expected_p) begin 
+            $display ("Error A: %b, B: %b, expected %b, got P: %b", a, b, expected_p, p);
             errors = errors + 1;
         end
-        if (G != xpectG) begin 
-            $display ("Error A: %b, B: %b, expected %b, got G: %b", A, B, xpectG, G);
+        if (g != expected_g) begin 
+            $display ("Error A: %b, B: %b, expected %b, got G: %b", a, b, expected_g, g);
             errors = errors + 1;
         end
     end
 endtask
 
 // módulo testado
-partial_full_adder1b UUT (.A(A), .B(B), .CIN(CIN), .S(S), .P(P), .G(G));
+partial_full_adder1b UUT (.a, .b, .c_i, .s, .p, .g);
 
 initial begin
     errors = 0;
-    CIN = 1; //Parâmetro para teste: 0 para fazer A + B com carry in igual a 0, 1 para fazer o mesmo com carry igual a 1
+    c_i = 1; //Parâmetro para teste: 0 para fazer A + B com carry in igual a 0, 1 para fazer o mesmo com carry igual a 1
     
 
     /* Laços for que passam por todas combinações possíveis de soma com números de 1bit */
     for (i = 0; i < 2; i = i + 1)
         for (j = 0; j < 2; j = j + 1) begin
-            A = i;
-            B = j;
-            correctS = A + B + CIN; //Soma
-            correctP = A | B; //Propagate
-            correctG = A & B; //Generate
+            a = i;
+            b = j;
+            correct_s = a + b + c_i; //Soma
+            correct_p = a | b; //Propagate
+            correct_g = a & b; //Generate
             #10
-            $display ("A: %b, B: %b, CIN: %b correctS: %b, correctP: %b, correctG: %b ", A, B, CIN, correctS, correctP, correctG);
-            Check (correctS, correctP, correctG);
+            $display ("A: %b, B: %b, c_i: %b correct_s: %b, correct_p: %b, correct_g: %b ", a, b, c_i, correct_s, correct_p, correct_g);
+            check (correct_s, correct_p, correct_g);
         end
     $display ("Finished, got %2d errors", errors);
 end 
