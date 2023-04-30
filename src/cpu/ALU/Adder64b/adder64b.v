@@ -1,9 +1,9 @@
-/* Módulo responsável por adicionar dois números de 32 bits, A e B.
-A soma sai na saída S e o carry out dela no COUT.
-O sinal SUB, quando igual a 1, indica que será realizada uma operação de subtração (A - B)
-Na subtração, é usado o complemento de 2, complementando B e somando 1 (diretamente no CIN da primeira soma)
+/* Módulo responsável por adicionar dois números de 64 bits, a e b.
+A soma sai na saída S e o carry out dela no c_o.
+O sinal sub, quando igual a 1, indica que será realizada uma operação de subtração (a - b)
+Na subtração, é usado o complemento de 2, complementando b e somando 1 (diretamente no carry-in da primeira soma)
 
-Somador composto por 4 módulos de Carry Look-Ahead Adders de 8 bits cada, totalizando 32 bits.
+Somador composto por 8 módulos de Carry Look-Ahead Adders de 8 bits cada, totalizando 64 bits.
 */
 module adder64b (
     input [63:0] a, b,
