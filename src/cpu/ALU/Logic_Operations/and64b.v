@@ -1,6 +1,6 @@
 /* Módulo AND de 32 bits.
 Faz um bitwise AND entre dois valores de 32 bits, A e B.
-Resultado vai para saída And. */
+Resultado vai para saída s. */
 module and64b (
     input [63:0] a, b,
     output [63:0] s
