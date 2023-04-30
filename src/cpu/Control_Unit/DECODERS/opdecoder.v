@@ -44,24 +44,24 @@ module opdecoder (
     input [6:0]   opcode,
     output [31:0] code
 );
-    wire [3:0] groupA;
-    wire [7:0] groupB;
+    wire [3:0] group_a;
+    wire [7:0] group_b;
 
     decoder #(2) dec2to5 (
         .data_i(opcode[6:5]),
-        .data_o(groupA)
+        .data_o(group_a)
     );
 
     decoder #(3) dec3to8 (
         .data_i(opcode[4:2]),
-        .data_o(groupB)
+        .data_o(group_b)
     );
 
 	genvar i, j;
 	generate
 		for (i = 0; i < 4; i = i + 1) begin : GA
 			for (j = 0; j < 8; j = j + 1) begin : GB
-				assign code[8 * i + j] = groupA[i] & groupB[j];
+				assign code[8 * i + j] = group_a[i] & group_b[j];
 			end
 		end
 	endgenerate
