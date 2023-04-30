@@ -20,6 +20,7 @@ module opdecoder_tb ();
         .code
     );
 
+   //Atribui todos os opcodes possíveis, define os valores corretos e verifica a saída do módulo para cada um deles
     initial begin
         errors = 0;
        
