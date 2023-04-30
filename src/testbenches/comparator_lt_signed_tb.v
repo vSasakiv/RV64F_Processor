@@ -14,14 +14,14 @@ integer i, j, errors; // Contadores
 
 task check;
     input xpect_ls;
-    if (ls != xpect_ls) begin 
-        $display ("Error A: %32b, B: %32B, COUT: %b, xpect: %b, EQ: %b", a, b, c_o, xpect_ls, eq);
+    if (ls !== xpect_ls) begin 
+        $display ("Error A: %64b, B: %64b, COUT: %b, xpect: %b, EQ: %b", a, b, c_o, xpect_ls, eq);
         errors = errors + 1;
     end
 endtask
 
 // Unidade em teste: comparador de igualdade
-comparator_lt_signed UUT (.a_sign(a[31]), .b_sign(b[31]), .s_sign(s[31]), .eq, .ls);
+comparator_lt_signed UUT (.a_sign(a[63]), .b_sign(b[63]), .s_sign(s[63]), .eq, .ls);
 // Utilização do módulo de soma para obter a subtração
 adder64b a1 (.a, .b, .s, .sub(1'b1), .c_o);
 // utilização do módulo de comparação igual para obter a igualdade.
