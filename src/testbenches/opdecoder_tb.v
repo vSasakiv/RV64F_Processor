@@ -7,6 +7,7 @@ module opdecoder_tb ();
     wire [31:0] code;
     integer     errors;
 
+    //Verifica se o valor recebido do módulo é igual ao esperado
     task check;
         input [31:0] expected_code;
         if (code !== expected_code) begin 
