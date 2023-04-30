@@ -21,7 +21,7 @@ task Check;
 endtask
 
 // módulo testado
-gate UUT (.code(code), .Dec_Data(Dec_Data), .S(S));
+gate UUT (.code(code), .dec_data(Dec_Data), .S(S));
 
 /* Atribui valores a code e Dec_Data e registra qual é o valor certo. Após isso, testa o módulo
 OBS: Valores arbitrários de code e Dec_Data. Para testar outros, ficar atento a qual valor o correctS deve assumir. */
