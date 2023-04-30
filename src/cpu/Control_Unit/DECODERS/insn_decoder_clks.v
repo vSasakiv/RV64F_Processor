@@ -29,11 +29,11 @@ module insn_decoder_clks (
   assign mem_clk_c = {1'b0, 1'b0, 1'b0, clk, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0};
 
   // instanciação dos gates para cada sinal, os quais retornam diretamente as saídas.
-  gate G0 (.code(code), .Dec_Data(addr_sel_c), .S(addr_sel));
-  gate G1 (.code(code), .Dec_Data(pc_next_sel_c), .S(pc_next_sel));
-  gate G2 (.code(code), .Dec_Data(sub_sra_c), .S(sub_sra));
-  gate G3 (.code(code), .Dec_Data(pc_alu_sel_c), .S(pc_alu_sel));
-  gate G4 (.code(code), .Dec_Data(rd_clk_c), .S(rd_clk));
-  gate G5 (.code(code), .Dec_Data(mem_clk_c), .S(mem_clk));
+  gate G0 (.code(code), .dec_data(addr_sel_c), .S(addr_sel));
+  gate G1 (.code(code), .dec_data(pc_next_sel_c), .S(pc_next_sel));
+  gate G2 (.code(code), .dec_data(sub_sra_c), .S(sub_sra));
+  gate G3 (.code(code), .dec_data(pc_alu_sel_c), .S(pc_alu_sel));
+  gate G4 (.code(code), .dec_data(rd_clk_c), .S(rd_clk));
+  gate G5 (.code(code), .dec_data(mem_clk_c), .S(mem_clk));
 
 endmodule

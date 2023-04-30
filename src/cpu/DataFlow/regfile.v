@@ -3,7 +3,7 @@ module regfile #(
     parameter Size = 64
 ) (
     input clk, // sinal de clock
-    input load, 
+    input load, // sinal de load
     input [4:0] rd_addr, // seletor do registrador destino (a ser gravado)
     input [4:0] rs1_addr, // seletor da saída 1
     input [4:0] rs2_addr, // seletor da saída 2
@@ -29,7 +29,7 @@ module regfile #(
     genvar i;
     generate
         for (i = 1; i < 32; i = i + 1) begin : registers
-            register #(.Size(Size)) ri (.clk(clk), .data_i(rd_i), .load(load_reg[i]), .data_o(rs[i]));
+            register #(.Size(Size)) ri (.clk, .data_i(rd_i), .load(load_reg[i]), .data_o(rs[i]));
 		end
 	endgenerate   
 

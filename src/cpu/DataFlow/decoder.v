@@ -1,8 +1,9 @@
+// Módulo decoder parametrizável n x 2^n bits
 module decoder #(
-	parameter InputSize = 3
+	parameter InputSize = 3 // parâmetro especificando número de bits da entrada do decoder
 ) (
-    input [InputSize - 1:0] data_i,
-    output reg [(1 << InputSize) - 1:0] data_o
+    input [InputSize - 1:0] data_i, // entrada do decoder
+    output reg [(1 << InputSize) - 1:0] data_o // saída do decoder
 );
 
 	always @* begin
