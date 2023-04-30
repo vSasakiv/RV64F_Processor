@@ -42,7 +42,7 @@ initial begin
   $readmemh({"testes/","testeRecursao","/RAM.hex"}, memory);
 end
 /*!!!!!!*/
-always @(posedge mem_clk) begin
+always @(posedge clk_mem) begin
     if (mem_size == 2'd0) begin
         memory[addr] <= data_i[7:0];
     end
