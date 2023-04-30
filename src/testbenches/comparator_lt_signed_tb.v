@@ -5,7 +5,7 @@ combinações de A e B, sendo A e B números signed em complemento de 2
 de 8 bits, já que executar este programa
 para todas as combinações A e B de 32 bits é inviável
  */
-module ComparatorLTSigned_TB ();
+module comparator_lt_signed_tb ();
 reg signed [63:0] a, b; // A, B
 wire [63:0] s; // subtração A - B
 reg correct; // Valor correto
