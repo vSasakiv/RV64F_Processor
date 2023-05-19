@@ -1,13 +1,22 @@
+/* 
+Este módulo é um dos vários módulos de FSM (Máquina de estado finito)
+que iram compor a Control Unit deste processador
+Esta máquina de estado se especializa em lidar com todas as instruções
+que executam operações aritméticas básicas utilizando a ALU para binários
+do DataFlow, lidando assim com algumas das instruções do tipo R, tanto de 64 como 32 bits
+e também com algumas instruções do tipo I, novamente, tanto de 64 como de 32 bits
+*/
+
 module fsm_alu (
-    input [31:0] ins, code,
-    input start, clk,
-    input lu, ls, eq,
-    output [4:0] rs1_addr, rs2_addr, rd_addr,
-    output [2:0] sel_mem_extension, func3,
-    output [1:0] sel_mem_size, sel_rd,
-	output sel_pc_next, sel_pc_alu, sel_alu_a,
-    output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu,
-    output reg sel_alu_b, sub_sra
+    input [31:0] ins, code, // instrução, e código vindo do módulo opdecoder
+    input start, clk, // sinal para que a máquina saia do IDLE, e clock
+    input lu, ls, eq, // flags de comparação
+    output [4:0] rs1_addr, rs2_addr, rd_addr, // endereços de registradores no regfile
+    output [2:0] sel_mem_extension, func3, // seletor da extensão de memória e function3
+    output [1:0] sel_mem_size, sel_rd, // seletor do tamanha de memória e seletor rd
+	output sel_pc_next, sel_pc_alu, sel_alu_a, // seletores do program counter e da entrada A da alu
+    output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, // loads
+    output reg sel_alu_b, sub_sra // seletor de entrada B da alu, e sinal de sub ou shift right aritmético
 );
 
 localparam IDLE = 3'b000;
@@ -16,6 +25,8 @@ localparam EXECUTE1 = 3'b010; // Instruções Tipo R alu 64 bits
 localparam EXECUTE2 = 3'b011; // Instruções Tipo I alu 64 bits
 localparam WRITEBACK = 3'b111;
 
+// Alguns sinais nestes tipos de instruções são constantes, logos podemos
+// utilizar assign para economizar registradores
 assign rs1_addr = ins[19:15];
 assign rs2_addr = ins[24:20];
 assign rd_addr = ins[11:7];
@@ -31,12 +42,13 @@ assign sel_mem_size = ins[13:12];
 reg [2:0] state, next;
 
 always @(posedge clk) begin
-    state <= next;
+    state <= next; // atualiza o estado a cada ciclo de clock 
 end
 
 always @(*) begin
     case (state)
-        IDLE: next = (start == 1'b1) ? DECODE : IDLE;
+        IDLE: next = (start == 1'b1) ? DECODE : IDLE; // apenas vamos sair do idle quando start = 1
+        // dependendo do code, iremos para um estado (1 tipo de instrução) ou outro
         DECODE: next = (code[12] == 1'b1) ? EXECUTE1 : EXECUTE2; 
         EXECUTE1: next = WRITEBACK;
 		EXECUTE2: next = WRITEBACK;
@@ -46,6 +58,7 @@ always @(*) begin
 end
 
 always @(posedge clk) begin
+    // inicializamos alguns valores toda vez que temos subida 
     load_pc <= 1'b0;
     load_regfile <= 1'b0;
     load_alu <= 1'b0;
@@ -62,21 +75,21 @@ always @(posedge clk) begin
             load_rs2 <= 1'b0;
             sel_alu_b <= 1'b0;
         end 
-        DECODE: begin
+        DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles
             load_rs1 <= 1'b1;
             load_rs2 <= 1'b1;
         end
-        EXECUTE1: begin
-            load_alu <= 1'b1;
-            sub_sra <= ins[30];
-            sel_alu_b <= 1'b0;
+        EXECUTE1: begin 
+            load_alu <= 1'b1; // ativamos o registrador na saída da alu
+            sub_sra <= ins[30]; // sub_sra pode ser obtido diretamente da instrução
+            sel_alu_b <= 1'b0; // seletor em b é sempre 0 para instruções tipo R
         end
         EXECUTE2: begin
-            load_alu <= 1'b1;
-            sub_sra <= (ins[14:12] == 3'b101) ? 1'b1 : 1'b0;
-            sel_alu_b <= 1'b1;
+            load_alu <= 1'b1; // ativamos o registrador na saída da alu
+            sub_sra <= (ins[14:12] == 3'b101) ? 1'b1 : 1'b0; // sub_sra depende do func3 (srai)
+            sel_alu_b <= 1'b1; // seletor em b é sempre 1 para instruções tipo I
         end
-        WRITEBACK: begin
+        WRITEBACK: begin // escrevemos as mudanças no regfile, e podemos atualizar o pc
             load_pc <= 1'b1;
             load_regfile <= 1'b1;
         end

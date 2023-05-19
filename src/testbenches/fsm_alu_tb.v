@@ -1,5 +1,7 @@
 `timescale 1 ns / 100 ps
-
+/*
+Testbench para a fsm que controla as operações da alu
+*/
 module fsm_alu_tb ();
 
 reg [31:0] ins, code;
@@ -48,6 +50,8 @@ initial begin
     $dumpvars(20, fsm_alu_tb);
 end
 initial begin
+    // executamos uma simulação, dando os sinais que ela receberia numa operação real
+    // em seguida é analisado o waveform gerado para verificar se o funcionamento é aceitável
     start = 1'b1;
     ins = 32'b00000000000100010000001010110011; // add x5, x2, x1
     code = {19'b0, 1'b1, 12'b0};
