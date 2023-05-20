@@ -8,7 +8,7 @@ module insn_memory (
 );
   reg [7:0] memory [0:255];
     
-  assign data_o = {memory[addr + 3], memory[addr + 2], memory[addr + 1], memory[addr]};
+  assign insn = {memory[addr + 3], memory[addr + 2], memory[addr + 1], memory[addr]};
 
   initial begin
     memory[0] = 8'b0;
