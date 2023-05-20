@@ -1,9 +1,12 @@
+/*
+Módulo control unit processador
+*/
 module control_unit (
   input [31:0] insn, // instrução
   input clk, reset,// sinal para que a máquina saia do IDLE, clock e reset
   input lu, ls, eq, // flags de comparação
-  output [31:0] code,
-  output [4:0] rs1_addr, rs2_addr, rd_addr,
+  output [31:0] code, // code do módulo opdecoder
+  output [4:0] rs1_addr, rs2_addr, rd_addr, // endereços para regfile
   output reg [2:0] func3,
   output [2:0] sel_mem_extension, // func3 e seletor extensão memória
   output reg [1:0] sel_rd,
