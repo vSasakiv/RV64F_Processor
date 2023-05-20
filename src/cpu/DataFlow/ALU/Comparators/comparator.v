@@ -9,8 +9,8 @@ module comparator (
 );
   
   // Utilização dos módulos previamente criados
-  comparator_eq E0 (.s, .eq);
-  comparator_lt_unsigned CU0 (.c_o, .eq, .lu);
-  comparator_lt_signed CS0 (.a_sign, .b_sign, .s_sign(s[63]), .eq, .ls);
+  comparator_eq E0 (.s(s), .eq(eq));
+  comparator_lt_unsigned CU0 (.c_o(c_o), .eq(eq), .lu(lu));
+  comparator_lt_signed CS0 (.a_sign(a_sign), .b_sign(b_sign), .s_sign(s[63]), .eq(eq), .ls(ls));
 
 endmodule

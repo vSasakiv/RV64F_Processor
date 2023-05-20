@@ -25,6 +25,6 @@ module adder64b (
   cla_adder8b u39_32 (.a(a[39:32]), .b(c[39:32]), .c_i(c4), .s(s[39:32]), .c_o(c5)); 
   cla_adder8b u47_40 (.a(a[47:40]), .b(c[47:40]), .c_i(c5), .s(s[47:40]), .c_o(c6));
   cla_adder8b u55_48 (.a(a[55:48]), .b(c[55:48]), .c_i(c6), .s(s[55:48]), .c_o(c7));
-  cla_adder8b u63_56 (.a(a[63:56]), .b(c[63:56]), .c_i(c7), .s(s[63:56]), .c_o);
+  cla_adder8b u63_56 (.a(a[63:56]), .b(c[63:56]), .c_i(c7), .s(s[63:56]), .c_o(c_o));
   
 endmodule

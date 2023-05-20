@@ -14,13 +14,13 @@ module alu (
   wire [63:0] add, b_xor, b_and, b_or, shift_right, shift_left; // Guardam valores de possíveis operações que podem ser selecionados pelo func
   wire c_o; // Fio que contém o carry out da soma / subtração
   
-  adder64b a0 (.a, .b, .s(add), .sub(sub_sra), .c_o); // Módulo de soma
-  and64b band0 (.a, .b, .s(b_and)); // Módulo and bitwise
-  or64b bor0 (.a, .b, .s(b_or)); // Módulo or bitwise
-  xor64b bxor0 (.a, .b, .s(b_xor)); // Módulo xor bitwise
-  left_lshifter lefts0 (.a, .b, .s(shift_left)); // Módulo barrel left shifter
-  right_shifter rights0 (.a, .b, .sra(sub_sra), .s(shift_right)); // Módulo barrel right shifter
-  comparator c0 (.a_sign(a[63]), .b_sign(b[63]), .s(add), .c_o, .eq, .ls, .lu);
+  adder64b a0 (.a(a), .b(a), .s(add), .sub(sub_sra), .c_o(c_o)); // Módulo de soma
+  and64b band0 (.a(a), .b(b), .s(b_and)); // Módulo and bitwise
+  or64b bor0 (.a(a), .b(b), .s(b_or)); // Módulo or bitwise
+  xor64b bxor0 (.a(a), .b(b), .s(b_xor)); // Módulo xor bitwise
+  left_lshifter lefts0 (.a(a), .b(b), .s(shift_left)); // Módulo barrel left shifter
+  right_shifter rights0 (.a(a), .b(b), .sra(sub_sra), .s(shift_right)); // Módulo barrel right shifter
+  comparator c0 (.a_sign(a[63]), .b_sign(b[63]), .s(add), .c_o(c_o), .eq(eq), .ls(ls), .lu(lu));
   // módulo comparadores (só funciona quando sub_sra = 1)
 
   // Bloco always para síntese de multiplexador para selecionar as saídas

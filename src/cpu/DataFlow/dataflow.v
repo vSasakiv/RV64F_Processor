@@ -11,7 +11,7 @@ module dataflow (
   input [2:0] sel_mem_extension,
   input [4:0] rd_addr, rs1_addr, rs2_addr,
   input [31:0] code,
-  output [2:0] flags_value;
+  output [2:0] flags_value,
   output [31:0] insn
 );
   wire eq, ls, lu;
@@ -27,16 +27,16 @@ module dataflow (
   
   //Módulo memory extender, utilizado para corrigir o valor que será carregado em um registrador do regfile, de acordo com a instrução
   mem_extension mem_ex (
-    .sel_mem_extension,
-    .mem_value,
-    .mem_extended
+    .sel_mem_extension(sel_mem_extension),
+    .mem_value        (mem_value),
+    .mem_extended     (mem_extended)
   );
 
   //Módulo que forma o valor do imediato a partir da instrução 
   imm_gen imm_gen (
     .insn(insn_value),
-    .code,
-    .imm(imm_o)
+    .code(code),
+    .imm (imm_o)
   );
 
   //Memória de instruções
@@ -90,7 +90,7 @@ module dataflow (
 
   //Registrador que contém as instruções sendo atualmente executadas
   register #(.Size(32)) ir (
-    .clk,
+    .clk   (clk),
     .load  (load_ins),
     .data_i(insn_o),
     .data_o(insn_value)
@@ -130,14 +130,14 @@ module dataflow (
 
   //Regfile
   regfile #(.Size(64)) regfile (
-    .clk,
-    .load(load_regfile),
-    .rd_addr,
-    .rs1_addr,
-    .rs2_addr,
-    .rd_i,
-    .rs1_o,
-    .rs2_o
+    .clk     (clk),
+    .load    (load_regfile),
+    .rd_addr (rd_addr),
+    .rs1_addr(rs1_addr),
+    .rs2_addr(rs2_addr),
+    .rd_i    (rd_i),
+    .rs1_o   (rs1_o),
+    .rs2_o   (rs2_o)
   );
 
   //Multiplexador para selecionar o próximo valor do PC

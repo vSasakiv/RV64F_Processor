@@ -30,9 +30,9 @@ module regfile #(
   generate
     for (i = 1; i < 32; i = i + 1) begin : registers
       register #(.Size(Size)) ri (
-        .clk, 
+        .clk   (clk), 
         .data_i(rd_i), 
-        .load(load_reg[i]), 
+        .load  (load_reg[i]), 
         .data_o(rs[i])
       );
 	  end

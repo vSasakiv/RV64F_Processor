@@ -55,7 +55,7 @@ module cla_adder8b(
   or c08 (c_o, g8, pc8);
 
   //Sequencia de Partial Full Adders, um para cada bit de A e B
-  partial_full_adder1b u0 (.a(a[0]), .b(b[0]), .c_i, .s(s[0]), .p(p0), .g(g1));
+  partial_full_adder1b u0 (.a(a[0]), .b(b[0]), .c_i(c_i), .s(s[0]), .p(p0), .g(g1));
   partial_full_adder1b u1 (.a(a[1]), .b(b[1]), .c_i(c1), .s(s[1]), .p(p1), .g(g2));
   partial_full_adder1b u2 (.a(a[2]), .b(b[2]), .c_i(c2), .s(s[2]), .p(p2), .g(g3));
   partial_full_adder1b u3 (.a(a[3]), .b(b[3]), .c_i(c3), .s(s[3]), .p(p3), .g(g4));
