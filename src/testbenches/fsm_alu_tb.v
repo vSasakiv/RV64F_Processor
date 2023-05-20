@@ -6,10 +6,9 @@ module fsm_alu_tb ();
 
 reg [31:0] ins, code;
 reg clk, start, lu, ls, eq;
-wire [4:0] rs1_addr, rs2_addr, rd_addr;
-wire [2:0] sel_mem_extension, func3;
-wire [1:0] sel_mem_size, sel_rd;
-wire load_pc, load_regfile, load_rs1, load_rs2, load_alu;
+wire [2:0] func3;
+wire [1:0] sel_rd;
+wire load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_data_memory, write_mem;
 wire sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, sub_sra;
 
 fsm_alu UUT (
@@ -20,12 +19,7 @@ fsm_alu UUT (
     lu, 
     ls, 
     eq, 
-    rs1_addr, 
-    rs2_addr, 
-    rd_addr, 
-    sel_mem_extension, 
     func3, 
-    sel_mem_size, 
     sel_rd, 
     load_pc, 
     load_regfile, 
@@ -36,7 +30,9 @@ fsm_alu UUT (
     sel_pc_alu, 
     sel_alu_a, 
     sel_alu_b, 
-    sub_sra
+    sub_sra,
+    load_data_memory,
+    write_mem
     );
 
 initial
