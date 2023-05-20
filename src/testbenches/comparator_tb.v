@@ -17,27 +17,29 @@ integer i, j, errors; // Contadores
 task check_u;
   input expect_lu;
   if (expect_lu !== lu) begin
-    $display("unsigned: A: %64b, B: %64b, expect: %b", a, b, lu);
+    $display("unsigned: A: %h, B: %h, expect: %b, got %b", a, b, expect_lu, lu);
     errors = errors + 1;
   end
 endtask
+
 task check_s; 
   input expect_ls;
   if (expect_ls !== ls) begin
-    $display("signed: A: %64b, B: %64b, expect: %b", a, b, ls);
+    $display("signed: A: %h, B: %h, expect: %b, got %b", a, b, expect_ls, ls);
     errors = errors + 1;
   end
 endtask
+
 task check_eq;
   input expect_eq;
   if (expect_eq !== eq) begin
-    $display("equality: A: %64b, B: %64b, expect: %b", a, b, eq);
+    $display("equality: A: %h, B: %h, expect: %b, got %b", a, b, expect_eq, eq);
     errors = errors + 1;
   end
 endtask
 
 // Unidade em test: comparador completo
-comparator UUT (.a_sign(a_signed[63]), .b_sign(b_signed[63]), .s, .c_o, .eq, .ls, .lu);
+comparator UUT (.a_sign(a[63]), .b_sign(b[63]), .s, .c_o, .eq, .ls, .lu);
 // Utilização do módulo de soma para obter a subtração
 adder64b A1 (.a, .b, .s, .sub(1'b1), .c_o);
 
@@ -46,8 +48,8 @@ initial begin
     for (i = 0; i < 1000; i = i + 1) begin
         a = {$urandom, $urandom};
         b = {$urandom, $urandom};
-        a_signed = {$urandom, $urandom};
-        b_signed = {$urandom, $urandom};
+        a_signed = a;
+        b_signed = b;
         correct_lu = a < b;
         correct_ls = a_signed < b_signed;
         correct_eq = a == b;

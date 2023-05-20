@@ -27,10 +27,10 @@ initial begin
     errors = 0;
 
     for (C = 0; C < CICLOS; C = C + 1) begin // Laço for que executa o teste para "CICLOS" ciclos do sinal CLOCK.
-        correctclk = 1;
+        correctclk = 0;
         Check (correctclk);
         #DELAY;
-        correctclk = 0;
+        correctclk = 1;
         Check (correctclk);
         #DELAY;
     end

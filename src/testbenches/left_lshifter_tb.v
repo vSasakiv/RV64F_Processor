@@ -29,11 +29,10 @@ initial begin
         b = i;
         correct = a << b;
     #10
-    $display ("A: %64b, B: %6b", a, b);
-    $display ("correct: %32b, C: %32b", correct, s);
     check (correct);
     end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

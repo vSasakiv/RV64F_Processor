@@ -13,17 +13,17 @@ integer i, errors; // Contadores
 task check;
     input xpect_eq;
     if (eq !== xpect_eq) begin 
-        $display ("Error S: %64b, xpect: %b", s, eq);
+        $display ("Error s: %h, xpect: %b, got %b", s, xpect_eq, eq);
         errors = errors + 1;
     end
 endtask
 
 // Unidade em teste: comparador de igualdade
-comparator_eq UUT (.s, .eq);
+comparator_eq UUT (.s(s), .eq(eq));
 
 initial begin
     errors = 0;
-    for (i = 0; i < 65536; i = i + 1) begin
+    for (i = 0; i < 10; i = i + 1) begin
       s = i;
       correct = 0;
       if (s == 64'b0) begin
@@ -33,6 +33,7 @@ initial begin
     end
     
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

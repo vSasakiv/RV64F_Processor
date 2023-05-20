@@ -29,7 +29,7 @@ task Check;
 endtask
 
 // módulo testado
-cla_adder8b UUT (.A(A), .B(B), .CIN(CIN), .S(S), .COUT(COUT));
+cla_adder8b UUT (.a(A), .b(B), .c_i(CIN), .s(S), .c_o(COUT));
 
 initial begin 
     errors = 0;
@@ -48,6 +48,7 @@ initial begin
             Check (correctS, correctCOUT);
         end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 

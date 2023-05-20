@@ -34,6 +34,7 @@ initial begin
             check (correct_s);
         end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule
