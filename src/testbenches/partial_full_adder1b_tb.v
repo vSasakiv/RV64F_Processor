@@ -44,10 +44,10 @@ initial begin
             correct_p = a | b; //Propagate
             correct_g = a & b; //Generate
             #10
-            $display ("A: %b, B: %b, c_i: %b correct_s: %b, correct_p: %b, correct_g: %b ", a, b, c_i, correct_s, correct_p, correct_g);
             check (correct_s, correct_p, correct_g);
         end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end 
 
 endmodule 

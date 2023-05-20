@@ -2,8 +2,8 @@
 module decoder #(
 	parameter InputSize = 3 // parâmetro especificando número de bits da entrada do decoder
 ) (
-    input [InputSize - 1:0] data_i, // entrada do decoder
-    output reg [(1 << InputSize) - 1:0] data_o // saída do decoder
+  input [InputSize - 1:0] data_i, // entrada do decoder
+  output reg [(1 << InputSize) - 1:0] data_o // saída do decoder
 );
 
 	always @* begin

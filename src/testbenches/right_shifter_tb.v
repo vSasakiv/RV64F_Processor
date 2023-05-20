@@ -32,11 +32,10 @@ initial begin
         if (sra == 0) correct = a >> i;
         else correct = a >>> i;
         #10 
-        $display ("A: %64b, B: %6b", a, b);
-        $display ("correct: %64b, C: %64b", correct, s);
         check (correct);
     end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

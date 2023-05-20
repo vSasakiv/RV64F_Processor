@@ -38,6 +38,7 @@ initial begin
       end
     end
     $display ("Finished, got %2d errors", errors);
+    $finish;
 end
 
 endmodule

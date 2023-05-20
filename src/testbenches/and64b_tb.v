@@ -33,7 +33,8 @@ initial begin
             #10
             check (correct_s);
         end
-    $display ("Finished, got %2d errors", errors);
+    $display("Finished. Got %d errors", errors);
+    $finish;
 end
 
 endmodule
