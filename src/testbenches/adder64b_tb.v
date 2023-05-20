@@ -17,11 +17,11 @@ task check;
     input [63:0] xpect_s;
     input xpect_cout; 
     begin 
-        if (s != xpect_s) begin 
+        if (s !== xpect_s) begin 
             $display ("Error A: %64b, B: %64b, expected %64b, got S: %64b", a, b, xpect_s, s);
             errors = errors + 1;
         end
-        if (c_o != xpect_cout) begin
+        if (c_o !== xpect_cout) begin
             $display ("Error A: %64b, B: %64b, expected %b, got COUT: %b", a, b, xpect_cout, c_o);
             errors = errors + 1;
         end
