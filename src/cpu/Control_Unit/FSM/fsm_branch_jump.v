@@ -2,10 +2,10 @@
 Este módulo é um dos vários módulos de FSM (Máquina de estado finito)
 que iram compor a Control Unit deste processador
 Esta máquina de estado se especializa em lidar com todas as instruções
-que executam operações load e store básicas utilizando a ALU para binários
-do DataFlow, lidando assim com instruções do tipo S, tanto de 64 como 32 bits
+que executam operações Jump e Branch básicas utilizando a ALU para binários
+do DataFlow, lidando assim com instruções do tipo J, tanto de 64 como 32 bits
 e também com algumas instruções do tipo I, novamente, tanto de 64 como de 32 bits
-e a instrução lui do tipo U.
+e as instruções do tipo B 
 */
 
 module fsm_branch_jump (
@@ -16,7 +16,8 @@ module fsm_branch_jump (
     output [1:0] sel_rd, // seletor rd
     output load_data_memory, write_mem,
 	output reg sel_pc_next, sel_pc_alu,  // seletores do program counter e da entrada A da alu
-    output reg load_pc, sub_sra, load_regfile, load_rs1, load_rs2, load_alu, sel_alu_a, sel_alu_b, load_pc_alu // loads
+    output reg load_pc, sub_sra, load_regfile, load_rs1, load_rs2, load_alu,
+    output reg load_imm, sel_alu_a, sel_alu_b, load_pc_alu, load_flags // loads
 );
 
 localparam IDLE = 3'b000;
@@ -41,10 +42,9 @@ always @(*) begin
     case (state)
         IDLE: next = (start == 1'b1) ? DECODE : IDLE; // apenas vamos sair do idle quando start = 1
         DECODE: next = (code[24] == 1'b1) ? EXECUTE2 : EXECUTE1;
-        // caso seja do tipo lui, podemos ir direto para o writeback1, já que a instrução não precisa de execução 
+        // caso seja um branch, vamos para Execute2, se for um jump, para Execute1
         EXECUTE1: next = WRITEBACK1;
         EXECUTE2: next = WRITEBACK2;
-        // caso seja store, vamos para memory 1, caso seja load, para memory 2
         WRITEBACK1, WRITEBACK2: next = IDLE;
         default: next = IDLE;
     endcase
@@ -55,8 +55,10 @@ always @(posedge clk) begin
     load_pc <= 1'b0;
     load_regfile <= 1'b0;
     load_alu <= 1'b0;
+    load_flags <= 1'b0;
     load_rs1 <= 1'b0;
     load_rs2 <= 1'b0;
+    load_imm <= 1'b0;
     sel_pc_alu <= 1'b0;
     sel_pc_next <= 1'b0;
     sub_sra <= 1'b0;
@@ -70,6 +72,7 @@ always @(posedge clk) begin
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
             load_rs2 <= 1'b0;
+            load_imm <= 1'b0;
             sel_pc_alu <= 1'b0;
             sel_pc_next <= 1'b0;
             sub_sra <= 1'b0;
@@ -77,9 +80,10 @@ always @(posedge clk) begin
             sel_alu_b <= 1'b0;
             load_pc_alu <= 1'b0;
         end 
-        DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles
+        DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles e imediato
             load_rs1 <= 1'b1;
             load_rs2 <= 1'b1;
+            load_imm <= 1'b1;
         end
         EXECUTE1: begin  // somamos pc + imm se for jump ou rs1 + imm se for jump and link
             sel_alu_a <= (code[25] == 1'b1) ? 1'b0 : 1'b1;
@@ -89,6 +93,7 @@ always @(posedge clk) begin
         end
         EXECUTE2: begin // se for branch, comparamos rs1 com rs2
             sub_sra <= 1'b1;
+            load_flags <= 1'b1;
         end
         WRITEBACK1: begin // Tipo J, escrevemos rd = pc + 4 e pc = (pc ou rs1) + imm (alu)
             load_regfile <= 1'b1;
@@ -113,6 +118,7 @@ always @(posedge clk) begin
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
             load_rs2 <= 1'b0;
+            load_imm <= 1'b0;
             sel_pc_alu <= 1'b0;
             sel_pc_next <= 1'b0;
             sub_sra <= 1'b0;

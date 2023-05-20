@@ -14,8 +14,8 @@ module fsm_load_store (
     input lu, ls, eq, // flags de comparação
     output [2:0] func3, // seletor função da alu
     output reg [1:0] sel_rd, // seletor rd
-	output sub_sra, sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, load_pc_alu,// seletores do program counter e da entrada A da alu
-    output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_data_memory, write_mem // loads
+	output sub_sra, sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,// seletores do program counter e da entrada A da alu
+    output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm, load_data_memory, write_mem // loads
 );
 
 localparam IDLE = 3'b000;
@@ -32,6 +32,7 @@ localparam WRITEBACK = 3'b111;
 assign func3 = 3'b000;
 assign sub_sra = 1'b0;
 assign load_pc_alu = 1'b0;
+assign load_flags = 1'b0;
 assign sel_alu_a = 1'b0;
 assign sel_alu_b = 1'b1;
 assign sel_pc_next = 1'b0;
@@ -64,6 +65,7 @@ always @(posedge clk) begin
     load_alu <= 1'b0;
     load_rs1 <= 1'b0;
     load_rs2 <= 1'b0;
+    load_imm <= 1'b0;
     load_data_memory <= 1'b0;
     write_mem <= 1'b0;
     case (next)
@@ -74,12 +76,14 @@ always @(posedge clk) begin
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
             load_rs2 <= 1'b0;
+            load_imm <= 1'b0;
             load_data_memory <= 1'b0;
             write_mem <= 1'b0;
         end 
         DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles
             load_rs1 <= 1'b1;
             load_rs2 <= 1'b1;
+            load_imm <= 1'b1;
         end
         EXECUTE: begin  // somamos imm no rs1 para obter endereço
             load_alu <= 1'b1; // ativamos o registrador na saída da alu
@@ -96,11 +100,13 @@ always @(posedge clk) begin
             sel_rd <= (code[13] == 1'b1) ? 2'b01 : 2'b00; // caso seja lui, mudamos o rd sel para o imediato
         end
         default: begin
+            sel_rd <= 2'b00; 
             load_pc <= 1'b0;
             load_regfile <= 1'b0;
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
             load_rs2 <= 1'b0;
+            load_imm <= 1'b0;
             load_data_memory <= 1'b0;
             write_mem <= 1'b0;
         end 

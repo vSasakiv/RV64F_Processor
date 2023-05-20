@@ -9,6 +9,7 @@ reg clk, start, lu, ls, eq;
 wire [2:0] func3;
 wire [1:0] sel_rd;
 wire load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_data_memory, write_mem;
+wire load_imm, load_flags, load_pc_alu;
 wire sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, sub_sra;
 
 fsm_load_store UUT (
@@ -25,7 +26,10 @@ fsm_load_store UUT (
     load_regfile, 
     load_rs1, 
     load_rs2, 
-    load_alu, 
+    load_alu,
+    load_imm,
+    load_flags,
+    load_pc_alu,
     sel_pc_next, 
     sel_pc_alu, 
     sel_alu_a, 
