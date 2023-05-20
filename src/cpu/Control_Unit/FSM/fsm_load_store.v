@@ -9,13 +9,14 @@ e a instrução lui do tipo U.
 */
 
 module fsm_load_store (
-    input [31:0] ins, code, // instrução, e código vindo do módulo opdecoder
+    input [31:0] insn, code, // instrução, e código vindo do módulo opdecoder
     input start, clk, // sinal para que a máquina saia do IDLE, e clock
     input lu, ls, eq, // flags de comparação
     output [2:0] func3, // seletor função da alu
     output reg [1:0] sel_rd, // seletor rd
 	output sub_sra, sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,// seletores do program counter e da entrada A da alu
-    output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm, load_data_memory, write_mem // loads
+    output reg load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_imm, 
+    output reg load_data_memory, write_mem // loads
 );
 
 localparam IDLE = 3'b000;
@@ -61,6 +62,7 @@ always @(posedge clk) begin
     // inicializamos alguns valores toda vez que temos subida
     sel_rd <= 2'b00; 
     load_pc <= 1'b0;
+    load_ins <= 1'b0;
     load_regfile <= 1'b0;
     load_alu <= 1'b0;
     load_rs1 <= 1'b0;
@@ -72,6 +74,7 @@ always @(posedge clk) begin
         IDLE: begin
             sel_rd <= 2'b00;
             load_pc <= 1'b0;
+            load_ins <= 1'b1;
             load_regfile <= 1'b0;
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
@@ -102,6 +105,7 @@ always @(posedge clk) begin
         default: begin
             sel_rd <= 2'b00; 
             load_pc <= 1'b0;
+            load_ins <= 1'b0;
             load_regfile <= 1'b0;
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;

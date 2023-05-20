@@ -9,14 +9,14 @@ e as instruções do tipo B
 */
 
 module fsm_branch_jump (
-    input [31:0] ins, code, // instrução, e código vindo do módulo opdecoder
+    input [31:0] insn, code, // instrução, e código vindo do módulo opdecoder
     input start, clk, // sinal para que a máquina saia do IDLE, e clock
     input lu, ls, eq, // flags de comparação
     output [2:0] func3, // seletor função da alu
     output [1:0] sel_rd, // seletor rd
     output load_data_memory, write_mem,
 	output reg sel_pc_next, sel_pc_alu,  // seletores do program counter e da entrada A da alu
-    output reg load_pc, sub_sra, load_regfile, load_rs1, load_rs2, load_alu,
+    output reg load_pc, load_ins, sub_sra, load_regfile, load_rs1, load_rs2, load_alu,
     output reg load_imm, sel_alu_a, sel_alu_b, load_pc_alu, load_flags // loads
 );
 
@@ -32,6 +32,8 @@ localparam WRITEBACK2 = 3'b111;
 
 assign func3 = 3'b000;
 assign sel_rd = 2'b11;
+assign load_data_memory = 1'b0;
+assign write_mem = 1'b0;
 reg [2:0] state, next;
 
 always @(posedge clk) begin
@@ -53,6 +55,7 @@ end
 always @(posedge clk) begin
     // inicializamos alguns valores toda vez que temos subida
     load_pc <= 1'b0;
+    load_ins <= 1'b0;
     load_regfile <= 1'b0;
     load_alu <= 1'b0;
     load_flags <= 1'b0;
@@ -68,6 +71,7 @@ always @(posedge clk) begin
     case (next)
         IDLE: begin
             load_pc <= 1'b0;
+            load_ins <= 1'b1;
             load_regfile <= 1'b0;
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
@@ -102,7 +106,7 @@ always @(posedge clk) begin
         end
         WRITEBACK2: begin
             load_pc <= 1'b1;
-            case (ins[14:12])
+            case (insn[14:12])
                 3'b000: sel_pc_alu <= eq;
                 3'b001: sel_pc_alu <= ~eq;
                 3'b100: sel_pc_alu <= ls;
@@ -114,6 +118,7 @@ always @(posedge clk) begin
         end
         default: begin
             load_pc <= 1'b0;
+            load_ins <= 1'b0;
             load_regfile <= 1'b0;
             load_alu <= 1'b0;
             load_rs1 <= 1'b0;
