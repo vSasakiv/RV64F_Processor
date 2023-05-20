@@ -13,7 +13,7 @@ module fsm_alu (
     input lu, ls, eq, // flags de comparação
     output [2:0] func3, // func3
     output [1:0] sel_rd, // seletor rd
-	output sel_pc_next, sel_pc_alu, sel_alu_a, load_data_memory, write_mem, // seletores do program counter e da entrada A da alu
+	output sel_pc_next, sel_pc_alu, sel_alu_a, load_data_memory, write_mem, load_pc_alu, // seletores do program counter e da entrada A da alu
     output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu,// loads
     output reg sel_alu_b, sub_sra // seletor de entrada B da alu, e sinal de sub ou shift right aritmético
 );
@@ -31,6 +31,7 @@ assign func3 = ins[14:12];
 assign sel_rd = 2'b10;
 assign sel_alu_a = 1'b0;
 assign sel_pc_next = 1'b0;
+assign load_pc_alu = 1'b0;
 assign sel_pc_alu = 1'b0;
 assign load_data_memory = 1'b0;
 assign write_mem = 1'b0;
