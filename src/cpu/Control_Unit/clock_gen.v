@@ -5,7 +5,7 @@ a cada período de tempo, especificado no parâmetro delay, o valor de CLOCK mud
 module clock_gen (
     output reg clk
 );
-parameter delay = 5000; // Tempo, na unidade adotada, entre duas edges. 
+parameter delay = 1; // Tempo, na unidade adotada, entre duas edges. 
 
 initial
     clk = 0; // Clock inicial estabelecido como 0;

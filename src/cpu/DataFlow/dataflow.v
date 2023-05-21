@@ -5,7 +5,7 @@ module dataflow (
   input write_mem,
   input reset,
   input sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b,
-  input load_ins, load_imm, load_regfile, load_pc, load_rs1, load_rs2, load_alu, load_pc_alu, load_data_memory,
+  input load_ins, load_imm, load_regfile, load_pc, load_rs1, load_rs2, load_alu, load_pc_alu, load_data_memory, load_flags,
   input [1:0] sel_rd, sel_mem_size,
   input [2:0] func3,
   input [2:0] sel_mem_extension,
@@ -124,7 +124,7 @@ module dataflow (
   register #(.Size(3)) reg_flags (
     .clk   (clk),
     .load  (load_flags),
-    .data_i({eq, ls, lu}),
+    .data_i({lu, ls, eq}),
     .data_o({flags_value})
   );
 
