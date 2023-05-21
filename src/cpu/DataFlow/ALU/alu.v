@@ -14,7 +14,7 @@ module alu (
   wire [63:0] add, b_xor, b_and, b_or, shift_right, shift_left; // Guardam valores de possíveis operações que podem ser selecionados pelo func
   wire c_o; // Fio que contém o carry out da soma / subtração
   
-  adder64b a0 (.a(a), .b(a), .s(add), .sub(sub_sra), .c_o(c_o)); // Módulo de soma
+  adder64b a0 (.a(a), .b(b), .s(add), .sub(sub_sra), .c_o(c_o)); // Módulo de soma
   and64b band0 (.a(a), .b(b), .s(b_and)); // Módulo and bitwise
   or64b bor0 (.a(a), .b(b), .s(b_or)); // Módulo or bitwise
   xor64b bxor0 (.a(a), .b(b), .s(b_xor)); // Módulo xor bitwise
