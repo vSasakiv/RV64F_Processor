@@ -1,78 +1,117 @@
 [*]
-[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Nov 25 14:19:06 2022
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Sun May 21 12:42:54 2023
 [*]
-[dumpfile] "C:\VERILOG\PROJETO\processor\RV32I_Processor\CPU.vcd"
-[dumpfile_mtime] "Fri Nov 25 13:54:15 2022"
-[dumpfile_size] 234697
-[savefile] "C:\VERILOG\PROJETO\processor\RV32I_Processor\Testes.gtkw"
-[timestart] 322000000
-[size] 1366 705
-[pos] -113 -98
-*-28.000000 501000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[treeopen] CPU_TB.
-[treeopen] CPU_TB.CPU0.
-[sst_width] 197
-[signals_width] 150
+[dumpfile] "/home/sasaki/Documentos/RV64F_Processor/cpu.vcd"
+[dumpfile_mtime] "Sun May 21 12:21:42 2023"
+[dumpfile_size] 89660
+[savefile] "/home/sasaki/Documentos/RV64F_Processor/Testes.gtkw"
+[timestart] 0
+[size] 1366 710
+[pos] -183 -56
+*-12.000000 5610 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] cpu_tb.
+[treeopen] cpu_tb.processor.
+[sst_width] 250
+[signals_width] 302
 [sst_expanded] 1
-[sst_vpaned_height] 262
+[sst_vpaned_height] 186
 @28
-[color] 1
-CPU_TB.CPU0.reset
-[color] 3
-CPU_TB.CPU0.CONTROL0.clk
-CPU_TB.CPU0.CONTROL0.EQ
+cpu_tb.processor.clk
 @22
-#{CPU_TB.CPU0.CONTROL0.insn[31:0]} CPU_TB.CPU0.CONTROL0.insn[31] CPU_TB.CPU0.CONTROL0.insn[30] CPU_TB.CPU0.CONTROL0.insn[29] CPU_TB.CPU0.CONTROL0.insn[28] CPU_TB.CPU0.CONTROL0.insn[27] CPU_TB.CPU0.CONTROL0.insn[26] CPU_TB.CPU0.CONTROL0.insn[25] CPU_TB.CPU0.CONTROL0.insn[24] CPU_TB.CPU0.CONTROL0.insn[23] CPU_TB.CPU0.CONTROL0.insn[22] CPU_TB.CPU0.CONTROL0.insn[21] CPU_TB.CPU0.CONTROL0.insn[20] CPU_TB.CPU0.CONTROL0.insn[19] CPU_TB.CPU0.CONTROL0.insn[18] CPU_TB.CPU0.CONTROL0.insn[17] CPU_TB.CPU0.CONTROL0.insn[16] CPU_TB.CPU0.CONTROL0.insn[15] CPU_TB.CPU0.CONTROL0.insn[14] CPU_TB.CPU0.CONTROL0.insn[13] CPU_TB.CPU0.CONTROL0.insn[12] CPU_TB.CPU0.CONTROL0.insn[11] CPU_TB.CPU0.CONTROL0.insn[10] CPU_TB.CPU0.CONTROL0.insn[9] CPU_TB.CPU0.CONTROL0.insn[8] CPU_TB.CPU0.CONTROL0.insn[7] CPU_TB.CPU0.CONTROL0.insn[6] CPU_TB.CPU0.CONTROL0.insn[5] CPU_TB.CPU0.CONTROL0.insn[4] CPU_TB.CPU0.CONTROL0.insn[3] CPU_TB.CPU0.CONTROL0.insn[2] CPU_TB.CPU0.CONTROL0.insn[1] CPU_TB.CPU0.CONTROL0.insn[0]
-#{CPU_TB.CPU0.DF0.addr[31:0]} CPU_TB.CPU0.DF0.addr[31] CPU_TB.CPU0.DF0.addr[30] CPU_TB.CPU0.DF0.addr[29] CPU_TB.CPU0.DF0.addr[28] CPU_TB.CPU0.DF0.addr[27] CPU_TB.CPU0.DF0.addr[26] CPU_TB.CPU0.DF0.addr[25] CPU_TB.CPU0.DF0.addr[24] CPU_TB.CPU0.DF0.addr[23] CPU_TB.CPU0.DF0.addr[22] CPU_TB.CPU0.DF0.addr[21] CPU_TB.CPU0.DF0.addr[20] CPU_TB.CPU0.DF0.addr[19] CPU_TB.CPU0.DF0.addr[18] CPU_TB.CPU0.DF0.addr[17] CPU_TB.CPU0.DF0.addr[16] CPU_TB.CPU0.DF0.addr[15] CPU_TB.CPU0.DF0.addr[14] CPU_TB.CPU0.DF0.addr[13] CPU_TB.CPU0.DF0.addr[12] CPU_TB.CPU0.DF0.addr[11] CPU_TB.CPU0.DF0.addr[10] CPU_TB.CPU0.DF0.addr[9] CPU_TB.CPU0.DF0.addr[8] CPU_TB.CPU0.DF0.addr[7] CPU_TB.CPU0.DF0.addr[6] CPU_TB.CPU0.DF0.addr[5] CPU_TB.CPU0.DF0.addr[4] CPU_TB.CPU0.DF0.addr[3] CPU_TB.CPU0.DF0.addr[2] CPU_TB.CPU0.DF0.addr[1] CPU_TB.CPU0.DF0.addr[0]
+cpu_tb.processor.DP.insn[31:0]
+@c00022
+cpu_tb.processor.CU.code[31:0]
 @28
-[color] 3
-CPU_TB.CPU0.DF0.insn_clk
-[color] 3
-CPU_TB.CPU0.DF0.pc_clk
-@29
-[color] 3
-CPU_TB.CPU0.DF0.rd_clk
+(0)cpu_tb.processor.CU.code[31:0]
+(1)cpu_tb.processor.CU.code[31:0]
+(2)cpu_tb.processor.CU.code[31:0]
+(3)cpu_tb.processor.CU.code[31:0]
+(4)cpu_tb.processor.CU.code[31:0]
+(5)cpu_tb.processor.CU.code[31:0]
+(6)cpu_tb.processor.CU.code[31:0]
+(7)cpu_tb.processor.CU.code[31:0]
+(8)cpu_tb.processor.CU.code[31:0]
+(9)cpu_tb.processor.CU.code[31:0]
+(10)cpu_tb.processor.CU.code[31:0]
+(11)cpu_tb.processor.CU.code[31:0]
+(12)cpu_tb.processor.CU.code[31:0]
+(13)cpu_tb.processor.CU.code[31:0]
+(14)cpu_tb.processor.CU.code[31:0]
+(15)cpu_tb.processor.CU.code[31:0]
+(16)cpu_tb.processor.CU.code[31:0]
+(17)cpu_tb.processor.CU.code[31:0]
+(18)cpu_tb.processor.CU.code[31:0]
+(19)cpu_tb.processor.CU.code[31:0]
+(20)cpu_tb.processor.CU.code[31:0]
+(21)cpu_tb.processor.CU.code[31:0]
+(22)cpu_tb.processor.CU.code[31:0]
+(23)cpu_tb.processor.CU.code[31:0]
+(24)cpu_tb.processor.CU.code[31:0]
+(25)cpu_tb.processor.CU.code[31:0]
+(26)cpu_tb.processor.CU.code[31:0]
+(27)cpu_tb.processor.CU.code[31:0]
+(28)cpu_tb.processor.CU.code[31:0]
+(29)cpu_tb.processor.CU.code[31:0]
+(30)cpu_tb.processor.CU.code[31:0]
+(31)cpu_tb.processor.CU.code[31:0]
+@1401202
+-group_end
 @22
-#{CPU_TB.CPU0.DF0.rd[4:0]} CPU_TB.CPU0.DF0.rd[4] CPU_TB.CPU0.DF0.rd[3] CPU_TB.CPU0.DF0.rd[2] CPU_TB.CPU0.DF0.rd[1] CPU_TB.CPU0.DF0.rd[0]
-#{CPU_TB.CPU0.DF0.rd_val[31:0]} CPU_TB.CPU0.DF0.rd_val[31] CPU_TB.CPU0.DF0.rd_val[30] CPU_TB.CPU0.DF0.rd_val[29] CPU_TB.CPU0.DF0.rd_val[28] CPU_TB.CPU0.DF0.rd_val[27] CPU_TB.CPU0.DF0.rd_val[26] CPU_TB.CPU0.DF0.rd_val[25] CPU_TB.CPU0.DF0.rd_val[24] CPU_TB.CPU0.DF0.rd_val[23] CPU_TB.CPU0.DF0.rd_val[22] CPU_TB.CPU0.DF0.rd_val[21] CPU_TB.CPU0.DF0.rd_val[20] CPU_TB.CPU0.DF0.rd_val[19] CPU_TB.CPU0.DF0.rd_val[18] CPU_TB.CPU0.DF0.rd_val[17] CPU_TB.CPU0.DF0.rd_val[16] CPU_TB.CPU0.DF0.rd_val[15] CPU_TB.CPU0.DF0.rd_val[14] CPU_TB.CPU0.DF0.rd_val[13] CPU_TB.CPU0.DF0.rd_val[12] CPU_TB.CPU0.DF0.rd_val[11] CPU_TB.CPU0.DF0.rd_val[10] CPU_TB.CPU0.DF0.rd_val[9] CPU_TB.CPU0.DF0.rd_val[8] CPU_TB.CPU0.DF0.rd_val[7] CPU_TB.CPU0.DF0.rd_val[6] CPU_TB.CPU0.DF0.rd_val[5] CPU_TB.CPU0.DF0.rd_val[4] CPU_TB.CPU0.DF0.rd_val[3] CPU_TB.CPU0.DF0.rd_val[2] CPU_TB.CPU0.DF0.rd_val[1] CPU_TB.CPU0.DF0.rd_val[0]
+cpu_tb.processor.DP.imm_o[63:0]
+cpu_tb.processor.DP.mem_extended[63:0]
+cpu_tb.processor.CU.rs1_addr[4:0]
+cpu_tb.processor.CU.rs2_addr[4:0]
+cpu_tb.processor.CU.rd_addr[4:0]
 @28
-#{CPU_TB.CPU0.DF0.rd_sel[1:0]} CPU_TB.CPU0.DF0.rd_sel[1] CPU_TB.CPU0.DF0.rd_sel[0]
+cpu_tb.processor.CU.sel_mem_extension[2:0]
+cpu_tb.processor.CU.sel_mem_size[1:0]
 @22
-[color] 7
-#{CPU_TB.CPU0.DF0.pc[31:0]} CPU_TB.CPU0.DF0.pc[31] CPU_TB.CPU0.DF0.pc[30] CPU_TB.CPU0.DF0.pc[29] CPU_TB.CPU0.DF0.pc[28] CPU_TB.CPU0.DF0.pc[27] CPU_TB.CPU0.DF0.pc[26] CPU_TB.CPU0.DF0.pc[25] CPU_TB.CPU0.DF0.pc[24] CPU_TB.CPU0.DF0.pc[23] CPU_TB.CPU0.DF0.pc[22] CPU_TB.CPU0.DF0.pc[21] CPU_TB.CPU0.DF0.pc[20] CPU_TB.CPU0.DF0.pc[19] CPU_TB.CPU0.DF0.pc[18] CPU_TB.CPU0.DF0.pc[17] CPU_TB.CPU0.DF0.pc[16] CPU_TB.CPU0.DF0.pc[15] CPU_TB.CPU0.DF0.pc[14] CPU_TB.CPU0.DF0.pc[13] CPU_TB.CPU0.DF0.pc[12] CPU_TB.CPU0.DF0.pc[11] CPU_TB.CPU0.DF0.pc[10] CPU_TB.CPU0.DF0.pc[9] CPU_TB.CPU0.DF0.pc[8] CPU_TB.CPU0.DF0.pc[7] CPU_TB.CPU0.DF0.pc[6] CPU_TB.CPU0.DF0.pc[5] CPU_TB.CPU0.DF0.pc[4] CPU_TB.CPU0.DF0.pc[3] CPU_TB.CPU0.DF0.pc[2] CPU_TB.CPU0.DF0.pc[1] CPU_TB.CPU0.DF0.pc[0]
+cpu_tb.processor.DP.rs1_value[63:0]
+@23
+cpu_tb.processor.DP.rs2_value[63:0]
 @28
-[color] 7
-CPU_TB.CPU0.DF0.pc_next_sel
-[color] 7
-CPU_TB.CPU0.DF0.pc_alu_sel
-@22
-#{CPU_TB.CPU0.DF0.rs1[4:0]} CPU_TB.CPU0.DF0.rs1[4] CPU_TB.CPU0.DF0.rs1[3] CPU_TB.CPU0.DF0.rs1[2] CPU_TB.CPU0.DF0.rs1[1] CPU_TB.CPU0.DF0.rs1[0]
-#{CPU_TB.CPU0.DF0.rs1_val[31:0]} CPU_TB.CPU0.DF0.rs1_val[31] CPU_TB.CPU0.DF0.rs1_val[30] CPU_TB.CPU0.DF0.rs1_val[29] CPU_TB.CPU0.DF0.rs1_val[28] CPU_TB.CPU0.DF0.rs1_val[27] CPU_TB.CPU0.DF0.rs1_val[26] CPU_TB.CPU0.DF0.rs1_val[25] CPU_TB.CPU0.DF0.rs1_val[24] CPU_TB.CPU0.DF0.rs1_val[23] CPU_TB.CPU0.DF0.rs1_val[22] CPU_TB.CPU0.DF0.rs1_val[21] CPU_TB.CPU0.DF0.rs1_val[20] CPU_TB.CPU0.DF0.rs1_val[19] CPU_TB.CPU0.DF0.rs1_val[18] CPU_TB.CPU0.DF0.rs1_val[17] CPU_TB.CPU0.DF0.rs1_val[16] CPU_TB.CPU0.DF0.rs1_val[15] CPU_TB.CPU0.DF0.rs1_val[14] CPU_TB.CPU0.DF0.rs1_val[13] CPU_TB.CPU0.DF0.rs1_val[12] CPU_TB.CPU0.DF0.rs1_val[11] CPU_TB.CPU0.DF0.rs1_val[10] CPU_TB.CPU0.DF0.rs1_val[9] CPU_TB.CPU0.DF0.rs1_val[8] CPU_TB.CPU0.DF0.rs1_val[7] CPU_TB.CPU0.DF0.rs1_val[6] CPU_TB.CPU0.DF0.rs1_val[5] CPU_TB.CPU0.DF0.rs1_val[4] CPU_TB.CPU0.DF0.rs1_val[3] CPU_TB.CPU0.DF0.rs1_val[2] CPU_TB.CPU0.DF0.rs1_val[1] CPU_TB.CPU0.DF0.rs1_val[0]
-#{CPU_TB.CPU0.DF0.rs2[4:0]} CPU_TB.CPU0.DF0.rs2[4] CPU_TB.CPU0.DF0.rs2[3] CPU_TB.CPU0.DF0.rs2[2] CPU_TB.CPU0.DF0.rs2[1] CPU_TB.CPU0.DF0.rs2[0]
-#{CPU_TB.CPU0.DF0.rs2_val[31:0]} CPU_TB.CPU0.DF0.rs2_val[31] CPU_TB.CPU0.DF0.rs2_val[30] CPU_TB.CPU0.DF0.rs2_val[29] CPU_TB.CPU0.DF0.rs2_val[28] CPU_TB.CPU0.DF0.rs2_val[27] CPU_TB.CPU0.DF0.rs2_val[26] CPU_TB.CPU0.DF0.rs2_val[25] CPU_TB.CPU0.DF0.rs2_val[24] CPU_TB.CPU0.DF0.rs2_val[23] CPU_TB.CPU0.DF0.rs2_val[22] CPU_TB.CPU0.DF0.rs2_val[21] CPU_TB.CPU0.DF0.rs2_val[20] CPU_TB.CPU0.DF0.rs2_val[19] CPU_TB.CPU0.DF0.rs2_val[18] CPU_TB.CPU0.DF0.rs2_val[17] CPU_TB.CPU0.DF0.rs2_val[16] CPU_TB.CPU0.DF0.rs2_val[15] CPU_TB.CPU0.DF0.rs2_val[14] CPU_TB.CPU0.DF0.rs2_val[13] CPU_TB.CPU0.DF0.rs2_val[12] CPU_TB.CPU0.DF0.rs2_val[11] CPU_TB.CPU0.DF0.rs2_val[10] CPU_TB.CPU0.DF0.rs2_val[9] CPU_TB.CPU0.DF0.rs2_val[8] CPU_TB.CPU0.DF0.rs2_val[7] CPU_TB.CPU0.DF0.rs2_val[6] CPU_TB.CPU0.DF0.rs2_val[5] CPU_TB.CPU0.DF0.rs2_val[4] CPU_TB.CPU0.DF0.rs2_val[3] CPU_TB.CPU0.DF0.rs2_val[2] CPU_TB.CPU0.DF0.rs2_val[1] CPU_TB.CPU0.DF0.rs2_val[0]
-#{CPU_TB.CPU0.DF0.imm[31:0]} CPU_TB.CPU0.DF0.imm[31] CPU_TB.CPU0.DF0.imm[30] CPU_TB.CPU0.DF0.imm[29] CPU_TB.CPU0.DF0.imm[28] CPU_TB.CPU0.DF0.imm[27] CPU_TB.CPU0.DF0.imm[26] CPU_TB.CPU0.DF0.imm[25] CPU_TB.CPU0.DF0.imm[24] CPU_TB.CPU0.DF0.imm[23] CPU_TB.CPU0.DF0.imm[22] CPU_TB.CPU0.DF0.imm[21] CPU_TB.CPU0.DF0.imm[20] CPU_TB.CPU0.DF0.imm[19] CPU_TB.CPU0.DF0.imm[18] CPU_TB.CPU0.DF0.imm[17] CPU_TB.CPU0.DF0.imm[16] CPU_TB.CPU0.DF0.imm[15] CPU_TB.CPU0.DF0.imm[14] CPU_TB.CPU0.DF0.imm[13] CPU_TB.CPU0.DF0.imm[12] CPU_TB.CPU0.DF0.imm[11] CPU_TB.CPU0.DF0.imm[10] CPU_TB.CPU0.DF0.imm[9] CPU_TB.CPU0.DF0.imm[8] CPU_TB.CPU0.DF0.imm[7] CPU_TB.CPU0.DF0.imm[6] CPU_TB.CPU0.DF0.imm[5] CPU_TB.CPU0.DF0.imm[4] CPU_TB.CPU0.DF0.imm[3] CPU_TB.CPU0.DF0.imm[2] CPU_TB.CPU0.DF0.imm[1] CPU_TB.CPU0.DF0.imm[0]
-@28
-CPU_TB.CPU0.DF0.alu_sel_a
-@22
-#{CPU_TB.CPU0.DF0.alu_val_a[31:0]} CPU_TB.CPU0.DF0.alu_val_a[31] CPU_TB.CPU0.DF0.alu_val_a[30] CPU_TB.CPU0.DF0.alu_val_a[29] CPU_TB.CPU0.DF0.alu_val_a[28] CPU_TB.CPU0.DF0.alu_val_a[27] CPU_TB.CPU0.DF0.alu_val_a[26] CPU_TB.CPU0.DF0.alu_val_a[25] CPU_TB.CPU0.DF0.alu_val_a[24] CPU_TB.CPU0.DF0.alu_val_a[23] CPU_TB.CPU0.DF0.alu_val_a[22] CPU_TB.CPU0.DF0.alu_val_a[21] CPU_TB.CPU0.DF0.alu_val_a[20] CPU_TB.CPU0.DF0.alu_val_a[19] CPU_TB.CPU0.DF0.alu_val_a[18] CPU_TB.CPU0.DF0.alu_val_a[17] CPU_TB.CPU0.DF0.alu_val_a[16] CPU_TB.CPU0.DF0.alu_val_a[15] CPU_TB.CPU0.DF0.alu_val_a[14] CPU_TB.CPU0.DF0.alu_val_a[13] CPU_TB.CPU0.DF0.alu_val_a[12] CPU_TB.CPU0.DF0.alu_val_a[11] CPU_TB.CPU0.DF0.alu_val_a[10] CPU_TB.CPU0.DF0.alu_val_a[9] CPU_TB.CPU0.DF0.alu_val_a[8] CPU_TB.CPU0.DF0.alu_val_a[7] CPU_TB.CPU0.DF0.alu_val_a[6] CPU_TB.CPU0.DF0.alu_val_a[5] CPU_TB.CPU0.DF0.alu_val_a[4] CPU_TB.CPU0.DF0.alu_val_a[3] CPU_TB.CPU0.DF0.alu_val_a[2] CPU_TB.CPU0.DF0.alu_val_a[1] CPU_TB.CPU0.DF0.alu_val_a[0]
-@28
-CPU_TB.CPU0.DF0.alu_sel_b
-@22
-#{CPU_TB.CPU0.DF0.alu_val_b[31:0]} CPU_TB.CPU0.DF0.alu_val_b[31] CPU_TB.CPU0.DF0.alu_val_b[30] CPU_TB.CPU0.DF0.alu_val_b[29] CPU_TB.CPU0.DF0.alu_val_b[28] CPU_TB.CPU0.DF0.alu_val_b[27] CPU_TB.CPU0.DF0.alu_val_b[26] CPU_TB.CPU0.DF0.alu_val_b[25] CPU_TB.CPU0.DF0.alu_val_b[24] CPU_TB.CPU0.DF0.alu_val_b[23] CPU_TB.CPU0.DF0.alu_val_b[22] CPU_TB.CPU0.DF0.alu_val_b[21] CPU_TB.CPU0.DF0.alu_val_b[20] CPU_TB.CPU0.DF0.alu_val_b[19] CPU_TB.CPU0.DF0.alu_val_b[18] CPU_TB.CPU0.DF0.alu_val_b[17] CPU_TB.CPU0.DF0.alu_val_b[16] CPU_TB.CPU0.DF0.alu_val_b[15] CPU_TB.CPU0.DF0.alu_val_b[14] CPU_TB.CPU0.DF0.alu_val_b[13] CPU_TB.CPU0.DF0.alu_val_b[12] CPU_TB.CPU0.DF0.alu_val_b[11] CPU_TB.CPU0.DF0.alu_val_b[10] CPU_TB.CPU0.DF0.alu_val_b[9] CPU_TB.CPU0.DF0.alu_val_b[8] CPU_TB.CPU0.DF0.alu_val_b[7] CPU_TB.CPU0.DF0.alu_val_b[6] CPU_TB.CPU0.DF0.alu_val_b[5] CPU_TB.CPU0.DF0.alu_val_b[4] CPU_TB.CPU0.DF0.alu_val_b[3] CPU_TB.CPU0.DF0.alu_val_b[2] CPU_TB.CPU0.DF0.alu_val_b[1] CPU_TB.CPU0.DF0.alu_val_b[0]
-@28
-#{CPU_TB.CPU0.DF0.func[2:0]} CPU_TB.CPU0.DF0.func[2] CPU_TB.CPU0.DF0.func[1] CPU_TB.CPU0.DF0.func[0]
-@22
-#{CPU_TB.CPU0.DF0.alu_val[31:0]} CPU_TB.CPU0.DF0.alu_val[31] CPU_TB.CPU0.DF0.alu_val[30] CPU_TB.CPU0.DF0.alu_val[29] CPU_TB.CPU0.DF0.alu_val[28] CPU_TB.CPU0.DF0.alu_val[27] CPU_TB.CPU0.DF0.alu_val[26] CPU_TB.CPU0.DF0.alu_val[25] CPU_TB.CPU0.DF0.alu_val[24] CPU_TB.CPU0.DF0.alu_val[23] CPU_TB.CPU0.DF0.alu_val[22] CPU_TB.CPU0.DF0.alu_val[21] CPU_TB.CPU0.DF0.alu_val[20] CPU_TB.CPU0.DF0.alu_val[19] CPU_TB.CPU0.DF0.alu_val[18] CPU_TB.CPU0.DF0.alu_val[17] CPU_TB.CPU0.DF0.alu_val[16] CPU_TB.CPU0.DF0.alu_val[15] CPU_TB.CPU0.DF0.alu_val[14] CPU_TB.CPU0.DF0.alu_val[13] CPU_TB.CPU0.DF0.alu_val[12] CPU_TB.CPU0.DF0.alu_val[11] CPU_TB.CPU0.DF0.alu_val[10] CPU_TB.CPU0.DF0.alu_val[9] CPU_TB.CPU0.DF0.alu_val[8] CPU_TB.CPU0.DF0.alu_val[7] CPU_TB.CPU0.DF0.alu_val[6] CPU_TB.CPU0.DF0.alu_val[5] CPU_TB.CPU0.DF0.alu_val[4] CPU_TB.CPU0.DF0.alu_val[3] CPU_TB.CPU0.DF0.alu_val[2] CPU_TB.CPU0.DF0.alu_val[1] CPU_TB.CPU0.DF0.alu_val[0]
-@28
-CPU_TB.CPU0.DF0.sub_sra
-@22
+[color] 4
+cpu_tb.processor.CU.start_alu_fsm
+[color] 4
+cpu_tb.processor.CU.fsm_alu.state[2:0]
+cpu_tb.processor.CU.start_branch_jump_fsm
+cpu_tb.processor.CU.fsm_branch_jump.state[2:0]
+cpu_tb.processor.CU.start_load_store_fsm
+cpu_tb.processor.CU.fsm_load_store.state[2:0]
 [color] 2
-#{CPU_TB.CPU0.DF0.rs2_mem_i[31:0]} CPU_TB.CPU0.DF0.rs2_mem_i[31] CPU_TB.CPU0.DF0.rs2_mem_i[30] CPU_TB.CPU0.DF0.rs2_mem_i[29] CPU_TB.CPU0.DF0.rs2_mem_i[28] CPU_TB.CPU0.DF0.rs2_mem_i[27] CPU_TB.CPU0.DF0.rs2_mem_i[26] CPU_TB.CPU0.DF0.rs2_mem_i[25] CPU_TB.CPU0.DF0.rs2_mem_i[24] CPU_TB.CPU0.DF0.rs2_mem_i[23] CPU_TB.CPU0.DF0.rs2_mem_i[22] CPU_TB.CPU0.DF0.rs2_mem_i[21] CPU_TB.CPU0.DF0.rs2_mem_i[20] CPU_TB.CPU0.DF0.rs2_mem_i[19] CPU_TB.CPU0.DF0.rs2_mem_i[18] CPU_TB.CPU0.DF0.rs2_mem_i[17] CPU_TB.CPU0.DF0.rs2_mem_i[16] CPU_TB.CPU0.DF0.rs2_mem_i[15] CPU_TB.CPU0.DF0.rs2_mem_i[14] CPU_TB.CPU0.DF0.rs2_mem_i[13] CPU_TB.CPU0.DF0.rs2_mem_i[12] CPU_TB.CPU0.DF0.rs2_mem_i[11] CPU_TB.CPU0.DF0.rs2_mem_i[10] CPU_TB.CPU0.DF0.rs2_mem_i[9] CPU_TB.CPU0.DF0.rs2_mem_i[8] CPU_TB.CPU0.DF0.rs2_mem_i[7] CPU_TB.CPU0.DF0.rs2_mem_i[6] CPU_TB.CPU0.DF0.rs2_mem_i[5] CPU_TB.CPU0.DF0.rs2_mem_i[4] CPU_TB.CPU0.DF0.rs2_mem_i[3] CPU_TB.CPU0.DF0.rs2_mem_i[2] CPU_TB.CPU0.DF0.rs2_mem_i[1] CPU_TB.CPU0.DF0.rs2_mem_i[0]
-@28
+cpu_tb.processor.CU.load_rs1
 [color] 2
-#{CPU_TB.MEM0.mem_size[1:0]} CPU_TB.MEM0.mem_size[1] CPU_TB.MEM0.mem_size[0]
+cpu_tb.processor.CU.load_rs2
+[color] 2
+cpu_tb.processor.CU.load_imm
+[color] 6
+cpu_tb.processor.CU.load_alu
+[color] 6
+cpu_tb.processor.CU.sub_sra
+[color] 6
+cpu_tb.processor.CU.func3[2:0]
+[color] 6
+cpu_tb.processor.CU.sel_alu_a
+[color] 6
+cpu_tb.processor.CU.sel_alu_b
+[color] 6
+cpu_tb.processor.CU.load_pc_alu
+[color] 6
+cpu_tb.processor.CU.load_flags
+[color] 5
+cpu_tb.processor.CU.load_data_memory
+[color] 5
+cpu_tb.processor.CU.write_mem
 [color] 3
-CPU_TB.MEM0.mem_clk
+cpu_tb.processor.CU.load_pc
+[color] 3
+cpu_tb.processor.CU.load_regfile
+[color] 3
+cpu_tb.processor.CU.sel_pc_alu
+[color] 3
+cpu_tb.processor.CU.sel_pc_next
+[color] 3
+cpu_tb.processor.CU.sel_rd[1:0]
 [pattern_trace] 1
 [pattern_trace] 0

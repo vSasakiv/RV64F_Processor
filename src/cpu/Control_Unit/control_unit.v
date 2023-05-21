@@ -36,9 +36,9 @@ wire sel_alu_a_fsm_alu, sel_alu_a_fsm_branch_jump, sel_alu_a_fsm_load_store;
 wire sel_alu_b_fsm_alu, sel_alu_b_fsm_branch_jump, sel_alu_b_fsm_load_store;
 wire sub_sra_fsm_alu, sub_sra_fsm_branch_jump, sub_sra_fsm_load_store;
 
-assign start_alu_fsm = code[12] & code[4] & code[5];
-assign start_branch_jump_fsm = code[27] & code[25] & code[24];
-assign start_load_store_fsm = code[13] & code[8] & code[0];
+assign start_alu_fsm = code[12] | code[4] | code[5];
+assign start_branch_jump_fsm = code[27] | code[25] | code[24];
+assign start_load_store_fsm = code[13] | code[8] | code[0];
 
 opdecoder opdecoder (
   .opcode (insn[6:0]),
@@ -194,7 +194,7 @@ always @(*) begin
     func3 = 3'b000;
     sel_rd = 2'b00;
     load_pc = 1'b0;
-    load_ins = 1'b0;
+    load_ins = 1'b1;
     load_regfile = 1'b0;
     load_rs1 = 1'b0;
     load_rs2 = 1'b0;

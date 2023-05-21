@@ -8,10 +8,10 @@ module insn_memory (
 );
   reg [7:0] memory [0:255];
     
-  assign insn = {memory[addr + 3], memory[addr + 2], memory[addr + 1], memory[addr]};
+  assign insn = {memory[addr], memory[addr + 1], memory[addr + 2], memory[addr + 3]};
 
   initial begin
-    $readmemh({"testes/", "/RAM.hex"}, memory);
+    $readmemh({"testes/", "testeInstrucoes/","RAM.hex"}, memory);
   end
 
 endmodule
