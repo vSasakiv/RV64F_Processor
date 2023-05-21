@@ -24,6 +24,7 @@ localparam IDLE = 3'b000;
 localparam DECODE = 3'b001;
 localparam EXECUTE1 = 3'b010; // Instruções Tipo J e I (jarl)
 localparam EXECUTE2 = 3'b011; // Instruções Tipo B
+localparam FLAGS = 3'b100;
 localparam WRITEBACK1 = 3'b110;
 localparam WRITEBACK2 = 3'b111;
 
@@ -46,7 +47,8 @@ always @(*) begin
         DECODE: next = (code[24] == 1'b1) ? EXECUTE2 : EXECUTE1;
         // caso seja um branch, vamos para Execute2, se for um jump, para Execute1
         EXECUTE1: next = WRITEBACK1;
-        EXECUTE2: next = WRITEBACK2;
+        EXECUTE2: next = FLAGS;
+        FLAGS: next = WRITEBACK2;
         WRITEBACK1, WRITEBACK2: next = IDLE;
         default: next = IDLE;
     endcase
