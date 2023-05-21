@@ -87,12 +87,13 @@ always @(posedge clk) begin
         end
         EXECUTE1: begin 
             load_alu <= 1'b1; // ativamos o registrador na saída da alu
-            sub_sra <= insn[30]; // sub_sra pode ser obtido diretamente da instrução
+            sub_sra <= (insn[14:12] == 3'b010 || insn[14:12] == 3'b011 ) ? 1'b1 : insn[30]; //sub_sra deve ser para instruções "set less", sub e sra
             sel_alu_b <= 1'b0; // seletor em b é sempre 0 para instruções tipo R
         end
         EXECUTE2: begin
             load_alu <= 1'b1; // ativamos o registrador na saída da alu
-            sub_sra <= (insn[14:12] == 3'b101 && code[5] == 1'b0) ? 1'b1 : 1'b0; // sub_sra depende do func3 (srai)
+            sub_sra <= ((insn[14:12] == 3'b101 ) && code[5] == 1'b0) ? insn[30] : 
+                       (insn[14:12] == 3'b010 || insn[14:12] == 3'b011) ? 1'b1 : 1'b0; // sub_sra depende do func3 (srai)
             sel_alu_a <= (code[5] == 1'b1) ? 1'b1 : 1'b0; // caso seja auipc, entrada A da alu vira o pc
             sel_alu_b <= 1'b1; // seletor em b é sempre 1 para instruções tipo I
         end

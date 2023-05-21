@@ -14,7 +14,7 @@ module cpu_tb ();
     reset = 1;
     #2;
     reset = 0;
-    #50;
+    #5000;
     $finish;
   end
 
