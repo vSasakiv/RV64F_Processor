@@ -1,0 +1,6 @@
+00 00 a2 b7 // addr: 0000 ; lui x5, 10 ; x5 <- 10
+00 52 83 b3 // addr: 0004 ; add x7, x5, x5 ; x7 <- x5 + x5 (20)
+40 53 84 33 // addr: 0008 ; sub x8, x7, x5 ; x8 <- x7 - x5 (10)
+01 40 02 93 // addr: 000c ; addi x5, x0, 20 ; x5 <- x0 + 20 (20)
+00 00 85 17 // addr: 0010 ; auipc x10, 8 ; x10 <- 0x10 + 0x8 (0x18)
+//TODO cansei amn termino
