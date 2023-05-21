@@ -11,8 +11,7 @@ module insn_memory (
   assign insn = {memory[addr + 3], memory[addr + 2], memory[addr + 1], memory[addr]};
 
   initial begin
-    memory[0] = 8'b0;
-    memory[1] = 8'b1;
+    $readmemh({"testes/", "/RAM.hex"}, memory);
   end
 
 endmodule
