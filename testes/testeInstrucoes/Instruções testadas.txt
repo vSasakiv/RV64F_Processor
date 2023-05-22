@@ -25,7 +25,7 @@
 96 00C25583 lhu x0B, 12(x04) // x0B = zx(m16(12+0x14)) = 0x8000
 100 00C08613 addi x0C, x01, 12 // x0C = 12 + 0x08 = 0x14
 104 0100A693 slti x0D, x01, 0x10 // x0D = 1
-108 0100B713 sltu x0E, x01, 0x10 // x0E = 1
+108 0100B713 sltiu x0E, x01, 0x10 // x0E = 1
 112 00F0C793 xori x0F, x01, 0x0F // x0F = 0x07
 116 00F0E813 ori x10, x01, 0x0F // x10 = 0x0F
 120 00F0F893 andi x11, x01, 0x0F // x11 = 0x8
