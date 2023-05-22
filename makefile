@@ -11,6 +11,3 @@ compile:
 
 show:
 	@echo $(VERILOG_FILES)
-
-test:
-	@echo $(VERILOG_FILES)
