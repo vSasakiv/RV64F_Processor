@@ -4,3 +4,6 @@ transcript
 
 # ignore work folder
 work
+synthesis/output_files
+synthesis/simulation
+synthesis/incremental_db
