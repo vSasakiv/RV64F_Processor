@@ -1,16 +1,23 @@
 /* 
-Módulo que junta todos os 3 comparadores feitos
-em um único módulo 
+  Módulo compardor
 */
 module comparator (
-  input wire a_sign, b_sign, c_o, // Bit de sinal de a e a, e o bit c_o (carry out)
-  input wire [63:0] s, // Valor da subtração A - B
+  input wire [63:0] a, b, // Valores de entrada a e b
   output wire eq, lu, ls // Saídas das comparações
 );
+
+  // Especifica valores signed e unsigned para as entradas
+  wire unsigned [63:0] a_u, b_u;
+  wire signed [63:0] a_s, b_s;
   
-  // Utilização dos módulos previamente criados
-  comparator_eq E0 (.s(s), .eq(eq));
-  comparator_lt_unsigned CU0 (.c_o(c_o), .eq(eq), .lu(lu));
-  comparator_lt_signed CS0 (.a_sign(a_sign), .b_sign(b_sign), .s_sign(s[63]), .eq(eq), .ls(ls));
+  assign a_u = a;
+  assign a_s = a;
+  assign b_u = b;
+  assign b_s = b;
+  
+  // Retornas as comparações
+  assign eq = (a == b);
+  assign lu = (a_u < b_u);
+  assign ls = (a_s < b_s);
 
 endmodule

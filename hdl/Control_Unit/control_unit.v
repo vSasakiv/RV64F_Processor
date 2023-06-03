@@ -7,7 +7,7 @@ module control_unit (
   input lu, ls, eq, // flags de comparação
   output [31:0] code, // code do módulo opdecoder
   output [4:0] rs1_addr, rs2_addr, rd_addr, // endereços para regfile
-  output reg [2:0] func3,
+  output [2:0] func3,
   output [2:0] sel_mem_extension, // func3 e seletor extensão memória
   output reg [1:0] sel_rd,
   output [1:0] sel_mem_size, // seletor rd e tamanho escrita memória
@@ -52,8 +52,7 @@ fsm_alu fsm_alu (
     .clk              (clk), 
     .lu               (lu), 
     .ls               (ls), 
-    .eq               (eq), 
-    .func3            (func3_fsm_alu), 
+    .eq               (eq),
     .sel_rd           (sel_rd_fsm_alu), 
     .load_pc          (load_pc_fsm_alu),
     .load_ins         (load_ins_fsm_alu), 
@@ -80,8 +79,7 @@ fsm_branch_jump fsm_branch_jump (
     .clk              (clk), 
     .lu               (lu), 
     .ls               (ls), 
-    .eq               (eq), 
-    .func3            (func3_fsm_branch_jump), 
+    .eq               (eq),
     .sel_rd           (sel_rd_fsm_branch_jump), 
     .load_pc          (load_pc_fsm_branch_jump),
     .load_ins         (load_ins_fsm_branch_jump), 
@@ -108,8 +106,7 @@ fsm_load_store fsm_load_store (
     .clk              (clk), 
     .lu               (lu), 
     .ls               (ls), 
-    .eq               (eq), 
-    .func3            (func3_fsm_load_store), 
+    .eq               (eq),
     .sel_rd           (sel_rd_fsm_load_store), 
     .load_pc          (load_pc_fsm_load_store),
     .load_ins         (load_ins_fsm_load_store), 
@@ -131,7 +128,6 @@ fsm_load_store fsm_load_store (
 
 always @(*) begin
   if (start_alu_fsm) begin
-    func3 = func3_fsm_alu;
     sel_rd = sel_rd_fsm_alu;
     load_pc = load_pc_fsm_alu;
     load_ins = load_ins_fsm_alu;
@@ -151,7 +147,6 @@ always @(*) begin
     write_mem = write_mem_fsm_alu;
   end
   else if (start_branch_jump_fsm) begin
-    func3 = func3_fsm_branch_jump;
     sel_rd = sel_rd_fsm_branch_jump;
     load_pc = load_pc_fsm_branch_jump;
     load_ins = load_ins_fsm_branch_jump;
@@ -171,7 +166,6 @@ always @(*) begin
     write_mem = write_mem_fsm_branch_jump;
   end
   else if (start_load_store_fsm) begin
-    func3 = func3_fsm_load_store;
     sel_rd = sel_rd_fsm_load_store;
     load_pc = load_pc_fsm_load_store;
     load_ins = load_ins_fsm_load_store;
@@ -191,7 +185,6 @@ always @(*) begin
     write_mem = write_mem_fsm_load_store;
   end
   else begin
-    func3 = 3'b000;
     sel_rd = 2'b00;
     load_pc = 1'b0;
     load_ins = 1'b1;
@@ -217,5 +210,6 @@ assign rs2_addr = insn[24:20];
 assign rd_addr = insn[11:7];
 assign sel_mem_extension = insn[14:12];
 assign sel_mem_size = insn[13:12];
+assign func3 = insn[14:12];
   
 endmodule

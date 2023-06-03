@@ -20,7 +20,7 @@ module alu (
   xor64b bxor0 (.a(a), .b(b), .s(b_xor)); // Módulo xor bitwise
   left_lshifter lefts0 (.a(a), .b(b), .s(shift_left)); // Módulo barrel left shifter
   right_shifter rights0 (.a(a), .b(b), .sra(sub_sra), .s(shift_right)); // Módulo barrel right shifter
-  comparator c0 (.a_sign(a[63]), .b_sign(b[63]), .s(add), .c_o(c_o), .eq(eq), .ls(ls), .lu(lu));
+  comparator c0 (.a(a), .b(b), .eq(eq), .ls(ls), .lu(lu));
   // módulo comparadores (só funciona quando sub_sra = 1)
 
   // Bloco always para síntese de multiplexador para selecionar as saídas
@@ -29,8 +29,8 @@ module alu (
     case (func)
       3'b000: s = add;
       3'b001: s = shift_left;
-      3'b010: s = ls;
-      3'b011: s = lu;
+      3'b010: s = {63'b0, ls};
+      3'b011: s = {63'b0, lu};
       3'b100: s = b_xor;
       3'b101: s = shift_right;
       3'b110: s = b_or;

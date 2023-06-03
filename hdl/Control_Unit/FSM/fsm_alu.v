@@ -12,9 +12,8 @@ module fsm_alu (
     input [31:0] insn, code, // instrução, e código vindo do módulo opdecoder
     input start, clk, // sinal para que a máquina saia do IDLE, e clock
     input lu, ls, eq, // flags de comparação
-    output reg [2:0] func3, // func3
     output [1:0] sel_rd, // seletor rd
-	  output sel_pc_next, sel_pc_alu, load_data_memory, write_mem, load_pc_alu, load_flags, // seletores do program counter e da entrada A da alu
+	output sel_pc_next, sel_pc_alu, load_data_memory, write_mem, load_pc_alu, load_flags, // seletores do program counter e da entrada A da alu
     output reg load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_imm,// loads
     output reg sel_alu_a, sel_alu_b, sub_sra // seletor de entrada B da alu, e sinal de sub ou shift right aritmético
 );
@@ -63,23 +62,12 @@ always @(posedge clk) begin
     load_rs1 <= 1'b0;
     load_rs2 <= 1'b0;
     load_imm <= 1'b0;
-    func3 <= 3'b000;
     sel_alu_a <= 1'b0;
     sel_alu_b <= 1'b0;
     sub_sra <= 1'b0;
     case (next)
         IDLE: begin
-            load_pc <= 1'b0;
             load_ins <= 1'b1;
-            load_regfile <= 1'b0;
-            load_alu <= 1'b0;
-            load_rs1 <= 1'b0;
-            load_rs2 <= 1'b0;
-            load_imm <= 1'b0;
-            func3 <= 3'b000;
-            sel_alu_a <= 1'b0;
-            sel_alu_b <= 1'b0;
-            sub_sra <= 1'b0;
         end 
         DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles
             load_rs1 <= 1'b1;
@@ -88,21 +76,14 @@ always @(posedge clk) begin
         end
         EXECUTE1: begin 
             load_alu <= 1'b1; // ativamos o registrador na saída da alu
-            sub_sra <= (insn[14:12] == 3'b010 || insn[14:12] == 3'b011 ) ? 1'b1 : insn[30]; //sub_sra deve ser para instruções "set less", sub e sra
-            func3 <= insn[14:12];
-            // caso seja set less, devemos manter func3 como 0
+            sub_sra <= insn[30]; //sub_sra deve ser para instruções sub e sra
             sel_alu_b <= 1'b0; // seletor em b é sempre 0 para instruções tipo R
         end
         EXECUTE2: begin
             load_alu <= 1'b1; // ativamos o registrador na saída da alu
 
-            if (code[5] == 1'b1) sub_sra <= 1'b0; // caso seja auipc, sempre 0
-            else if (insn[14:12] == 3'b101) sub_sra <= insn[30]; // caso seja srai, depende da ins
-            else if (insn[14:12] == 3'b010 || insn[14:12] == 3'b011) sub_sra <= 1'b1; // caso seja slti, deve ser 1
+            if (insn[14:12] == 3'b101) sub_sra <= insn[30]; // caso seja srai, depende da ins
             else sub_sra <= 1'b0; // nos outros casos é 0
-
-            if (code[5] == 1'b1) func3 <= 3'b000; // caso seja auipc, deve sempre ser 0
-            else func3 <= insn[14:12];
 
             sel_alu_a <= (code[5] == 1'b1) ? 1'b1 : 1'b0; // caso seja auipc, entrada A da alu vira o pc
             sel_alu_b <= 1'b1; // seletor em b é sempre 1 para instruções tipo I
@@ -119,7 +100,6 @@ always @(posedge clk) begin
             load_rs1 <= 1'b0;
             load_rs2 <= 1'b0;
             load_imm <= 1'b0;
-            func3 <= 3'b000;
             sel_alu_a <= 1'b0;
             sel_alu_b <= 1'b0;
             sub_sra <= 1'b0;

@@ -9,9 +9,8 @@ para todas as combinações A e B de 64 bits é inviável
 module comparator_tb ();
 reg [63:0] a, b; // A, B
 reg signed [63:0] a_signed, b_signed; // A e B signed
-wire [63:0] s; // Subtração A - B
 reg correct_lu, correct_ls, correct_eq; // Valor correto
-wire eq, c_o, ls, lu; // Valores entregues por módulos, igualdade, Carry out e Resultado
+wire eq, ls, lu; // Valores entregues por módulos, igualdade, Carry out e Resultado
 integer i, j, errors; // Contadores
 
 task check_u;
@@ -39,9 +38,7 @@ task check_eq;
 endtask
 
 // Unidade em test: comparador completo
-comparator UUT (.a_sign(a[63]), .b_sign(b[63]), .s, .c_o, .eq, .ls, .lu);
-// Utilização do módulo de soma para obter a subtração
-adder64b A1 (.a, .b, .s, .sub(1'b1), .c_o);
+comparator UUT (.a(a), .b(b), .eq(eq), .ls(ls), .lu(lu));
 
 initial begin
     errors = 0;

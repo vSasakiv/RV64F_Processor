@@ -1,5 +1,9 @@
 # ignore all logs
 *.log
+# ignore all compiled
+*.out
+# ingore all waveforms
+*.vcd
 transcript
 
 # ignore work folder
