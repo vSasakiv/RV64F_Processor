@@ -25,8 +25,8 @@ localparam EXECUTE = 3'b010; // Instruções Tipo S
 localparam EXECUTE2 = 3'b011; // Instruções Tipo I load
 localparam MEMORY_STORE = 3'b100; // Memory write
 localparam MEMORY_LOAD = 3'b101; // Memory load
-localparam MEMORY_LOAD2 = 3'b110;
-localparam WRITEBACK = 3'b111;
+localparam WRITEBACK = 3'b110;
+localparam DONE = 3'b111;
 
 // Alguns sinais nestes tipos de instruções são constantes, logos podemos
 // utilizar assign para economizar registradores
@@ -52,9 +52,9 @@ always @(*) begin
         EXECUTE: next = (code[8] == 1'b1) ? MEMORY_STORE : MEMORY_LOAD;
         // caso seja store, vamos para memory 1, caso seja load, para memory 2
         MEMORY_STORE: next = (memory_done == 1'b1) ? WRITEBACK : MEMORY_STORE;
-        MEMORY_LOAD: next = (memory_done == 1'b1) ? MEMORY_LOAD2 : MEMORY_LOAD;
-        MEMORY_LOAD2: next = WRITEBACK;
-        WRITEBACK: next = IDLE;
+        MEMORY_LOAD: next = (memory_done == 1'b1) ? WRITEBACK: MEMORY_LOAD;
+        WRITEBACK: next = DONE;
+        DONE: next = IDLE;
         default: next = IDLE;
     endcase
 end
@@ -90,16 +90,14 @@ always @(state, code) begin
         MEMORY_LOAD: begin // caso seja tipo I (load), carregamos o registrador da memória com o valor no endereço da soma
             memory_start = 1'b1;
             sel_mem_next = 1'b1;
-        end
-        MEMORY_LOAD2: begin
             load_data_memory = 1'b1;
         end
         WRITEBACK: begin // escrevemos as mudanças no regfile, e podemos atualizar o pc
             load_pc = 1'b1;
             load_regfile = (code[0] == 1'b1 || code[13] == 1'b1) ? 1'b1 : 1'b0; // apenas atualizamos o regfile se for load
             sel_rd = (code[13] == 1'b1) ? 2'b01 : 2'b00; // caso seja lui, mudamos o rd sel para o imediato
-            done = 1'b1;
         end
+        DONE: done = 1'b1;
         default: begin
             sel_rd = 2'b00; 
             load_pc = 1'b0;

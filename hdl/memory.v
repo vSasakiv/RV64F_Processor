@@ -20,4 +20,8 @@ module memory #(
     initial begin 
         $readmemh({"misc/testes/", "testeInstrucoes/","RAM.hex"}, memory);
     end
+    always @(*) begin
+        // cada vez que qualquer sinal muda, escreve/sobrescreve um arquivo .hex contendo o conteúdo da memória RAM
+        $writememh("RAMOUT.hex", memory);
+    end 
 endmodule

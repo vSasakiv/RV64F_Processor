@@ -25,8 +25,9 @@ localparam DECODE = 3'b001;
 localparam EXECUTE1 = 3'b010; // Instruções Tipo J e I (jarl)
 localparam EXECUTE2 = 3'b011; // Instruções Tipo B
 localparam FLAGS = 3'b100;
-localparam WRITEBACK1 = 3'b110;
-localparam WRITEBACK2 = 3'b111;
+localparam WRITEBACK1 = 3'b101;
+localparam WRITEBACK2 = 3'b110;
+localparam DONE = 3'b111;
 
 // Alguns sinais nestes tipos de instruções são constantes, logos podemos
 // utilizar assign para economizar registradores
@@ -55,7 +56,8 @@ always @(*) begin
         EXECUTE1: next = WRITEBACK1;
         EXECUTE2: next = FLAGS;
         FLAGS: next = WRITEBACK2;
-        WRITEBACK1, WRITEBACK2: next = IDLE;
+        WRITEBACK1, WRITEBACK2: next = DONE;
+        DONE: next = IDLE;
         default: next = IDLE;
     endcase
 end
@@ -86,11 +88,10 @@ always @(state, code, insn, eq, ls, lu) begin
             load_flags = 1'b1;
         end
         WRITEBACK1: begin // Tipo J, escrevemos rd = pc + 4 e pc = (pc ou rs1) + imm (alu)
-            sel_pc_jump = (code[25] == 1'b1) ? 1'b1 : 1'b0;
+            sel_pc_jump = (code[25] == 1'b1) ? 1'b0 : 1'b1;
             load_regfile = 1'b1;
             sel_pc_next = 1'b1;
             load_pc = 1'b1;
-            done = 1'b1;
         end
         WRITEBACK2: begin
             load_pc = 1'b1;
@@ -103,8 +104,8 @@ always @(state, code, insn, eq, ls, lu) begin
                 3'b111: sel_pc_increment = ~lu;
                 default: sel_pc_increment = 1'b0;
             endcase
-            done = 1'b1;
         end
+        DONE: done = 1'b1;
         default: begin
             load_pc = 1'b0;
             load_regfile = 1'b0;
@@ -116,7 +117,7 @@ always @(state, code, insn, eq, ls, lu) begin
             sel_pc_jump = 1'b0;
             sel_pc_increment = 1'b0;
             load_pc_alu = 1'b0;
-                done = 1'b0;
+            done = 1'b0;
         end 
     endcase
 end

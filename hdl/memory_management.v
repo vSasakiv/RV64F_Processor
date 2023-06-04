@@ -9,14 +9,15 @@ module memory_management (
     output reg [63:0] mem_addr,
     output [63:0] data_o 
 );
-    localparam IDLE = 2'b00;
-    localparam EXECUTE_LOAD = 2'b01;
-    localparam EXECUTE_STORE = 2'b10;
-    localparam RETURN = 2'b11;
+    localparam IDLE = 3'b001;
+    localparam ADDR = 3'b010;
+    localparam EXECUTE_LOAD = 3'b011;
+    localparam EXECUTE_STORE = 3'b101;
+    localparam RETURN = 3'b110;
 
     wire [3:0] size;
     reg [3:0] counter;
-    reg [1:0] state, next;
+    reg [2:0] state, next;
     reg [7:0] data_load [0:7];
     wire [7:0] data_store [0:7];
 
@@ -37,7 +38,8 @@ module memory_management (
 
     always @(*) begin
         case (state)
-            IDLE: next = (start == 1'b1) ? ((sel_mem_operation == 1) ? EXECUTE_STORE : EXECUTE_LOAD) : IDLE;
+            IDLE: next = (start == 1'b1) ?  ADDR : IDLE;
+            ADDR: next = (sel_mem_operation == 1'b1) ? EXECUTE_STORE : EXECUTE_LOAD;
             EXECUTE_STORE: next = (size == counter) ? RETURN : EXECUTE_STORE; 
             EXECUTE_LOAD: next = (size == counter) ? RETURN : EXECUTE_LOAD;
             RETURN: next = IDLE;
@@ -49,13 +51,14 @@ module memory_management (
         // inicializamos alguns valores toda vez que temos subida 
         done <= 1'b0;
         counter <= 4'b0;
-		mem_addr <= addr;
+		mem_addr <= 64'b0;
         write_mem <= 1'b0;
         case (next)
+            ADDR: mem_addr <= addr;
             EXECUTE_STORE: begin
                 write_mem <= 1'b1; 
                 data_mem <= data_store[counter[2:0]];
-                mem_addr <= mem_addr + 1;
+                mem_addr <= mem_addr + {63'b0, write_mem};
                 counter <= counter + 4'b0001;
             end
             EXECUTE_LOAD: begin

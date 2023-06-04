@@ -23,7 +23,7 @@ module processor_tb ();
     .data_o           (memory_value) 
   );
 
-  memory #(.MemorySize(512)) memory (
+  memory #(.MemorySize(4096)) memory (
     .clk      (clk),
     .data_i   (data_mem),
     .write_mem(write_mem),
@@ -57,7 +57,7 @@ module processor_tb ();
     reset = 0;
     #20;
     start = 0;
-    #5000;
+    #10000;
     $finish;
   end
 

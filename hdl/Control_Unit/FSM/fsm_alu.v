@@ -23,7 +23,8 @@ localparam IDLE = 3'b000;
 localparam DECODE = 3'b001;
 localparam EXECUTE1 = 3'b010; // Instruções Tipo R alu 64 bits
 localparam EXECUTE2 = 3'b011; // Instruções Tipo I alu 64 bits
-localparam WRITEBACK = 3'b111;
+localparam WRITEBACK = 3'b110;
+localparam DONE = 3'b111;
 
 // Alguns sinais nestes tipos de instruções são constantes, logos podemos
 // utilizar assign para economizar registradores
@@ -52,7 +53,8 @@ always @(*) begin
         DECODE: next = (code[12] == 1'b1) ? EXECUTE1 : EXECUTE2; 
         EXECUTE1: next = WRITEBACK;
 		EXECUTE2: next = WRITEBACK;
-        WRITEBACK: next = IDLE;
+        WRITEBACK: next = DONE;
+        DONE: next = IDLE;
         default: next = IDLE;
     endcase
 end
@@ -88,8 +90,8 @@ always @(state, insn) begin
         WRITEBACK: begin // escrevemos as mudanças no regfile, e podemos atualizar o pc
             load_pc = 1'b1;
             load_regfile = 1'b1;
-            done = 1'b1;
         end
+        DONE: done = 1'b1;
         default: begin
             load_pc = 1'b0;
             load_regfile = 1'b0;

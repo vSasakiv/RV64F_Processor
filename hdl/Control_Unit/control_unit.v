@@ -186,7 +186,7 @@ module control_unit (
     assign rs1_addr = insn[19:15];
     assign rs2_addr = insn[24:20];
     assign rd_addr = insn[11:7];
-    assign func3 = insn[14:12];
+    assign func3 = (code[0] == 1'b1 || code[8] == 1'b1) ? 3'b000 : insn[14:12];
     assign sel_mem_extension = insn[14:12];
 
     /*   OPCDECODER   */

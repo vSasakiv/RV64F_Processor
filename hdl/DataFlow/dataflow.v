@@ -24,7 +24,7 @@ module dataflow (
   wire [63:0] rd_i, rs1_o, rs2_o, rs1_value, rs2_value;
   wire [63:0] pc_alu_o, pc_alu_value, pc_selected, pc_alu_selected, pc_value;
 
-  assign rs2_value_o = rs1_value;
+  assign rs2_value_o = rs2_value;
   assign insn = insn_value;
   
   //Módulo memory extender, utilizado para corrigir o valor que será carregado em um registrador do regfile, de acordo com a instrução
@@ -40,8 +40,6 @@ module dataflow (
     .code(code),
     .imm (imm_o)
   );
-
-
 
   //Registrador que guarda a saída da memória de dados
   register #(.Size(64)) reg_data_mem (
