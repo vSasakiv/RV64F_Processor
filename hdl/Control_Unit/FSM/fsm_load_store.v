@@ -13,8 +13,6 @@ module fsm_load_store (
     input start, clk, memory_done,// sinal para que a máquina saia do IDLE, e clock
     input lu, ls, eq, // flags de comparação
     output reg [1:0] sel_rd, // seletor rd
-	output sub_sra, sel_pc_next, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,
-    output sel_pc_increment, sel_pc_jump,// seletores do program counter e da entrada A da alu
     output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm, 
     output reg load_data_memory, memory_start, sel_mem_next, sel_mem_operation, done // controle memória
 );
@@ -28,16 +26,6 @@ localparam MEMORY_LOAD = 3'b101; // Memory load
 localparam WRITEBACK = 3'b110;
 localparam DONE = 3'b111;
 
-// Alguns sinais nestes tipos de instruções são constantes, logos podemos
-// utilizar assign para economizar registradores
-assign sub_sra = 1'b0;
-assign load_pc_alu = 1'b0;
-assign load_flags = 1'b0;
-assign sel_alu_a = 1'b0;
-assign sel_alu_b = 1'b1;
-assign sel_pc_next = 1'b0;
-assign sel_pc_increment = 1'b0;
-assign sel_pc_jump = 1'b0;
 reg [2:0] state, next;
 
 always @(posedge clk) begin

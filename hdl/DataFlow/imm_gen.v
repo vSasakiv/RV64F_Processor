@@ -18,7 +18,7 @@ module imm_gen (
   /* Como "code" também indica o tipo de instrução, 
   só passará para a saída o valor do imediato do mesmo tipo que ela */
   assign imm = (type_j & {64{code[27]}}) | 
-               (type_i & {64{(code[0] | code[4] | code[25] | code[28])}}) | 
+               (type_i & {64{(code[0] | code[4] | code[6] |code[25] | code[28])}}) | 
                (type_u & {64{(code[5] | code[13])}}) |
                (type_b & {64{code[24]}}) |
                (type_s & {64{code[8]}});  

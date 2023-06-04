@@ -12,9 +12,6 @@ module fsm_branch_jump (
     input [31:0] insn, code, // instrução, e código vindo do módulo opdecoder
     input start, clk, // sinal para que a máquina saia do IDLE, e clock
     input lu, ls, eq, // flags de comparação
-    output [1:0] sel_rd, // seletor rd
-    output load_data_memory, sub_sra, sel_alu_a, sel_alu_b, load_alu, 
-    output memory_start, sel_mem_next, sel_mem_operation,
     output reg sel_pc_next, sel_pc_increment, sel_pc_jump,  // seletores do program counter e da entrada A da alu
     output reg load_pc, load_regfile, load_rs1, load_rs2,
     output reg load_imm, load_pc_alu, load_flags, done // loads
@@ -28,19 +25,6 @@ localparam FLAGS = 3'b100;
 localparam WRITEBACK1 = 3'b101;
 localparam WRITEBACK2 = 3'b110;
 localparam DONE = 3'b111;
-
-// Alguns sinais nestes tipos de instruções são constantes, logos podemos
-// utilizar assign para economizar registradores
-
-assign sel_rd = 2'b11;
-assign load_data_memory = 1'b0;
-assign sub_sra = 1'b0;
-assign sel_alu_a = 1'b0;
-assign sel_alu_b = 1'b0;
-assign load_alu = 1'b0;
-assign memory_start = 1'b0;
-assign sel_mem_next = 1'b0;
-assign sel_mem_operation = 1'b0;
 
 reg [2:0] state, next;
 

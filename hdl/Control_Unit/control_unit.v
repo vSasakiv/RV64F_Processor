@@ -6,8 +6,8 @@ module control_unit (
     output [4:0] rs1_addr, rs2_addr, rd_addr,
     output [2:0] sel_mem_extension, func3,
     output reg [1:0] sel_rd, sel_mem_size,// seletor rd
-	output reg sub_sra, sel_pc_next, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,
-    output reg sel_pc_increment, sel_pc_jump,// seletores do program counter e da entrada A da alu
+    output reg sub_sra, sel_pc_next, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,
+    output reg sel_pc_increment, sel_pc_jump, sel_alu_32b,
     output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm, load_ins,
     output reg load_data_memory, memory_start, sel_mem_next, sel_mem_operation
 );
@@ -36,7 +36,7 @@ module control_unit (
     end
     
     always @(state, code, insn, sel_rd_fsm, sub_sra_fsm, sel_pc_next_fsm,
-    sel_alu_a_fsm, sel_alu_b_fsm, load_pc_alu_fsm, load_flags_fsm, sel_pc_increment_fsm,
+    sel_alu_a_fsm, sel_alu_b_fsm, sel_alu_32b_fsm, load_pc_alu_fsm, load_flags_fsm, sel_pc_increment_fsm,
     sel_pc_jump_fsm, load_pc_fsm, load_regfile_fsm, load_rs1_fsm, load_rs2_fsm, 
     load_alu_fsm, load_imm_fsm, load_data_memory_fsm, memory_start_fsm, sel_mem_next_fsm,
     sel_mem_operation_fsm, done_fsm) begin
@@ -50,6 +50,7 @@ module control_unit (
         sel_pc_next = 1'b0;
         sel_alu_a = 1'b0;
         sel_alu_b = 1'b0;
+        sel_alu_32b = 1'b0;
         load_pc_alu = 1'b0;
         load_flags = 1'b0;
         sel_pc_increment = 1'b0;
@@ -73,7 +74,7 @@ module control_unit (
                 load_ins = 1'b1;
             end
             FSM: begin
-                start_fsm[0] = code[12] | code[4] | code[5];
+                start_fsm[0] = code[12] | code[4] | code[5] | code[6] | code[14];
                 start_fsm[1] = code[27] | code[25] | code[24];
                 start_fsm[2] = code[13] | code[8] | code[0];
                 sel_mem_size      = insn[13:12];
@@ -89,6 +90,7 @@ module control_unit (
                 sel_pc_next       = sel_pc_next_fsm;
                 sel_alu_a         = sel_alu_a_fsm;
                 sel_alu_b         = sel_alu_b_fsm;
+                sel_alu_32b       = sel_alu_32b_fsm;
                 sub_sra           = sub_sra_fsm;
                 load_data_memory  = load_data_memory_fsm;
                 sel_pc_increment  = sel_pc_increment_fsm;
@@ -108,6 +110,7 @@ module control_unit (
                 sel_pc_next = 1'b0;
                 sel_alu_a = 1'b0;
                 sel_alu_b = 1'b0;
+                sel_alu_32b = 1'b0;
                 load_pc_alu = 1'b0;
                 load_flags = 1'b0;
                 sel_pc_increment = 1'b0;
@@ -134,6 +137,7 @@ module control_unit (
     wire sel_pc_next_fsm;
     wire sel_alu_a_fsm;
     wire sel_alu_b_fsm;
+    wire sel_alu_32b_fsm;
     wire load_pc_alu_fsm;
     wire load_flags_fsm;
     wire sel_pc_increment_fsm;
@@ -170,6 +174,7 @@ module control_unit (
         .sel_pc_next      (sel_pc_next_fsm),
         .sel_alu_a        (sel_alu_a_fsm),
         .sel_alu_b        (sel_alu_b_fsm),
+        .sel_alu_32b      (sel_alu_32b_fsm),
         .sub_sra          (sub_sra_fsm),
         .load_data_memory (load_data_memory_fsm),
         .sel_pc_increment (sel_pc_increment_fsm),

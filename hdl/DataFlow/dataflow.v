@@ -3,7 +3,7 @@ module dataflow (
   input clk,
   input sub_sra,
   input reset,
-  input sel_pc_next, sel_pc_increment, sel_pc_jump, sel_alu_a, sel_alu_b, sel_mem_next,
+  input sel_pc_next, sel_pc_increment, sel_pc_jump, sel_alu_a, sel_alu_b, sel_mem_next, sel_alu_32b,
   input load_ins, load_imm, load_regfile, load_pc, load_rs1, load_rs2, load_alu, load_pc_alu, load_data_memory, load_flags,
   input [1:0] sel_rd,
   input [2:0] func3,
@@ -18,7 +18,7 @@ module dataflow (
   wire eq, ls, lu;
   wire [31:0] insn_value;
   wire [63:0] imm_o, imm_value;
-  wire [63:0] alu_o, alu_value;
+  wire [63:0] alu_o, alu_value, alu_value_extended;
   wire [63:0] alu_a_value, alu_b_value;
   wire [63:0] mem_extended, mem_value;
   wire [63:0] rd_i, rs1_o, rs2_o, rs1_value, rs2_value;
@@ -140,6 +140,13 @@ module dataflow (
     .data_o(addr)
   );
 
+  mux_2to1 #(.Size(64)) mux_alu_out (
+    .sel(sel_alu_32b),
+    .i0(alu_value),
+    .i1({{32{alu_value[31]}}, alu_value[31:0]}),
+    .data_o(alu_value_extended)
+  );
+
   // multiplexador para selecionar qual valor irá entrar na ALU geral, podendo ser o PC ou o valor do rs1
   mux_2to1 #(.Size(64)) mux_alu_a (
     .sel   (sel_alu_a),
@@ -161,7 +168,7 @@ module dataflow (
     .sel   (sel_rd),
     .i0    (mem_extended),
     .i1    (imm_value),
-    .i2    (alu_value),
+    .i2    (alu_value_extended),
     .i3    (pc_alu_value),
     .data_o(rd_i)  
   );

@@ -18,7 +18,7 @@ module memory #(
     assign data_o = memory[addr];
 
     initial begin 
-        $readmemh({"misc/testes/", "testeInstrucoes/","RAM.hex"}, memory);
+        $readmemh({"misc/testes/","RAM.hex"}, memory);
     end
     always @(*) begin
         // cada vez que qualquer sinal muda, escreve/sobrescreve um arquivo .hex contendo o conteúdo da memória RAM
