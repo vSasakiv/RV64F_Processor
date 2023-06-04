@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C6GES
-set_global_assignment -name TOP_LEVEL_ENTITY program_counter
+set_global_assignment -name TOP_LEVEL_ENTITY memory_management
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:45:13 JUNE 17,2016"
 set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.1 Lite Edition"
@@ -247,6 +247,10 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name VERILOG_FILE ../hdl/processor.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_combined.v
+set_global_assignment -name VERILOG_FILE ../hdl/memory_management.v
+set_global_assignment -name VERILOG_FILE ../hdl/memory.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/program_counter.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Shifters/right_shifter.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Shifters/left_lshifter.v
@@ -265,11 +269,9 @@ set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/reg_async_reset.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mux_4to1.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mux_2to1.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mem_extension.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/insn_memory.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/imm_gen.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/decoder.v
 set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/dataflow.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/data_memory.v
 set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_load_store.v
 set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_branch_jump.v
 set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_alu.v

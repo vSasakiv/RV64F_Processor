@@ -8,36 +8,38 @@ reg [31:0] insn, code;
 reg clk, start, lu, ls, eq;
 wire [2:0] func3;
 wire [1:0] sel_rd;
-wire load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_data_memory, write_mem;
+wire load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_data_memory;
 wire load_imm, load_flags, load_pc_alu;
-wire sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, sub_sra;
+wire sel_pc_next, sel_alu_a, sel_alu_b, sub_sra;
+wire sel_pc_increment, sel_pc_jump, sel_mem_next, memory_start, sel_mem_operation;
 
 fsm_branch_jump UUT (
-    insn,
-    code, 
-    start, 
-    clk, 
-    lu, 
-    ls, 
-    eq, 
-    func3, 
-    sel_rd, 
-    load_pc, 
-    load_ins,
-    load_regfile, 
-    load_rs1, 
-    load_rs2, 
-    load_alu,
-    load_imm,
-    load_flags,
-    load_pc_alu,
-    sel_pc_next, 
-    sel_pc_alu, 
-    sel_alu_a, 
-    sel_alu_b, 
-    sub_sra,
-    load_data_memory,
-    write_mem
+    .insn,
+    .code, 
+    .start, 
+    .clk, 
+    .lu, 
+    .ls, 
+    .eq,
+    .sel_rd, 
+    .load_pc,
+    .load_regfile, 
+    .load_rs1, 
+    .load_rs2, 
+    .load_alu,
+    .load_imm,
+    .load_flags,
+    .load_pc_alu, 
+    .sel_pc_next, 
+    .sel_alu_a, 
+    .sel_alu_b, 
+    .sub_sra,
+    .load_data_memory,
+    .sel_pc_increment,
+    .sel_pc_jump,
+    .sel_mem_next,
+    .memory_start,
+    .sel_mem_operation
     );
 
 initial
@@ -107,7 +109,7 @@ initial begin
     #5
     start = 1'b0;
     #20
-    $stop;
+    $finish;
 end
 
 endmodule

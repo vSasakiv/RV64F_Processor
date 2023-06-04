@@ -13,10 +13,11 @@ module fsm_branch_jump (
     input start, clk, // sinal para que a máquina saia do IDLE, e clock
     input lu, ls, eq, // flags de comparação
     output [1:0] sel_rd, // seletor rd
-    output load_data_memory, write_mem,
-	output reg sel_pc_next, sel_pc_alu,  // seletores do program counter e da entrada A da alu
-    output reg load_pc, load_ins, sub_sra, load_regfile, load_rs1, load_rs2, load_alu,
-    output reg load_imm, sel_alu_a, sel_alu_b, load_pc_alu, load_flags // loads
+    output load_data_memory, sub_sra, sel_alu_a, sel_alu_b, load_alu, 
+    output memory_start, sel_mem_next, sel_mem_operation,
+    output reg sel_pc_next, sel_pc_increment, sel_pc_jump,  // seletores do program counter e da entrada A da alu
+    output reg load_pc, load_regfile, load_rs1, load_rs2,
+    output reg load_imm, load_pc_alu, load_flags, done // loads
 );
 
 localparam IDLE = 3'b000;
@@ -32,7 +33,14 @@ localparam WRITEBACK2 = 3'b111;
 
 assign sel_rd = 2'b11;
 assign load_data_memory = 1'b0;
-assign write_mem = 1'b0;
+assign sub_sra = 1'b0;
+assign sel_alu_a = 1'b0;
+assign sel_alu_b = 1'b0;
+assign load_alu = 1'b0;
+assign memory_start = 1'b0;
+assign sel_mem_next = 1'b0;
+assign sel_mem_operation = 1'b0;
+
 reg [2:0] state, next;
 
 always @(posedge clk) begin
@@ -52,84 +60,63 @@ always @(*) begin
     endcase
 end
 
-always @(posedge clk) begin
+always @(state, code, insn, eq, ls, lu) begin
     // inicializamos alguns valores toda vez que temos subida
-    load_pc <= 1'b0;
-    load_ins <= 1'b0;
-    load_regfile <= 1'b0;
-    load_alu <= 1'b0;
-    load_flags <= 1'b0;
-    load_rs1 <= 1'b0;
-    load_rs2 <= 1'b0;
-    load_imm <= 1'b0;
-    sel_pc_alu <= 1'b0;
-    sel_pc_next <= 1'b0;
-    sub_sra <= 1'b0;
-    sel_alu_a <= 1'b0;
-    sel_alu_b <= 1'b0;
-    load_pc_alu <= 1'b0;
-    case (next)
-        IDLE: begin
-            load_pc <= 1'b0;
-            load_ins <= 1'b1;
-            load_regfile <= 1'b0;
-            load_alu <= 1'b0;
-            load_rs1 <= 1'b0;
-            load_rs2 <= 1'b0;
-            load_imm <= 1'b0;
-            sel_pc_alu <= 1'b0;
-            sel_pc_next <= 1'b0;
-            sub_sra <= 1'b0;
-            sel_alu_a <= 1'b0;
-            sel_alu_b <= 1'b0;
-            load_pc_alu <= 1'b0;
-        end 
+    load_pc = 1'b0;
+    load_regfile = 1'b0;
+    load_flags = 1'b0;
+    load_rs1 = 1'b0;
+    load_rs2 = 1'b0;
+    load_imm = 1'b0;
+    sel_pc_next = 1'b0;
+    sel_pc_jump = 1'b0;
+    sel_pc_increment = 1'b0;
+    load_pc_alu = 1'b0;
+    done = 1'b0;
+    case (state)
         DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles e imediato
-            load_rs1 <= 1'b1;
-            load_rs2 <= 1'b1;
-            load_imm <= 1'b1;
+            load_rs1 = 1'b1;
+            load_rs2 = 1'b1;
+            load_imm = 1'b1;
         end
         EXECUTE1: begin  // somamos pc + imm se for jump ou rs1 + imm se for jump and link
-            sel_alu_a <= (code[25] == 1'b1) ? 1'b0 : 1'b1;
-            sel_alu_b <= 1'b1;
-            load_alu <= 1'b1; // ativamos o registrador na saída da alu
-            load_pc_alu <= 1'b1; // ativamos o registrador q irá conter pc + 4
+            load_pc_alu = 1'b1; // ativamos o registrador q irá conter pc + 4
         end
         EXECUTE2: begin // se for branch, comparamos rs1 com rs2
-            sub_sra <= 1'b1;
-            load_flags <= 1'b1;
+            load_flags = 1'b1;
         end
         WRITEBACK1: begin // Tipo J, escrevemos rd = pc + 4 e pc = (pc ou rs1) + imm (alu)
-            load_regfile <= 1'b1;
-            sel_pc_next <= 1'b1;
-            load_pc <= 1'b1;
+            sel_pc_jump = (code[25] == 1'b1) ? 1'b1 : 1'b0;
+            load_regfile = 1'b1;
+            sel_pc_next = 1'b1;
+            load_pc = 1'b1;
+            done = 1'b1;
         end
         WRITEBACK2: begin
-            load_pc <= 1'b1;
+            load_pc = 1'b1;
             case (insn[14:12])
-                3'b000: sel_pc_alu <= eq;
-                3'b001: sel_pc_alu <= ~eq;
-                3'b100: sel_pc_alu <= ls;
-                3'b101: sel_pc_alu <= ~ls;
-                3'b110: sel_pc_alu <= lu;
-                3'b111: sel_pc_alu <= ~lu;
-                default: sel_pc_alu <= 1'b0;
+                3'b000: sel_pc_increment = eq;
+                3'b001: sel_pc_increment = ~eq;
+                3'b100: sel_pc_increment = ls;
+                3'b101: sel_pc_increment = ~ls;
+                3'b110: sel_pc_increment = lu;
+                3'b111: sel_pc_increment = ~lu;
+                default: sel_pc_increment = 1'b0;
             endcase
+            done = 1'b1;
         end
         default: begin
-            load_pc <= 1'b0;
-            load_ins <= 1'b0;
-            load_regfile <= 1'b0;
-            load_alu <= 1'b0;
-            load_rs1 <= 1'b0;
-            load_rs2 <= 1'b0;
-            load_imm <= 1'b0;
-            sel_pc_alu <= 1'b0;
-            sel_pc_next <= 1'b0;
-            sub_sra <= 1'b0;
-            sel_alu_a <= 1'b0;
-            sel_alu_b <= 1'b0;
-            load_pc_alu <= 1'b0;
+            load_pc = 1'b0;
+            load_regfile = 1'b0;
+            load_flags = 1'b0;
+            load_rs1 = 1'b0;
+            load_rs2 = 1'b0;
+            load_imm = 1'b0;
+            sel_pc_next = 1'b0;
+            sel_pc_jump = 1'b0;
+            sel_pc_increment = 1'b0;
+            load_pc_alu = 1'b0;
+                done = 1'b0;
         end 
     endcase
 end

@@ -1,215 +1,198 @@
-/*
-Módulo control unit processador
-*/
 module control_unit (
-  input [31:0] insn, // instrução
-  input clk, reset,// sinal para que a máquina saia do IDLE, clock e reset
-  input lu, ls, eq, // flags de comparação
-  output [31:0] code, // code do módulo opdecoder
-  output [4:0] rs1_addr, rs2_addr, rd_addr, // endereços para regfile
-  output [2:0] func3,
-  output [2:0] sel_mem_extension, // func3 e seletor extensão memória
-  output reg [1:0] sel_rd,
-  output [1:0] sel_mem_size, // seletor rd e tamanho escrita memória
-	output reg sel_pc_next, sel_pc_alu, load_data_memory, write_mem, load_pc_alu, load_flags, // seletores do program counter e da entrada A da alu
-  output reg load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_imm,// loads
-  output reg sel_alu_a, sel_alu_b, sub_sra // seletor de entrada B da alu, e sinal de sub ou shift right aritmético
+    input [31:0] insn,
+    input clk, memory_done, start, reset,
+    input lu, ls, eq,
+    output [31:0] code,
+    output [4:0] rs1_addr, rs2_addr, rd_addr,
+    output [2:0] sel_mem_extension, func3,
+    output reg [1:0] sel_rd, sel_mem_size,// seletor rd
+	output reg sub_sra, sel_pc_next, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,
+    output reg sel_pc_increment, sel_pc_jump,// seletores do program counter e da entrada A da alu
+    output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm, load_ins,
+    output reg load_data_memory, memory_start, sel_mem_next, sel_mem_operation
 );
-wire start_alu_fsm, start_branch_jump_fsm, start_load_store_fsm;
-wire [2:0] func3_fsm_alu, func3_fsm_branch_jump, func3_fsm_load_store;
-wire [1:0] sel_rd_fsm_alu, sel_rd_fsm_branch_jump, sel_rd_fsm_load_store;
+    localparam IDLE = 2'b00;
+    localparam FETCH = 2'b01;
+    localparam LOAD_IR = 2'b10;
+    localparam FSM = 2'b11;
 
-wire sel_pc_next_fsm_alu, sel_pc_next_fsm_branch_jump, sel_pc_next_fsm_load_store;
-wire sel_pc_alu_fsm_alu, sel_pc_alu_fsm_branch_jump, sel_pc_alu_fsm_load_store;
-wire load_data_memory_fsm_alu, load_data_memory_fsm_branch_jump, load_data_memory_fsm_load_store;
-wire write_mem_fsm_alu, write_mem_fsm_branch_jump, write_mem_fsm_load_store;
-wire load_pc_alu_fsm_alu, load_pc_alu_fsm_branch_jump, load_pc_alu_fsm_load_store;
-wire load_flags_fsm_alu, load_flags_fsm_branch_jump, load_flags_fsm_load_store;
-wire load_pc_fsm_alu, load_pc_fsm_branch_jump, load_pc_fsm_load_store;
-wire load_ins_fsm_alu, load_ins_fsm_branch_jump, load_ins_fsm_load_store;
-wire load_regfile_fsm_alu, load_regfile_fsm_branch_jump, load_regfile_fsm_load_store;
-wire load_rs1_fsm_alu, load_rs1_fsm_branch_jump, load_rs1_fsm_load_store;
-wire load_rs2_fsm_alu, load_rs2_fsm_branch_jump, load_rs2_fsm_load_store;
-wire load_alu_fsm_alu, load_alu_fsm_branch_jump, load_alu_fsm_load_store;
-wire load_imm_fsm_alu, load_imm_fsm_branch_jump, load_imm_fsm_load_store;
-wire sel_alu_a_fsm_alu, sel_alu_a_fsm_branch_jump, sel_alu_a_fsm_load_store;
-wire sel_alu_b_fsm_alu, sel_alu_b_fsm_branch_jump, sel_alu_b_fsm_load_store;
-wire sub_sra_fsm_alu, sub_sra_fsm_branch_jump, sub_sra_fsm_load_store;
+    reg [2:0] start_fsm; // start_fsm[0] = fsm_alu, start_fsm[1] = fsm_branch_jump, start_fsm[2] = fsm_load_store
+    reg [1:0] state, next;
+    reg fsm_done;
+    
+    always @(posedge clk) begin
+        state <= next;    
+    end
 
-assign start_alu_fsm = code[12] | code[4] | code[5];
-assign start_branch_jump_fsm = code[27] | code[25] | code[24];
-assign start_load_store_fsm = code[13] | code[8] | code[0];
+    always @* begin
+        case (state)
+            IDLE: next = (start == 1'b1) ? FETCH : IDLE;
+            FETCH: next = (memory_done == 1'b1) ? LOAD_IR : FETCH;
+            LOAD_IR: next = FSM;
+            FSM: next = (fsm_done == 1'b1) ? FETCH : FSM;
+            default next = IDLE;
+        endcase
+        if (reset) next = IDLE;
+    end
+    
+    always @(state, code, insn, sel_rd_fsm, sub_sra_fsm, sel_pc_next_fsm,
+    sel_alu_a_fsm, sel_alu_b_fsm, load_pc_alu_fsm, load_flags_fsm, sel_pc_increment_fsm,
+    sel_pc_jump_fsm, load_pc_fsm, load_regfile_fsm, load_rs1_fsm, load_rs2_fsm, 
+    load_alu_fsm, load_imm_fsm, load_data_memory_fsm, memory_start_fsm, sel_mem_next_fsm,
+    sel_mem_operation_fsm, done_fsm) begin
+        sel_mem_size = 2'b10; // tamanho w (32bits)
+        start_fsm = 3'b000;
+        fsm_done = 1'b0;
+        load_ins = 1'b0;
+        /* fsm signals */
+        sel_rd = 2'b00;
+        sub_sra = 1'b0;
+        sel_pc_next = 1'b0;
+        sel_alu_a = 1'b0;
+        sel_alu_b = 1'b0;
+        load_pc_alu = 1'b0;
+        load_flags = 1'b0;
+        sel_pc_increment = 1'b0;
+        sel_pc_jump = 1'b0;
+        load_pc = 1'b0;
+        load_regfile = 1'b0;
+        load_rs1 = 1'b0;
+        load_rs2 = 1'b0;
+        load_alu = 1'b0;
+        load_imm = 1'b0;
+        load_data_memory = 1'b0;
+        memory_start = 1'b0;
+        sel_mem_next = 1'b0;
+        sel_mem_operation = 1'b0;
 
-opdecoder opdecoder (
-  .opcode (insn[6:0]),
-  .code   (code)
-);
+        case (state)
+            FETCH: begin
+                memory_start = 1'b1;
+            end
+            LOAD_IR: begin
+                load_ins = 1'b1;
+            end
+            FSM: begin
+                start_fsm[0] = code[12] | code[4] | code[5];
+                start_fsm[1] = code[27] | code[25] | code[24];
+                start_fsm[2] = code[13] | code[8] | code[0];
+                sel_mem_size      = insn[13:12];
+                sel_rd            = sel_rd_fsm;
+                load_pc           = load_pc_fsm;
+                load_regfile      = load_regfile_fsm;
+                load_rs1          = load_rs1_fsm;
+                load_rs2          = load_rs2_fsm;
+                load_alu          = load_alu_fsm;
+                load_imm          = load_imm_fsm;
+                load_flags        = load_flags_fsm;
+                load_pc_alu       = load_pc_alu_fsm;
+                sel_pc_next       = sel_pc_next_fsm;
+                sel_alu_a         = sel_alu_a_fsm;
+                sel_alu_b         = sel_alu_b_fsm;
+                sub_sra           = sub_sra_fsm;
+                load_data_memory  = load_data_memory_fsm;
+                sel_pc_increment  = sel_pc_increment_fsm;
+                sel_pc_jump       = sel_pc_jump_fsm;
+                sel_mem_next      = sel_mem_next_fsm;
+                memory_start      = memory_start_fsm;
+                sel_mem_operation = sel_mem_operation_fsm;
+                fsm_done          = done_fsm;
+            end
+            default: begin
+                sel_mem_size = 2'b10; 
+                start_fsm = 3'b000;
+                load_ins = 1'b0;
+                /* fsm signals */
+                sel_rd = 2'b00;
+                sub_sra = 1'b0;
+                sel_pc_next = 1'b0;
+                sel_alu_a = 1'b0;
+                sel_alu_b = 1'b0;
+                load_pc_alu = 1'b0;
+                load_flags = 1'b0;
+                sel_pc_increment = 1'b0;
+                sel_pc_jump = 1'b0;
+                load_pc = 1'b0;
+                load_regfile = 1'b0;
+                load_rs1 = 1'b0;
+                load_rs2 = 1'b0;
+                load_alu = 1'b0;
+                load_imm = 1'b0;
+                load_data_memory = 1'b0;
+                memory_start = 1'b0;
+                sel_mem_next = 1'b0;
+                sel_mem_operation = 1'b0;
+                fsm_done = 1'b0;
+            end
+        endcase
+    end
 
-fsm_alu fsm_alu (
-    .insn             (insn),
-    .code             (code), 
-    .start            (start_alu_fsm), 
-    .clk              (clk), 
-    .lu               (lu), 
-    .ls               (ls), 
-    .eq               (eq),
-    .sel_rd           (sel_rd_fsm_alu), 
-    .load_pc          (load_pc_fsm_alu),
-    .load_ins         (load_ins_fsm_alu), 
-    .load_regfile     (load_regfile_fsm_alu), 
-    .load_rs1         (load_rs1_fsm_alu), 
-    .load_rs2         (load_rs2_fsm_alu), 
-    .load_alu         (load_alu_fsm_alu),
-    .load_imm         (load_imm_fsm_alu),
-    .load_flags       (load_flags_fsm_alu),
-    .load_pc_alu      (load_pc_alu_fsm_alu), 
-    .sel_pc_next      (sel_pc_next_fsm_alu), 
-    .sel_pc_alu       (sel_pc_alu_fsm_alu), 
-    .sel_alu_a        (sel_alu_a_fsm_alu), 
-    .sel_alu_b        (sel_alu_b_fsm_alu), 
-    .sub_sra          (sub_sra_fsm_alu),
-    .load_data_memory (load_data_memory_fsm_alu),
-    .write_mem        (write_mem_fsm_alu)
-);
+    /* FSM DECLARATIONS */
 
-fsm_branch_jump fsm_branch_jump (
-    .insn             (insn),
-    .code             (code), 
-    .start            (start_branch_jump_fsm), 
-    .clk              (clk), 
-    .lu               (lu), 
-    .ls               (ls), 
-    .eq               (eq),
-    .sel_rd           (sel_rd_fsm_branch_jump), 
-    .load_pc          (load_pc_fsm_branch_jump),
-    .load_ins         (load_ins_fsm_branch_jump), 
-    .load_regfile     (load_regfile_fsm_branch_jump), 
-    .load_rs1         (load_rs1_fsm_branch_jump), 
-    .load_rs2         (load_rs2_fsm_branch_jump), 
-    .load_alu         (load_alu_fsm_branch_jump),
-    .load_imm         (load_imm_fsm_branch_jump),
-    .load_flags       (load_flags_fsm_branch_jump),
-    .load_pc_alu      (load_pc_alu_fsm_branch_jump), 
-    .sel_pc_next      (sel_pc_next_fsm_branch_jump), 
-    .sel_pc_alu       (sel_pc_alu_fsm_branch_jump), 
-    .sel_alu_a        (sel_alu_a_fsm_branch_jump), 
-    .sel_alu_b        (sel_alu_b_fsm_branch_jump), 
-    .sub_sra          (sub_sra_fsm_branch_jump),
-    .load_data_memory (load_data_memory_fsm_branch_jump),
-    .write_mem        (write_mem_fsm_branch_jump)
-);
+    wire [1:0] sel_rd_fsm;
+    wire sub_sra_fsm;
+    wire sel_pc_next_fsm;
+    wire sel_alu_a_fsm;
+    wire sel_alu_b_fsm;
+    wire load_pc_alu_fsm;
+    wire load_flags_fsm;
+    wire sel_pc_increment_fsm;
+    wire sel_pc_jump_fsm;
+    wire load_pc_fsm;
+    wire load_regfile_fsm;
+    wire load_rs1_fsm;
+    wire load_rs2_fsm;
+    wire load_alu_fsm;
+    wire load_imm_fsm;
+    wire load_data_memory_fsm;
+    wire memory_start_fsm;
+    wire sel_mem_next_fsm;
+    wire sel_mem_operation_fsm;
+    wire done_fsm;
 
-fsm_load_store fsm_load_store (
-    .insn             (insn),
-    .code             (code), 
-    .start            (start_load_store_fsm), 
-    .clk              (clk), 
-    .lu               (lu), 
-    .ls               (ls), 
-    .eq               (eq),
-    .sel_rd           (sel_rd_fsm_load_store), 
-    .load_pc          (load_pc_fsm_load_store),
-    .load_ins         (load_ins_fsm_load_store), 
-    .load_regfile     (load_regfile_fsm_load_store), 
-    .load_rs1         (load_rs1_fsm_load_store), 
-    .load_rs2         (load_rs2_fsm_load_store), 
-    .load_alu         (load_alu_fsm_load_store),
-    .load_imm         (load_imm_fsm_load_store),
-    .load_flags       (load_flags_fsm_load_store),
-    .load_pc_alu      (load_pc_alu_fsm_load_store), 
-    .sel_pc_next      (sel_pc_next_fsm_load_store), 
-    .sel_pc_alu       (sel_pc_alu_fsm_load_store), 
-    .sel_alu_a        (sel_alu_a_fsm_load_store), 
-    .sel_alu_b        (sel_alu_b_fsm_load_store), 
-    .sub_sra          (sub_sra_fsm_load_store),
-    .load_data_memory (load_data_memory_fsm_load_store),
-    .write_mem        (write_mem_fsm_load_store)
-);
+    fsm_combined FSM_COMBINED (
+        .insn             (insn),
+        .code             (code), 
+        .start            (start_fsm), 
+        .clk              (clk), 
+        .lu               (lu), 
+        .ls               (ls), 
+        .eq               (eq),
+        .sel_rd           (sel_rd_fsm),
+        .load_pc          (load_pc_fsm),
+        .load_regfile     (load_regfile_fsm),
+        .load_rs1         (load_rs1_fsm),
+        .load_rs2         (load_rs2_fsm),
+        .load_alu         (load_alu_fsm),
+        .load_imm         (load_imm_fsm),
+        .load_flags       (load_flags_fsm),
+        .load_pc_alu      (load_pc_alu_fsm),
+        .sel_pc_next      (sel_pc_next_fsm),
+        .sel_alu_a        (sel_alu_a_fsm),
+        .sel_alu_b        (sel_alu_b_fsm),
+        .sub_sra          (sub_sra_fsm),
+        .load_data_memory (load_data_memory_fsm),
+        .sel_pc_increment (sel_pc_increment_fsm),
+        .sel_pc_jump      (sel_pc_jump_fsm),
+        .sel_mem_next     (sel_mem_next_fsm),
+        .memory_start     (memory_start_fsm),
+        .sel_mem_operation(sel_mem_operation_fsm),
+        .memory_done      (memory_done),
+        .done             (done_fsm)
+    );
 
-always @(*) begin
-  if (start_alu_fsm) begin
-    sel_rd = sel_rd_fsm_alu;
-    load_pc = load_pc_fsm_alu;
-    load_ins = load_ins_fsm_alu;
-    load_regfile = load_regfile_fsm_alu;
-    load_rs1 = load_rs1_fsm_alu;
-    load_rs2 = load_rs2_fsm_alu;
-    load_alu = load_alu_fsm_alu;
-    load_imm = load_imm_fsm_alu;
-    load_flags = load_flags_fsm_alu;
-    load_pc_alu = load_pc_alu_fsm_alu;
-    sel_pc_next = sel_pc_next_fsm_alu;
-    sel_pc_alu = sel_pc_alu_fsm_alu;
-    sel_alu_a = sel_alu_a_fsm_alu;
-    sel_alu_b = sel_alu_b_fsm_alu;
-    sub_sra = sub_sra_fsm_alu;
-    load_data_memory = load_data_memory_fsm_alu;
-    write_mem = write_mem_fsm_alu;
-  end
-  else if (start_branch_jump_fsm) begin
-    sel_rd = sel_rd_fsm_branch_jump;
-    load_pc = load_pc_fsm_branch_jump;
-    load_ins = load_ins_fsm_branch_jump;
-    load_regfile = load_regfile_fsm_branch_jump;
-    load_rs1 = load_rs1_fsm_branch_jump;
-    load_rs2 = load_rs2_fsm_branch_jump;
-    load_alu = load_alu_fsm_branch_jump;
-    load_imm = load_imm_fsm_branch_jump;
-    load_flags = load_flags_fsm_branch_jump;
-    load_pc_alu = load_pc_alu_fsm_branch_jump;
-    sel_pc_next = sel_pc_next_fsm_branch_jump;
-    sel_pc_alu = sel_pc_alu_fsm_branch_jump;
-    sel_alu_a = sel_alu_a_fsm_branch_jump;
-    sel_alu_b = sel_alu_b_fsm_branch_jump;
-    sub_sra = sub_sra_fsm_branch_jump;
-    load_data_memory = load_data_memory_fsm_branch_jump;
-    write_mem = write_mem_fsm_branch_jump;
-  end
-  else if (start_load_store_fsm) begin
-    sel_rd = sel_rd_fsm_load_store;
-    load_pc = load_pc_fsm_load_store;
-    load_ins = load_ins_fsm_load_store;
-    load_regfile = load_regfile_fsm_load_store;
-    load_rs1 = load_rs1_fsm_load_store;
-    load_rs2 = load_rs2_fsm_load_store;
-    load_alu = load_alu_fsm_load_store;
-    load_imm = load_imm_fsm_load_store;
-    load_flags = load_flags_fsm_load_store;
-    load_pc_alu = load_pc_alu_fsm_load_store;
-    sel_pc_next = sel_pc_next_fsm_load_store;
-    sel_pc_alu = sel_pc_alu_fsm_load_store;
-    sel_alu_a = sel_alu_a_fsm_load_store;
-    sel_alu_b = sel_alu_b_fsm_load_store;
-    sub_sra = sub_sra_fsm_load_store;
-    load_data_memory = load_data_memory_fsm_load_store;
-    write_mem = write_mem_fsm_load_store;
-  end
-  else begin
-    sel_rd = 2'b00;
-    load_pc = 1'b0;
-    load_ins = 1'b1;
-    load_regfile = 1'b0;
-    load_rs1 = 1'b0;
-    load_rs2 = 1'b0;
-    load_alu = 1'b0;
-    load_imm = 1'b0;
-    load_flags = 1'b0;
-    load_pc_alu = 1'b0;
-    sel_pc_next = 1'b0;
-    sel_pc_alu = 1'b0;
-    sel_alu_a = 1'b0;
-    sel_alu_b = 1'b0;
-    sub_sra = 1'b0;
-    load_data_memory = 1'b0;
-    write_mem = 1'b0;
-  end
-end
+    /*  CONSTANT ASSIGNMENTS   */
 
-assign rs1_addr = insn[19:15];
-assign rs2_addr = insn[24:20];
-assign rd_addr = insn[11:7];
-assign sel_mem_extension = insn[14:12];
-assign sel_mem_size = insn[13:12];
-assign func3 = insn[14:12];
-  
+    assign rs1_addr = insn[19:15];
+    assign rs2_addr = insn[24:20];
+    assign rd_addr = insn[11:7];
+    assign func3 = insn[14:12];
+    assign sel_mem_extension = insn[14:12];
+
+    /*   OPCDECODER   */
+    opdecoder OPDEC (
+        .opcode(insn[6:0]),
+        .code  (code)
+    );
+
 endmodule

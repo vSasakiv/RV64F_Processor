@@ -1,0 +1,7 @@
+
+State Machine - |memory_management|state
+Name state.RETURN state.EXECUTE_STORE state.EXECUTE_LOAD state.IDLE 
+state.IDLE 0 0 0 0 
+state.EXECUTE_LOAD 0 0 1 1 
+state.EXECUTE_STORE 0 1 0 1 
+state.RETURN 1 0 0 1 

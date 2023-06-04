@@ -2,27 +2,29 @@
 module dataflow (
   input clk,
   input sub_sra,
-  input write_mem,
   input reset,
-  input sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b,
+  input sel_pc_next, sel_pc_increment, sel_pc_jump, sel_alu_a, sel_alu_b, sel_mem_next,
   input load_ins, load_imm, load_regfile, load_pc, load_rs1, load_rs2, load_alu, load_pc_alu, load_data_memory, load_flags,
-  input [1:0] sel_rd, sel_mem_size,
+  input [1:0] sel_rd,
   input [2:0] func3,
   input [2:0] sel_mem_extension,
   input [4:0] rd_addr, rs1_addr, rs2_addr,
   input [31:0] code,
+  input [63:0] mem_i,
   output [2:0] flags_value,
-  output [31:0] insn
+  output [31:0] insn,
+  output [63:0] addr, rs2_value_o
 );
   wire eq, ls, lu;
-  wire [31:0] insn_o, insn_value;
+  wire [31:0] insn_value;
   wire [63:0] imm_o, imm_value;
   wire [63:0] alu_o, alu_value;
   wire [63:0] alu_a_value, alu_b_value;
-  wire [63:0] mem_extended, mem_o, mem_value;
+  wire [63:0] mem_extended, mem_value;
   wire [63:0] rd_i, rs1_o, rs2_o, rs1_value, rs2_value;
   wire [63:0] pc_alu_o, pc_alu_value, pc_selected, pc_alu_selected, pc_value;
 
+  assign rs2_value_o = rs1_value;
   assign insn = insn_value;
   
   //Módulo memory extender, utilizado para corrigir o valor que será carregado em um registrador do regfile, de acordo com a instrução
@@ -39,36 +41,13 @@ module dataflow (
     .imm (imm_o)
   );
 
-  //Memória de instruções
-  insn_memory insn_mem (
-    .addr(pc_value),
-    .insn(insn_o)
-  );
 
-  //Memória de dados
-  data_memory data_mem (
-    .clk         (clk),
-    .write       (write_mem),
-    .sel_mem_size(sel_mem_size),
-    .data_i      (rs2_value),
-    .data_o      (mem_o),
-    .addr        (alu_value)
-  );
-
-  //Registrador para o Program Counter (PC)
-  reg_async_reset #(.Size(64)) pc (
-    .clk   (clk),
-    .reset (reset),
-    .load  (load_pc),
-    .data_i(pc_selected),
-    .data_o(pc_value)
-  );
 
   //Registrador que guarda a saída da memória de dados
   register #(.Size(64)) reg_data_mem (
     .clk   (clk),
     .load  (load_data_memory),
-    .data_i(mem_o),
+    .data_i(mem_i),
     .data_o(mem_value)
   );
 
@@ -78,6 +57,21 @@ module dataflow (
     .load  (load_pc_alu),
     .data_i(pc_alu_o),
     .data_o(pc_alu_value)
+  );
+
+  //Módulo que contem o registrador program counter e todos os seus componentes auxiliares,
+  //Como somadores e multiplexadores
+  program_counter PC (
+    .clk              (clk),
+    .load_pc          (load_pc),
+    .reset            (reset),
+    .sel_pc_increment (sel_pc_increment),
+    .sel_pc_next      (sel_pc_next),
+    .sel_pc_jump      (sel_pc_jump),
+    .rs1_value        (rs1_value),
+    .imm_value        (imm_value),
+    .pc_value         (pc_value),
+    .pc_alu_o         (pc_alu_o)
   );
 
   //Registrador que guarda o imm 
@@ -92,7 +86,7 @@ module dataflow (
   register #(.Size(32)) ir (
     .clk   (clk),
     .load  (load_ins),
-    .data_i(insn_o),
+    .data_i(mem_i[31:0]),
     .data_o(insn_value)
   );
 
@@ -140,20 +134,12 @@ module dataflow (
     .rs2_o   (rs2_o)
   );
 
-  //Multiplexador para selecionar o próximo valor do PC
-  mux_2to1 #(.Size(64)) mux_pc_next  (
-    .sel   (sel_pc_next),
-    .i0    (pc_alu_o),
+ //Multiplexador para selecionar o endereço a ser acessado na memória
+  mux_2to1 #(.Size(64)) mux_pc_addr  (
+    .sel   (sel_mem_next),
+    .i0    (pc_value),
     .i1    (alu_value),
-    .data_o(pc_selected)
-  );
-
-  // multiplexador para seleção da segunda entrada da ALU do Program Counter
-  mux_2to1  #(.Size(64)) mux_pc_alu (
-    .sel   (sel_pc_alu),
-    .i0    (64'h00000004),
-    .i1    (imm_value),
-    .data_o(pc_alu_selected)  
+    .data_o(addr)
   );
 
   // multiplexador para selecionar qual valor irá entrar na ALU geral, podendo ser o PC ou o valor do rs1
@@ -182,14 +168,6 @@ module dataflow (
     .data_o(rd_i)  
   );
   
-  // ALU do Program Counter, neste caso sendo apenas um somador de 64bits.
-  adder64b pc_adder (
-    .a  (pc_value),
-    .b  (pc_alu_selected),
-    .sub(1'b0),
-    .s  (pc_alu_o)
-  );
-
   // ALU
   alu alu (
     .a      (alu_a_value),

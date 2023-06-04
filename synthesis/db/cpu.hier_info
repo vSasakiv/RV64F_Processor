@@ -1,3887 +1,492 @@
-|program_counter
-clk => clk.IN1
-reset => reset.IN1
-load_pc => load_pc.IN1
-sel_pc_next => sel_pc_next.IN1
-sel_pc_increment => sel_pc_increment.IN1
-sel_pc_jump => sel_pc_jump.IN1
-imm_value[0] => imm_value[0].IN2
-imm_value[1] => imm_value[1].IN2
-imm_value[2] => imm_value[2].IN2
-imm_value[3] => imm_value[3].IN2
-imm_value[4] => imm_value[4].IN2
-imm_value[5] => imm_value[5].IN2
-imm_value[6] => imm_value[6].IN2
-imm_value[7] => imm_value[7].IN2
-imm_value[8] => imm_value[8].IN2
-imm_value[9] => imm_value[9].IN2
-imm_value[10] => imm_value[10].IN2
-imm_value[11] => imm_value[11].IN2
-imm_value[12] => imm_value[12].IN2
-imm_value[13] => imm_value[13].IN2
-imm_value[14] => imm_value[14].IN2
-imm_value[15] => imm_value[15].IN2
-imm_value[16] => imm_value[16].IN2
-imm_value[17] => imm_value[17].IN2
-imm_value[18] => imm_value[18].IN2
-imm_value[19] => imm_value[19].IN2
-imm_value[20] => imm_value[20].IN2
-imm_value[21] => imm_value[21].IN2
-imm_value[22] => imm_value[22].IN2
-imm_value[23] => imm_value[23].IN2
-imm_value[24] => imm_value[24].IN2
-imm_value[25] => imm_value[25].IN2
-imm_value[26] => imm_value[26].IN2
-imm_value[27] => imm_value[27].IN2
-imm_value[28] => imm_value[28].IN2
-imm_value[29] => imm_value[29].IN2
-imm_value[30] => imm_value[30].IN2
-imm_value[31] => imm_value[31].IN2
-imm_value[32] => imm_value[32].IN2
-imm_value[33] => imm_value[33].IN2
-imm_value[34] => imm_value[34].IN2
-imm_value[35] => imm_value[35].IN2
-imm_value[36] => imm_value[36].IN2
-imm_value[37] => imm_value[37].IN2
-imm_value[38] => imm_value[38].IN2
-imm_value[39] => imm_value[39].IN2
-imm_value[40] => imm_value[40].IN2
-imm_value[41] => imm_value[41].IN2
-imm_value[42] => imm_value[42].IN2
-imm_value[43] => imm_value[43].IN2
-imm_value[44] => imm_value[44].IN2
-imm_value[45] => imm_value[45].IN2
-imm_value[46] => imm_value[46].IN2
-imm_value[47] => imm_value[47].IN2
-imm_value[48] => imm_value[48].IN2
-imm_value[49] => imm_value[49].IN2
-imm_value[50] => imm_value[50].IN2
-imm_value[51] => imm_value[51].IN2
-imm_value[52] => imm_value[52].IN2
-imm_value[53] => imm_value[53].IN2
-imm_value[54] => imm_value[54].IN2
-imm_value[55] => imm_value[55].IN2
-imm_value[56] => imm_value[56].IN2
-imm_value[57] => imm_value[57].IN2
-imm_value[58] => imm_value[58].IN2
-imm_value[59] => imm_value[59].IN2
-imm_value[60] => imm_value[60].IN2
-imm_value[61] => imm_value[61].IN2
-imm_value[62] => imm_value[62].IN2
-imm_value[63] => imm_value[63].IN2
-rs1_value[0] => rs1_value[0].IN1
-rs1_value[1] => rs1_value[1].IN1
-rs1_value[2] => rs1_value[2].IN1
-rs1_value[3] => rs1_value[3].IN1
-rs1_value[4] => rs1_value[4].IN1
-rs1_value[5] => rs1_value[5].IN1
-rs1_value[6] => rs1_value[6].IN1
-rs1_value[7] => rs1_value[7].IN1
-rs1_value[8] => rs1_value[8].IN1
-rs1_value[9] => rs1_value[9].IN1
-rs1_value[10] => rs1_value[10].IN1
-rs1_value[11] => rs1_value[11].IN1
-rs1_value[12] => rs1_value[12].IN1
-rs1_value[13] => rs1_value[13].IN1
-rs1_value[14] => rs1_value[14].IN1
-rs1_value[15] => rs1_value[15].IN1
-rs1_value[16] => rs1_value[16].IN1
-rs1_value[17] => rs1_value[17].IN1
-rs1_value[18] => rs1_value[18].IN1
-rs1_value[19] => rs1_value[19].IN1
-rs1_value[20] => rs1_value[20].IN1
-rs1_value[21] => rs1_value[21].IN1
-rs1_value[22] => rs1_value[22].IN1
-rs1_value[23] => rs1_value[23].IN1
-rs1_value[24] => rs1_value[24].IN1
-rs1_value[25] => rs1_value[25].IN1
-rs1_value[26] => rs1_value[26].IN1
-rs1_value[27] => rs1_value[27].IN1
-rs1_value[28] => rs1_value[28].IN1
-rs1_value[29] => rs1_value[29].IN1
-rs1_value[30] => rs1_value[30].IN1
-rs1_value[31] => rs1_value[31].IN1
-rs1_value[32] => rs1_value[32].IN1
-rs1_value[33] => rs1_value[33].IN1
-rs1_value[34] => rs1_value[34].IN1
-rs1_value[35] => rs1_value[35].IN1
-rs1_value[36] => rs1_value[36].IN1
-rs1_value[37] => rs1_value[37].IN1
-rs1_value[38] => rs1_value[38].IN1
-rs1_value[39] => rs1_value[39].IN1
-rs1_value[40] => rs1_value[40].IN1
-rs1_value[41] => rs1_value[41].IN1
-rs1_value[42] => rs1_value[42].IN1
-rs1_value[43] => rs1_value[43].IN1
-rs1_value[44] => rs1_value[44].IN1
-rs1_value[45] => rs1_value[45].IN1
-rs1_value[46] => rs1_value[46].IN1
-rs1_value[47] => rs1_value[47].IN1
-rs1_value[48] => rs1_value[48].IN1
-rs1_value[49] => rs1_value[49].IN1
-rs1_value[50] => rs1_value[50].IN1
-rs1_value[51] => rs1_value[51].IN1
-rs1_value[52] => rs1_value[52].IN1
-rs1_value[53] => rs1_value[53].IN1
-rs1_value[54] => rs1_value[54].IN1
-rs1_value[55] => rs1_value[55].IN1
-rs1_value[56] => rs1_value[56].IN1
-rs1_value[57] => rs1_value[57].IN1
-rs1_value[58] => rs1_value[58].IN1
-rs1_value[59] => rs1_value[59].IN1
-rs1_value[60] => rs1_value[60].IN1
-rs1_value[61] => rs1_value[61].IN1
-rs1_value[62] => rs1_value[62].IN1
-rs1_value[63] => rs1_value[63].IN1
-pc_value[0] <= pc_value[0].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[1] <= pc_value[1].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[2] <= pc_value[2].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[3] <= pc_value[3].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[4] <= pc_value[4].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[5] <= pc_value[5].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[6] <= pc_value[6].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[7] <= pc_value[7].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[8] <= pc_value[8].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[9] <= pc_value[9].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[10] <= pc_value[10].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[11] <= pc_value[11].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[12] <= pc_value[12].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[13] <= pc_value[13].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[14] <= pc_value[14].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[15] <= pc_value[15].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[16] <= pc_value[16].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[17] <= pc_value[17].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[18] <= pc_value[18].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[19] <= pc_value[19].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[20] <= pc_value[20].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[21] <= pc_value[21].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[22] <= pc_value[22].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[23] <= pc_value[23].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[24] <= pc_value[24].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[25] <= pc_value[25].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[26] <= pc_value[26].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[27] <= pc_value[27].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[28] <= pc_value[28].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[29] <= pc_value[29].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[30] <= pc_value[30].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[31] <= pc_value[31].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[32] <= pc_value[32].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[33] <= pc_value[33].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[34] <= pc_value[34].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[35] <= pc_value[35].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[36] <= pc_value[36].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[37] <= pc_value[37].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[38] <= pc_value[38].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[39] <= pc_value[39].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[40] <= pc_value[40].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[41] <= pc_value[41].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[42] <= pc_value[42].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[43] <= pc_value[43].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[44] <= pc_value[44].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[45] <= pc_value[45].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[46] <= pc_value[46].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[47] <= pc_value[47].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[48] <= pc_value[48].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[49] <= pc_value[49].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[50] <= pc_value[50].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[51] <= pc_value[51].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[52] <= pc_value[52].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[53] <= pc_value[53].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[54] <= pc_value[54].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[55] <= pc_value[55].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[56] <= pc_value[56].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[57] <= pc_value[57].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[58] <= pc_value[58].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[59] <= pc_value[59].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[60] <= pc_value[60].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[61] <= pc_value[61].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[62] <= pc_value[62].DB_MAX_OUTPUT_PORT_TYPE
-pc_value[63] <= pc_value[63].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[0] <= pc_increment_value[0].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[1] <= pc_increment_value[1].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[2] <= pc_increment_value[2].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[3] <= pc_increment_value[3].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[4] <= pc_increment_value[4].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[5] <= pc_increment_value[5].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[6] <= pc_increment_value[6].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[7] <= pc_increment_value[7].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[8] <= pc_increment_value[8].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[9] <= pc_increment_value[9].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[10] <= pc_increment_value[10].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[11] <= pc_increment_value[11].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[12] <= pc_increment_value[12].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[13] <= pc_increment_value[13].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[14] <= pc_increment_value[14].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[15] <= pc_increment_value[15].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[16] <= pc_increment_value[16].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[17] <= pc_increment_value[17].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[18] <= pc_increment_value[18].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[19] <= pc_increment_value[19].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[20] <= pc_increment_value[20].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[21] <= pc_increment_value[21].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[22] <= pc_increment_value[22].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[23] <= pc_increment_value[23].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[24] <= pc_increment_value[24].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[25] <= pc_increment_value[25].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[26] <= pc_increment_value[26].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[27] <= pc_increment_value[27].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[28] <= pc_increment_value[28].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[29] <= pc_increment_value[29].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[30] <= pc_increment_value[30].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[31] <= pc_increment_value[31].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[32] <= pc_increment_value[32].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[33] <= pc_increment_value[33].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[34] <= pc_increment_value[34].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[35] <= pc_increment_value[35].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[36] <= pc_increment_value[36].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[37] <= pc_increment_value[37].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[38] <= pc_increment_value[38].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[39] <= pc_increment_value[39].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[40] <= pc_increment_value[40].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[41] <= pc_increment_value[41].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[42] <= pc_increment_value[42].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[43] <= pc_increment_value[43].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[44] <= pc_increment_value[44].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[45] <= pc_increment_value[45].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[46] <= pc_increment_value[46].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[47] <= pc_increment_value[47].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[48] <= pc_increment_value[48].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[49] <= pc_increment_value[49].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[50] <= pc_increment_value[50].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[51] <= pc_increment_value[51].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[52] <= pc_increment_value[52].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[53] <= pc_increment_value[53].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[54] <= pc_increment_value[54].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[55] <= pc_increment_value[55].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[56] <= pc_increment_value[56].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[57] <= pc_increment_value[57].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[58] <= pc_increment_value[58].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[59] <= pc_increment_value[59].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[60] <= pc_increment_value[60].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[61] <= pc_increment_value[61].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[62] <= pc_increment_value[62].DB_MAX_OUTPUT_PORT_TYPE
-pc_alu_o[63] <= pc_increment_value[63].DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|reg_async_reset:pc
-clk => data_o[0]~reg0.CLK
-clk => data_o[1]~reg0.CLK
-clk => data_o[2]~reg0.CLK
-clk => data_o[3]~reg0.CLK
-clk => data_o[4]~reg0.CLK
-clk => data_o[5]~reg0.CLK
-clk => data_o[6]~reg0.CLK
-clk => data_o[7]~reg0.CLK
-clk => data_o[8]~reg0.CLK
-clk => data_o[9]~reg0.CLK
-clk => data_o[10]~reg0.CLK
-clk => data_o[11]~reg0.CLK
-clk => data_o[12]~reg0.CLK
-clk => data_o[13]~reg0.CLK
-clk => data_o[14]~reg0.CLK
-clk => data_o[15]~reg0.CLK
-clk => data_o[16]~reg0.CLK
-clk => data_o[17]~reg0.CLK
-clk => data_o[18]~reg0.CLK
-clk => data_o[19]~reg0.CLK
-clk => data_o[20]~reg0.CLK
-clk => data_o[21]~reg0.CLK
-clk => data_o[22]~reg0.CLK
-clk => data_o[23]~reg0.CLK
-clk => data_o[24]~reg0.CLK
-clk => data_o[25]~reg0.CLK
-clk => data_o[26]~reg0.CLK
-clk => data_o[27]~reg0.CLK
-clk => data_o[28]~reg0.CLK
-clk => data_o[29]~reg0.CLK
-clk => data_o[30]~reg0.CLK
-clk => data_o[31]~reg0.CLK
-clk => data_o[32]~reg0.CLK
-clk => data_o[33]~reg0.CLK
-clk => data_o[34]~reg0.CLK
-clk => data_o[35]~reg0.CLK
-clk => data_o[36]~reg0.CLK
-clk => data_o[37]~reg0.CLK
-clk => data_o[38]~reg0.CLK
-clk => data_o[39]~reg0.CLK
-clk => data_o[40]~reg0.CLK
-clk => data_o[41]~reg0.CLK
-clk => data_o[42]~reg0.CLK
-clk => data_o[43]~reg0.CLK
-clk => data_o[44]~reg0.CLK
-clk => data_o[45]~reg0.CLK
-clk => data_o[46]~reg0.CLK
-clk => data_o[47]~reg0.CLK
-clk => data_o[48]~reg0.CLK
-clk => data_o[49]~reg0.CLK
-clk => data_o[50]~reg0.CLK
-clk => data_o[51]~reg0.CLK
-clk => data_o[52]~reg0.CLK
-clk => data_o[53]~reg0.CLK
-clk => data_o[54]~reg0.CLK
-clk => data_o[55]~reg0.CLK
-clk => data_o[56]~reg0.CLK
-clk => data_o[57]~reg0.CLK
-clk => data_o[58]~reg0.CLK
-clk => data_o[59]~reg0.CLK
-clk => data_o[60]~reg0.CLK
-clk => data_o[61]~reg0.CLK
-clk => data_o[62]~reg0.CLK
-clk => data_o[63]~reg0.CLK
-data_i[0] => data_o[0]~reg0.DATAIN
-data_i[1] => data_o[1]~reg0.DATAIN
-data_i[2] => data_o[2]~reg0.DATAIN
-data_i[3] => data_o[3]~reg0.DATAIN
-data_i[4] => data_o[4]~reg0.DATAIN
-data_i[5] => data_o[5]~reg0.DATAIN
-data_i[6] => data_o[6]~reg0.DATAIN
-data_i[7] => data_o[7]~reg0.DATAIN
-data_i[8] => data_o[8]~reg0.DATAIN
-data_i[9] => data_o[9]~reg0.DATAIN
-data_i[10] => data_o[10]~reg0.DATAIN
-data_i[11] => data_o[11]~reg0.DATAIN
-data_i[12] => data_o[12]~reg0.DATAIN
-data_i[13] => data_o[13]~reg0.DATAIN
-data_i[14] => data_o[14]~reg0.DATAIN
-data_i[15] => data_o[15]~reg0.DATAIN
-data_i[16] => data_o[16]~reg0.DATAIN
-data_i[17] => data_o[17]~reg0.DATAIN
-data_i[18] => data_o[18]~reg0.DATAIN
-data_i[19] => data_o[19]~reg0.DATAIN
-data_i[20] => data_o[20]~reg0.DATAIN
-data_i[21] => data_o[21]~reg0.DATAIN
-data_i[22] => data_o[22]~reg0.DATAIN
-data_i[23] => data_o[23]~reg0.DATAIN
-data_i[24] => data_o[24]~reg0.DATAIN
-data_i[25] => data_o[25]~reg0.DATAIN
-data_i[26] => data_o[26]~reg0.DATAIN
-data_i[27] => data_o[27]~reg0.DATAIN
-data_i[28] => data_o[28]~reg0.DATAIN
-data_i[29] => data_o[29]~reg0.DATAIN
-data_i[30] => data_o[30]~reg0.DATAIN
-data_i[31] => data_o[31]~reg0.DATAIN
-data_i[32] => data_o[32]~reg0.DATAIN
-data_i[33] => data_o[33]~reg0.DATAIN
-data_i[34] => data_o[34]~reg0.DATAIN
-data_i[35] => data_o[35]~reg0.DATAIN
-data_i[36] => data_o[36]~reg0.DATAIN
-data_i[37] => data_o[37]~reg0.DATAIN
-data_i[38] => data_o[38]~reg0.DATAIN
-data_i[39] => data_o[39]~reg0.DATAIN
-data_i[40] => data_o[40]~reg0.DATAIN
-data_i[41] => data_o[41]~reg0.DATAIN
-data_i[42] => data_o[42]~reg0.DATAIN
-data_i[43] => data_o[43]~reg0.DATAIN
-data_i[44] => data_o[44]~reg0.DATAIN
-data_i[45] => data_o[45]~reg0.DATAIN
-data_i[46] => data_o[46]~reg0.DATAIN
-data_i[47] => data_o[47]~reg0.DATAIN
-data_i[48] => data_o[48]~reg0.DATAIN
-data_i[49] => data_o[49]~reg0.DATAIN
-data_i[50] => data_o[50]~reg0.DATAIN
-data_i[51] => data_o[51]~reg0.DATAIN
-data_i[52] => data_o[52]~reg0.DATAIN
-data_i[53] => data_o[53]~reg0.DATAIN
-data_i[54] => data_o[54]~reg0.DATAIN
-data_i[55] => data_o[55]~reg0.DATAIN
-data_i[56] => data_o[56]~reg0.DATAIN
-data_i[57] => data_o[57]~reg0.DATAIN
-data_i[58] => data_o[58]~reg0.DATAIN
-data_i[59] => data_o[59]~reg0.DATAIN
-data_i[60] => data_o[60]~reg0.DATAIN
-data_i[61] => data_o[61]~reg0.DATAIN
-data_i[62] => data_o[62]~reg0.DATAIN
-data_i[63] => data_o[63]~reg0.DATAIN
-load => data_o[63]~reg0.ENA
-load => data_o[62]~reg0.ENA
-load => data_o[61]~reg0.ENA
-load => data_o[60]~reg0.ENA
-load => data_o[59]~reg0.ENA
-load => data_o[58]~reg0.ENA
-load => data_o[57]~reg0.ENA
-load => data_o[56]~reg0.ENA
-load => data_o[55]~reg0.ENA
-load => data_o[54]~reg0.ENA
-load => data_o[53]~reg0.ENA
-load => data_o[52]~reg0.ENA
-load => data_o[51]~reg0.ENA
-load => data_o[50]~reg0.ENA
-load => data_o[49]~reg0.ENA
-load => data_o[48]~reg0.ENA
-load => data_o[47]~reg0.ENA
-load => data_o[46]~reg0.ENA
-load => data_o[45]~reg0.ENA
-load => data_o[44]~reg0.ENA
-load => data_o[43]~reg0.ENA
-load => data_o[42]~reg0.ENA
-load => data_o[41]~reg0.ENA
-load => data_o[40]~reg0.ENA
-load => data_o[39]~reg0.ENA
-load => data_o[38]~reg0.ENA
-load => data_o[37]~reg0.ENA
-load => data_o[36]~reg0.ENA
-load => data_o[35]~reg0.ENA
-load => data_o[34]~reg0.ENA
-load => data_o[33]~reg0.ENA
-load => data_o[32]~reg0.ENA
-load => data_o[31]~reg0.ENA
-load => data_o[30]~reg0.ENA
-load => data_o[29]~reg0.ENA
-load => data_o[28]~reg0.ENA
-load => data_o[27]~reg0.ENA
-load => data_o[26]~reg0.ENA
-load => data_o[25]~reg0.ENA
-load => data_o[24]~reg0.ENA
-load => data_o[23]~reg0.ENA
-load => data_o[22]~reg0.ENA
-load => data_o[21]~reg0.ENA
-load => data_o[20]~reg0.ENA
-load => data_o[19]~reg0.ENA
-load => data_o[18]~reg0.ENA
-load => data_o[17]~reg0.ENA
-load => data_o[16]~reg0.ENA
-load => data_o[15]~reg0.ENA
-load => data_o[14]~reg0.ENA
-load => data_o[13]~reg0.ENA
-load => data_o[12]~reg0.ENA
-load => data_o[11]~reg0.ENA
-load => data_o[10]~reg0.ENA
-load => data_o[9]~reg0.ENA
-load => data_o[8]~reg0.ENA
-load => data_o[7]~reg0.ENA
-load => data_o[6]~reg0.ENA
-load => data_o[5]~reg0.ENA
-load => data_o[4]~reg0.ENA
-load => data_o[3]~reg0.ENA
-load => data_o[2]~reg0.ENA
-load => data_o[1]~reg0.ENA
-load => data_o[0]~reg0.ENA
-reset => data_o[0]~reg0.ACLR
-reset => data_o[1]~reg0.ACLR
-reset => data_o[2]~reg0.ACLR
-reset => data_o[3]~reg0.ACLR
-reset => data_o[4]~reg0.ACLR
-reset => data_o[5]~reg0.ACLR
-reset => data_o[6]~reg0.ACLR
-reset => data_o[7]~reg0.ACLR
-reset => data_o[8]~reg0.ACLR
-reset => data_o[9]~reg0.ACLR
-reset => data_o[10]~reg0.ACLR
-reset => data_o[11]~reg0.ACLR
-reset => data_o[12]~reg0.ACLR
-reset => data_o[13]~reg0.ACLR
-reset => data_o[14]~reg0.ACLR
-reset => data_o[15]~reg0.ACLR
-reset => data_o[16]~reg0.ACLR
-reset => data_o[17]~reg0.ACLR
-reset => data_o[18]~reg0.ACLR
-reset => data_o[19]~reg0.ACLR
-reset => data_o[20]~reg0.ACLR
-reset => data_o[21]~reg0.ACLR
-reset => data_o[22]~reg0.ACLR
-reset => data_o[23]~reg0.ACLR
-reset => data_o[24]~reg0.ACLR
-reset => data_o[25]~reg0.ACLR
-reset => data_o[26]~reg0.ACLR
-reset => data_o[27]~reg0.ACLR
-reset => data_o[28]~reg0.ACLR
-reset => data_o[29]~reg0.ACLR
-reset => data_o[30]~reg0.ACLR
-reset => data_o[31]~reg0.ACLR
-reset => data_o[32]~reg0.ACLR
-reset => data_o[33]~reg0.ACLR
-reset => data_o[34]~reg0.ACLR
-reset => data_o[35]~reg0.ACLR
-reset => data_o[36]~reg0.ACLR
-reset => data_o[37]~reg0.ACLR
-reset => data_o[38]~reg0.ACLR
-reset => data_o[39]~reg0.ACLR
-reset => data_o[40]~reg0.ACLR
-reset => data_o[41]~reg0.ACLR
-reset => data_o[42]~reg0.ACLR
-reset => data_o[43]~reg0.ACLR
-reset => data_o[44]~reg0.ACLR
-reset => data_o[45]~reg0.ACLR
-reset => data_o[46]~reg0.ACLR
-reset => data_o[47]~reg0.ACLR
-reset => data_o[48]~reg0.ACLR
-reset => data_o[49]~reg0.ACLR
-reset => data_o[50]~reg0.ACLR
-reset => data_o[51]~reg0.ACLR
-reset => data_o[52]~reg0.ACLR
-reset => data_o[53]~reg0.ACLR
-reset => data_o[54]~reg0.ACLR
-reset => data_o[55]~reg0.ACLR
-reset => data_o[56]~reg0.ACLR
-reset => data_o[57]~reg0.ACLR
-reset => data_o[58]~reg0.ACLR
-reset => data_o[59]~reg0.ACLR
-reset => data_o[60]~reg0.ACLR
-reset => data_o[61]~reg0.ACLR
-reset => data_o[62]~reg0.ACLR
-reset => data_o[63]~reg0.ACLR
-data_o[0] <= data_o[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[1] <= data_o[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[2] <= data_o[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[3] <= data_o[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[4] <= data_o[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[5] <= data_o[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[6] <= data_o[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[7] <= data_o[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[8] <= data_o[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[9] <= data_o[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[10] <= data_o[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[11] <= data_o[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[12] <= data_o[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[13] <= data_o[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[14] <= data_o[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[15] <= data_o[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[16] <= data_o[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[17] <= data_o[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[18] <= data_o[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[19] <= data_o[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[20] <= data_o[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[21] <= data_o[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[22] <= data_o[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[23] <= data_o[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[24] <= data_o[24]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[25] <= data_o[25]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[26] <= data_o[26]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[27] <= data_o[27]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[28] <= data_o[28]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[29] <= data_o[29]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[30] <= data_o[30]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[31] <= data_o[31]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[32] <= data_o[32]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[33] <= data_o[33]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[34] <= data_o[34]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[35] <= data_o[35]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[36] <= data_o[36]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[37] <= data_o[37]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[38] <= data_o[38]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[39] <= data_o[39]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[40] <= data_o[40]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[41] <= data_o[41]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[42] <= data_o[42]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[43] <= data_o[43]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[44] <= data_o[44]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[45] <= data_o[45]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[46] <= data_o[46]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[47] <= data_o[47]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[48] <= data_o[48]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[49] <= data_o[49]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[50] <= data_o[50]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[51] <= data_o[51]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[52] <= data_o[52]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[53] <= data_o[53]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[54] <= data_o[54]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[55] <= data_o[55]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[56] <= data_o[56]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[57] <= data_o[57]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[58] <= data_o[58]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[59] <= data_o[59]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[60] <= data_o[60]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[61] <= data_o[61]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[62] <= data_o[62]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-data_o[63] <= data_o[63]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|mux_2to1:mux_pc_increment
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-i0[0] => data_o.DATAA
-i0[1] => data_o.DATAA
-i0[2] => data_o.DATAA
-i0[3] => data_o.DATAA
-i0[4] => data_o.DATAA
-i0[5] => data_o.DATAA
-i0[6] => data_o.DATAA
-i0[7] => data_o.DATAA
-i0[8] => data_o.DATAA
-i0[9] => data_o.DATAA
-i0[10] => data_o.DATAA
-i0[11] => data_o.DATAA
-i0[12] => data_o.DATAA
-i0[13] => data_o.DATAA
-i0[14] => data_o.DATAA
-i0[15] => data_o.DATAA
-i0[16] => data_o.DATAA
-i0[17] => data_o.DATAA
-i0[18] => data_o.DATAA
-i0[19] => data_o.DATAA
-i0[20] => data_o.DATAA
-i0[21] => data_o.DATAA
-i0[22] => data_o.DATAA
-i0[23] => data_o.DATAA
-i0[24] => data_o.DATAA
-i0[25] => data_o.DATAA
-i0[26] => data_o.DATAA
-i0[27] => data_o.DATAA
-i0[28] => data_o.DATAA
-i0[29] => data_o.DATAA
-i0[30] => data_o.DATAA
-i0[31] => data_o.DATAA
-i0[32] => data_o.DATAA
-i0[33] => data_o.DATAA
-i0[34] => data_o.DATAA
-i0[35] => data_o.DATAA
-i0[36] => data_o.DATAA
-i0[37] => data_o.DATAA
-i0[38] => data_o.DATAA
-i0[39] => data_o.DATAA
-i0[40] => data_o.DATAA
-i0[41] => data_o.DATAA
-i0[42] => data_o.DATAA
-i0[43] => data_o.DATAA
-i0[44] => data_o.DATAA
-i0[45] => data_o.DATAA
-i0[46] => data_o.DATAA
-i0[47] => data_o.DATAA
-i0[48] => data_o.DATAA
-i0[49] => data_o.DATAA
-i0[50] => data_o.DATAA
-i0[51] => data_o.DATAA
-i0[52] => data_o.DATAA
-i0[53] => data_o.DATAA
-i0[54] => data_o.DATAA
-i0[55] => data_o.DATAA
-i0[56] => data_o.DATAA
-i0[57] => data_o.DATAA
-i0[58] => data_o.DATAA
-i0[59] => data_o.DATAA
-i0[60] => data_o.DATAA
-i0[61] => data_o.DATAA
-i0[62] => data_o.DATAA
-i0[63] => data_o.DATAA
-i1[0] => data_o.DATAB
-i1[1] => data_o.DATAB
-i1[2] => data_o.DATAB
-i1[3] => data_o.DATAB
-i1[4] => data_o.DATAB
-i1[5] => data_o.DATAB
-i1[6] => data_o.DATAB
-i1[7] => data_o.DATAB
-i1[8] => data_o.DATAB
-i1[9] => data_o.DATAB
-i1[10] => data_o.DATAB
-i1[11] => data_o.DATAB
-i1[12] => data_o.DATAB
-i1[13] => data_o.DATAB
-i1[14] => data_o.DATAB
-i1[15] => data_o.DATAB
-i1[16] => data_o.DATAB
-i1[17] => data_o.DATAB
-i1[18] => data_o.DATAB
-i1[19] => data_o.DATAB
-i1[20] => data_o.DATAB
-i1[21] => data_o.DATAB
-i1[22] => data_o.DATAB
-i1[23] => data_o.DATAB
-i1[24] => data_o.DATAB
-i1[25] => data_o.DATAB
-i1[26] => data_o.DATAB
-i1[27] => data_o.DATAB
-i1[28] => data_o.DATAB
-i1[29] => data_o.DATAB
-i1[30] => data_o.DATAB
-i1[31] => data_o.DATAB
-i1[32] => data_o.DATAB
-i1[33] => data_o.DATAB
-i1[34] => data_o.DATAB
-i1[35] => data_o.DATAB
-i1[36] => data_o.DATAB
-i1[37] => data_o.DATAB
-i1[38] => data_o.DATAB
-i1[39] => data_o.DATAB
-i1[40] => data_o.DATAB
-i1[41] => data_o.DATAB
-i1[42] => data_o.DATAB
-i1[43] => data_o.DATAB
-i1[44] => data_o.DATAB
-i1[45] => data_o.DATAB
-i1[46] => data_o.DATAB
-i1[47] => data_o.DATAB
-i1[48] => data_o.DATAB
-i1[49] => data_o.DATAB
-i1[50] => data_o.DATAB
-i1[51] => data_o.DATAB
-i1[52] => data_o.DATAB
-i1[53] => data_o.DATAB
-i1[54] => data_o.DATAB
-i1[55] => data_o.DATAB
-i1[56] => data_o.DATAB
-i1[57] => data_o.DATAB
-i1[58] => data_o.DATAB
-i1[59] => data_o.DATAB
-i1[60] => data_o.DATAB
-i1[61] => data_o.DATAB
-i1[62] => data_o.DATAB
-i1[63] => data_o.DATAB
-data_o[0] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[1] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[2] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[3] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[4] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[5] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[6] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[7] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[8] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[9] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[10] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[11] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[12] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[13] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[14] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[15] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[16] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[17] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[18] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[19] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[20] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[21] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[22] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[23] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[24] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[25] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[26] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[27] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[28] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[29] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[30] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[31] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[32] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[33] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[34] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[35] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[36] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[37] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[38] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[39] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[40] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[41] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[42] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[43] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[44] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[45] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[46] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[47] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[48] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[49] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[50] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[51] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[52] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[53] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[54] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[55] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[56] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[57] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[58] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[59] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[60] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[61] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[62] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[63] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|mux_2to1:mux_jump
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-i0[0] => data_o.DATAA
-i0[1] => data_o.DATAA
-i0[2] => data_o.DATAA
-i0[3] => data_o.DATAA
-i0[4] => data_o.DATAA
-i0[5] => data_o.DATAA
-i0[6] => data_o.DATAA
-i0[7] => data_o.DATAA
-i0[8] => data_o.DATAA
-i0[9] => data_o.DATAA
-i0[10] => data_o.DATAA
-i0[11] => data_o.DATAA
-i0[12] => data_o.DATAA
-i0[13] => data_o.DATAA
-i0[14] => data_o.DATAA
-i0[15] => data_o.DATAA
-i0[16] => data_o.DATAA
-i0[17] => data_o.DATAA
-i0[18] => data_o.DATAA
-i0[19] => data_o.DATAA
-i0[20] => data_o.DATAA
-i0[21] => data_o.DATAA
-i0[22] => data_o.DATAA
-i0[23] => data_o.DATAA
-i0[24] => data_o.DATAA
-i0[25] => data_o.DATAA
-i0[26] => data_o.DATAA
-i0[27] => data_o.DATAA
-i0[28] => data_o.DATAA
-i0[29] => data_o.DATAA
-i0[30] => data_o.DATAA
-i0[31] => data_o.DATAA
-i0[32] => data_o.DATAA
-i0[33] => data_o.DATAA
-i0[34] => data_o.DATAA
-i0[35] => data_o.DATAA
-i0[36] => data_o.DATAA
-i0[37] => data_o.DATAA
-i0[38] => data_o.DATAA
-i0[39] => data_o.DATAA
-i0[40] => data_o.DATAA
-i0[41] => data_o.DATAA
-i0[42] => data_o.DATAA
-i0[43] => data_o.DATAA
-i0[44] => data_o.DATAA
-i0[45] => data_o.DATAA
-i0[46] => data_o.DATAA
-i0[47] => data_o.DATAA
-i0[48] => data_o.DATAA
-i0[49] => data_o.DATAA
-i0[50] => data_o.DATAA
-i0[51] => data_o.DATAA
-i0[52] => data_o.DATAA
-i0[53] => data_o.DATAA
-i0[54] => data_o.DATAA
-i0[55] => data_o.DATAA
-i0[56] => data_o.DATAA
-i0[57] => data_o.DATAA
-i0[58] => data_o.DATAA
-i0[59] => data_o.DATAA
-i0[60] => data_o.DATAA
-i0[61] => data_o.DATAA
-i0[62] => data_o.DATAA
-i0[63] => data_o.DATAA
-i1[0] => data_o.DATAB
-i1[1] => data_o.DATAB
-i1[2] => data_o.DATAB
-i1[3] => data_o.DATAB
-i1[4] => data_o.DATAB
-i1[5] => data_o.DATAB
-i1[6] => data_o.DATAB
-i1[7] => data_o.DATAB
-i1[8] => data_o.DATAB
-i1[9] => data_o.DATAB
-i1[10] => data_o.DATAB
-i1[11] => data_o.DATAB
-i1[12] => data_o.DATAB
-i1[13] => data_o.DATAB
-i1[14] => data_o.DATAB
-i1[15] => data_o.DATAB
-i1[16] => data_o.DATAB
-i1[17] => data_o.DATAB
-i1[18] => data_o.DATAB
-i1[19] => data_o.DATAB
-i1[20] => data_o.DATAB
-i1[21] => data_o.DATAB
-i1[22] => data_o.DATAB
-i1[23] => data_o.DATAB
-i1[24] => data_o.DATAB
-i1[25] => data_o.DATAB
-i1[26] => data_o.DATAB
-i1[27] => data_o.DATAB
-i1[28] => data_o.DATAB
-i1[29] => data_o.DATAB
-i1[30] => data_o.DATAB
-i1[31] => data_o.DATAB
-i1[32] => data_o.DATAB
-i1[33] => data_o.DATAB
-i1[34] => data_o.DATAB
-i1[35] => data_o.DATAB
-i1[36] => data_o.DATAB
-i1[37] => data_o.DATAB
-i1[38] => data_o.DATAB
-i1[39] => data_o.DATAB
-i1[40] => data_o.DATAB
-i1[41] => data_o.DATAB
-i1[42] => data_o.DATAB
-i1[43] => data_o.DATAB
-i1[44] => data_o.DATAB
-i1[45] => data_o.DATAB
-i1[46] => data_o.DATAB
-i1[47] => data_o.DATAB
-i1[48] => data_o.DATAB
-i1[49] => data_o.DATAB
-i1[50] => data_o.DATAB
-i1[51] => data_o.DATAB
-i1[52] => data_o.DATAB
-i1[53] => data_o.DATAB
-i1[54] => data_o.DATAB
-i1[55] => data_o.DATAB
-i1[56] => data_o.DATAB
-i1[57] => data_o.DATAB
-i1[58] => data_o.DATAB
-i1[59] => data_o.DATAB
-i1[60] => data_o.DATAB
-i1[61] => data_o.DATAB
-i1[62] => data_o.DATAB
-i1[63] => data_o.DATAB
-data_o[0] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[1] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[2] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[3] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[4] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[5] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[6] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[7] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[8] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[9] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[10] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[11] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[12] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[13] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[14] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[15] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[16] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[17] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[18] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[19] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[20] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[21] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[22] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[23] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[24] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[25] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[26] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[27] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[28] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[29] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[30] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[31] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[32] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[33] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[34] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[35] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[36] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[37] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[38] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[39] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[40] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[41] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[42] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[43] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[44] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[45] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[46] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[47] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[48] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[49] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[50] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[51] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[52] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[53] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[54] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[55] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[56] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[57] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[58] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[59] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[60] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[61] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[62] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[63] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|mux_2to1:mux_sel_pc
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-sel => data_o.OUTPUTSELECT
-i0[0] => data_o.DATAA
-i0[1] => data_o.DATAA
-i0[2] => data_o.DATAA
-i0[3] => data_o.DATAA
-i0[4] => data_o.DATAA
-i0[5] => data_o.DATAA
-i0[6] => data_o.DATAA
-i0[7] => data_o.DATAA
-i0[8] => data_o.DATAA
-i0[9] => data_o.DATAA
-i0[10] => data_o.DATAA
-i0[11] => data_o.DATAA
-i0[12] => data_o.DATAA
-i0[13] => data_o.DATAA
-i0[14] => data_o.DATAA
-i0[15] => data_o.DATAA
-i0[16] => data_o.DATAA
-i0[17] => data_o.DATAA
-i0[18] => data_o.DATAA
-i0[19] => data_o.DATAA
-i0[20] => data_o.DATAA
-i0[21] => data_o.DATAA
-i0[22] => data_o.DATAA
-i0[23] => data_o.DATAA
-i0[24] => data_o.DATAA
-i0[25] => data_o.DATAA
-i0[26] => data_o.DATAA
-i0[27] => data_o.DATAA
-i0[28] => data_o.DATAA
-i0[29] => data_o.DATAA
-i0[30] => data_o.DATAA
-i0[31] => data_o.DATAA
-i0[32] => data_o.DATAA
-i0[33] => data_o.DATAA
-i0[34] => data_o.DATAA
-i0[35] => data_o.DATAA
-i0[36] => data_o.DATAA
-i0[37] => data_o.DATAA
-i0[38] => data_o.DATAA
-i0[39] => data_o.DATAA
-i0[40] => data_o.DATAA
-i0[41] => data_o.DATAA
-i0[42] => data_o.DATAA
-i0[43] => data_o.DATAA
-i0[44] => data_o.DATAA
-i0[45] => data_o.DATAA
-i0[46] => data_o.DATAA
-i0[47] => data_o.DATAA
-i0[48] => data_o.DATAA
-i0[49] => data_o.DATAA
-i0[50] => data_o.DATAA
-i0[51] => data_o.DATAA
-i0[52] => data_o.DATAA
-i0[53] => data_o.DATAA
-i0[54] => data_o.DATAA
-i0[55] => data_o.DATAA
-i0[56] => data_o.DATAA
-i0[57] => data_o.DATAA
-i0[58] => data_o.DATAA
-i0[59] => data_o.DATAA
-i0[60] => data_o.DATAA
-i0[61] => data_o.DATAA
-i0[62] => data_o.DATAA
-i0[63] => data_o.DATAA
-i1[0] => data_o.DATAB
-i1[1] => data_o.DATAB
-i1[2] => data_o.DATAB
-i1[3] => data_o.DATAB
-i1[4] => data_o.DATAB
-i1[5] => data_o.DATAB
-i1[6] => data_o.DATAB
-i1[7] => data_o.DATAB
-i1[8] => data_o.DATAB
-i1[9] => data_o.DATAB
-i1[10] => data_o.DATAB
-i1[11] => data_o.DATAB
-i1[12] => data_o.DATAB
-i1[13] => data_o.DATAB
-i1[14] => data_o.DATAB
-i1[15] => data_o.DATAB
-i1[16] => data_o.DATAB
-i1[17] => data_o.DATAB
-i1[18] => data_o.DATAB
-i1[19] => data_o.DATAB
-i1[20] => data_o.DATAB
-i1[21] => data_o.DATAB
-i1[22] => data_o.DATAB
-i1[23] => data_o.DATAB
-i1[24] => data_o.DATAB
-i1[25] => data_o.DATAB
-i1[26] => data_o.DATAB
-i1[27] => data_o.DATAB
-i1[28] => data_o.DATAB
-i1[29] => data_o.DATAB
-i1[30] => data_o.DATAB
-i1[31] => data_o.DATAB
-i1[32] => data_o.DATAB
-i1[33] => data_o.DATAB
-i1[34] => data_o.DATAB
-i1[35] => data_o.DATAB
-i1[36] => data_o.DATAB
-i1[37] => data_o.DATAB
-i1[38] => data_o.DATAB
-i1[39] => data_o.DATAB
-i1[40] => data_o.DATAB
-i1[41] => data_o.DATAB
-i1[42] => data_o.DATAB
-i1[43] => data_o.DATAB
-i1[44] => data_o.DATAB
-i1[45] => data_o.DATAB
-i1[46] => data_o.DATAB
-i1[47] => data_o.DATAB
-i1[48] => data_o.DATAB
-i1[49] => data_o.DATAB
-i1[50] => data_o.DATAB
-i1[51] => data_o.DATAB
-i1[52] => data_o.DATAB
-i1[53] => data_o.DATAB
-i1[54] => data_o.DATAB
-i1[55] => data_o.DATAB
-i1[56] => data_o.DATAB
-i1[57] => data_o.DATAB
-i1[58] => data_o.DATAB
-i1[59] => data_o.DATAB
-i1[60] => data_o.DATAB
-i1[61] => data_o.DATAB
-i1[62] => data_o.DATAB
-i1[63] => data_o.DATAB
-data_o[0] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[1] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[2] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[3] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[4] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[5] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[6] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[7] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[8] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[9] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[10] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[11] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[12] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[13] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[14] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[15] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[16] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[17] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[18] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[19] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[20] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[21] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[22] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[23] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[24] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[25] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[26] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[27] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[28] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[29] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[30] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[31] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[32] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[33] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[34] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[35] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[36] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[37] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[38] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[39] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[40] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[41] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[42] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[43] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[44] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[45] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[46] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[47] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[48] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[49] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[50] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[51] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[52] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[53] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[54] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[55] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[56] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[57] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[58] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[59] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[60] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[61] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[62] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-data_o[63] <= data_o.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-a[8] => a[8].IN1
-a[9] => a[9].IN1
-a[10] => a[10].IN1
-a[11] => a[11].IN1
-a[12] => a[12].IN1
-a[13] => a[13].IN1
-a[14] => a[14].IN1
-a[15] => a[15].IN1
-a[16] => a[16].IN1
-a[17] => a[17].IN1
-a[18] => a[18].IN1
-a[19] => a[19].IN1
-a[20] => a[20].IN1
-a[21] => a[21].IN1
-a[22] => a[22].IN1
-a[23] => a[23].IN1
-a[24] => a[24].IN1
-a[25] => a[25].IN1
-a[26] => a[26].IN1
-a[27] => a[27].IN1
-a[28] => a[28].IN1
-a[29] => a[29].IN1
-a[30] => a[30].IN1
-a[31] => a[31].IN1
-a[32] => a[32].IN1
-a[33] => a[33].IN1
-a[34] => a[34].IN1
-a[35] => a[35].IN1
-a[36] => a[36].IN1
-a[37] => a[37].IN1
-a[38] => a[38].IN1
-a[39] => a[39].IN1
-a[40] => a[40].IN1
-a[41] => a[41].IN1
-a[42] => a[42].IN1
-a[43] => a[43].IN1
-a[44] => a[44].IN1
-a[45] => a[45].IN1
-a[46] => a[46].IN1
-a[47] => a[47].IN1
-a[48] => a[48].IN1
-a[49] => a[49].IN1
-a[50] => a[50].IN1
-a[51] => a[51].IN1
-a[52] => a[52].IN1
-a[53] => a[53].IN1
-a[54] => a[54].IN1
-a[55] => a[55].IN1
-a[56] => a[56].IN1
-a[57] => a[57].IN1
-a[58] => a[58].IN1
-a[59] => a[59].IN1
-a[60] => a[60].IN1
-a[61] => a[61].IN1
-a[62] => a[62].IN1
-a[63] => a[63].IN1
-b[0] => c.IN0
-b[1] => c.IN0
-b[2] => c.IN0
-b[3] => c.IN0
-b[4] => c.IN0
-b[5] => c.IN0
-b[6] => c.IN0
-b[7] => c.IN0
-b[8] => c.IN0
-b[9] => c.IN0
-b[10] => c.IN0
-b[11] => c.IN0
-b[12] => c.IN0
-b[13] => c.IN0
-b[14] => c.IN0
-b[15] => c.IN0
-b[16] => c.IN0
-b[17] => c.IN0
-b[18] => c.IN0
-b[19] => c.IN0
-b[20] => c.IN0
-b[21] => c.IN0
-b[22] => c.IN0
-b[23] => c.IN0
-b[24] => c.IN0
-b[25] => c.IN0
-b[26] => c.IN0
-b[27] => c.IN0
-b[28] => c.IN0
-b[29] => c.IN0
-b[30] => c.IN0
-b[31] => c.IN0
-b[32] => c.IN0
-b[33] => c.IN0
-b[34] => c.IN0
-b[35] => c.IN0
-b[36] => c.IN0
-b[37] => c.IN0
-b[38] => c.IN0
-b[39] => c.IN0
-b[40] => c.IN0
-b[41] => c.IN0
-b[42] => c.IN0
-b[43] => c.IN0
-b[44] => c.IN0
-b[45] => c.IN0
-b[46] => c.IN0
-b[47] => c.IN0
-b[48] => c.IN0
-b[49] => c.IN0
-b[50] => c.IN0
-b[51] => c.IN0
-b[52] => c.IN0
-b[53] => c.IN0
-b[54] => c.IN0
-b[55] => c.IN0
-b[56] => c.IN0
-b[57] => c.IN0
-b[58] => c.IN0
-b[59] => c.IN0
-b[60] => c.IN0
-b[61] => c.IN0
-b[62] => c.IN0
-b[63] => c.IN0
-sub => sub.IN1
-c_o <= cla_adder8b:u63_56.c_o
-s[0] <= cla_adder8b:u7_0.s
-s[1] <= cla_adder8b:u7_0.s
-s[2] <= cla_adder8b:u7_0.s
-s[3] <= cla_adder8b:u7_0.s
-s[4] <= cla_adder8b:u7_0.s
-s[5] <= cla_adder8b:u7_0.s
-s[6] <= cla_adder8b:u7_0.s
-s[7] <= cla_adder8b:u7_0.s
-s[8] <= cla_adder8b:u15_8.s
-s[9] <= cla_adder8b:u15_8.s
-s[10] <= cla_adder8b:u15_8.s
-s[11] <= cla_adder8b:u15_8.s
-s[12] <= cla_adder8b:u15_8.s
-s[13] <= cla_adder8b:u15_8.s
-s[14] <= cla_adder8b:u15_8.s
-s[15] <= cla_adder8b:u15_8.s
-s[16] <= cla_adder8b:u23_16.s
-s[17] <= cla_adder8b:u23_16.s
-s[18] <= cla_adder8b:u23_16.s
-s[19] <= cla_adder8b:u23_16.s
-s[20] <= cla_adder8b:u23_16.s
-s[21] <= cla_adder8b:u23_16.s
-s[22] <= cla_adder8b:u23_16.s
-s[23] <= cla_adder8b:u23_16.s
-s[24] <= cla_adder8b:u31_24.s
-s[25] <= cla_adder8b:u31_24.s
-s[26] <= cla_adder8b:u31_24.s
-s[27] <= cla_adder8b:u31_24.s
-s[28] <= cla_adder8b:u31_24.s
-s[29] <= cla_adder8b:u31_24.s
-s[30] <= cla_adder8b:u31_24.s
-s[31] <= cla_adder8b:u31_24.s
-s[32] <= cla_adder8b:u39_32.s
-s[33] <= cla_adder8b:u39_32.s
-s[34] <= cla_adder8b:u39_32.s
-s[35] <= cla_adder8b:u39_32.s
-s[36] <= cla_adder8b:u39_32.s
-s[37] <= cla_adder8b:u39_32.s
-s[38] <= cla_adder8b:u39_32.s
-s[39] <= cla_adder8b:u39_32.s
-s[40] <= cla_adder8b:u47_40.s
-s[41] <= cla_adder8b:u47_40.s
-s[42] <= cla_adder8b:u47_40.s
-s[43] <= cla_adder8b:u47_40.s
-s[44] <= cla_adder8b:u47_40.s
-s[45] <= cla_adder8b:u47_40.s
-s[46] <= cla_adder8b:u47_40.s
-s[47] <= cla_adder8b:u47_40.s
-s[48] <= cla_adder8b:u55_48.s
-s[49] <= cla_adder8b:u55_48.s
-s[50] <= cla_adder8b:u55_48.s
-s[51] <= cla_adder8b:u55_48.s
-s[52] <= cla_adder8b:u55_48.s
-s[53] <= cla_adder8b:u55_48.s
-s[54] <= cla_adder8b:u55_48.s
-s[55] <= cla_adder8b:u55_48.s
-s[56] <= cla_adder8b:u63_56.s
-s[57] <= cla_adder8b:u63_56.s
-s[58] <= cla_adder8b:u63_56.s
-s[59] <= cla_adder8b:u63_56.s
-s[60] <= cla_adder8b:u63_56.s
-s[61] <= cla_adder8b:u63_56.s
-s[62] <= cla_adder8b:u63_56.s
-s[63] <= cla_adder8b:u63_56.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_jump_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-a[8] => a[8].IN1
-a[9] => a[9].IN1
-a[10] => a[10].IN1
-a[11] => a[11].IN1
-a[12] => a[12].IN1
-a[13] => a[13].IN1
-a[14] => a[14].IN1
-a[15] => a[15].IN1
-a[16] => a[16].IN1
-a[17] => a[17].IN1
-a[18] => a[18].IN1
-a[19] => a[19].IN1
-a[20] => a[20].IN1
-a[21] => a[21].IN1
-a[22] => a[22].IN1
-a[23] => a[23].IN1
-a[24] => a[24].IN1
-a[25] => a[25].IN1
-a[26] => a[26].IN1
-a[27] => a[27].IN1
-a[28] => a[28].IN1
-a[29] => a[29].IN1
-a[30] => a[30].IN1
-a[31] => a[31].IN1
-a[32] => a[32].IN1
-a[33] => a[33].IN1
-a[34] => a[34].IN1
-a[35] => a[35].IN1
-a[36] => a[36].IN1
-a[37] => a[37].IN1
-a[38] => a[38].IN1
-a[39] => a[39].IN1
-a[40] => a[40].IN1
-a[41] => a[41].IN1
-a[42] => a[42].IN1
-a[43] => a[43].IN1
-a[44] => a[44].IN1
-a[45] => a[45].IN1
-a[46] => a[46].IN1
-a[47] => a[47].IN1
-a[48] => a[48].IN1
-a[49] => a[49].IN1
-a[50] => a[50].IN1
-a[51] => a[51].IN1
-a[52] => a[52].IN1
-a[53] => a[53].IN1
-a[54] => a[54].IN1
-a[55] => a[55].IN1
-a[56] => a[56].IN1
-a[57] => a[57].IN1
-a[58] => a[58].IN1
-a[59] => a[59].IN1
-a[60] => a[60].IN1
-a[61] => a[61].IN1
-a[62] => a[62].IN1
-a[63] => a[63].IN1
-b[0] => c.IN0
-b[1] => c.IN0
-b[2] => c.IN0
-b[3] => c.IN0
-b[4] => c.IN0
-b[5] => c.IN0
-b[6] => c.IN0
-b[7] => c.IN0
-b[8] => c.IN0
-b[9] => c.IN0
-b[10] => c.IN0
-b[11] => c.IN0
-b[12] => c.IN0
-b[13] => c.IN0
-b[14] => c.IN0
-b[15] => c.IN0
-b[16] => c.IN0
-b[17] => c.IN0
-b[18] => c.IN0
-b[19] => c.IN0
-b[20] => c.IN0
-b[21] => c.IN0
-b[22] => c.IN0
-b[23] => c.IN0
-b[24] => c.IN0
-b[25] => c.IN0
-b[26] => c.IN0
-b[27] => c.IN0
-b[28] => c.IN0
-b[29] => c.IN0
-b[30] => c.IN0
-b[31] => c.IN0
-b[32] => c.IN0
-b[33] => c.IN0
-b[34] => c.IN0
-b[35] => c.IN0
-b[36] => c.IN0
-b[37] => c.IN0
-b[38] => c.IN0
-b[39] => c.IN0
-b[40] => c.IN0
-b[41] => c.IN0
-b[42] => c.IN0
-b[43] => c.IN0
-b[44] => c.IN0
-b[45] => c.IN0
-b[46] => c.IN0
-b[47] => c.IN0
-b[48] => c.IN0
-b[49] => c.IN0
-b[50] => c.IN0
-b[51] => c.IN0
-b[52] => c.IN0
-b[53] => c.IN0
-b[54] => c.IN0
-b[55] => c.IN0
-b[56] => c.IN0
-b[57] => c.IN0
-b[58] => c.IN0
-b[59] => c.IN0
-b[60] => c.IN0
-b[61] => c.IN0
-b[62] => c.IN0
-b[63] => c.IN0
-sub => sub.IN1
-c_o <= cla_adder8b:u63_56.c_o
-s[0] <= cla_adder8b:u7_0.s
-s[1] <= cla_adder8b:u7_0.s
-s[2] <= cla_adder8b:u7_0.s
-s[3] <= cla_adder8b:u7_0.s
-s[4] <= cla_adder8b:u7_0.s
-s[5] <= cla_adder8b:u7_0.s
-s[6] <= cla_adder8b:u7_0.s
-s[7] <= cla_adder8b:u7_0.s
-s[8] <= cla_adder8b:u15_8.s
-s[9] <= cla_adder8b:u15_8.s
-s[10] <= cla_adder8b:u15_8.s
-s[11] <= cla_adder8b:u15_8.s
-s[12] <= cla_adder8b:u15_8.s
-s[13] <= cla_adder8b:u15_8.s
-s[14] <= cla_adder8b:u15_8.s
-s[15] <= cla_adder8b:u15_8.s
-s[16] <= cla_adder8b:u23_16.s
-s[17] <= cla_adder8b:u23_16.s
-s[18] <= cla_adder8b:u23_16.s
-s[19] <= cla_adder8b:u23_16.s
-s[20] <= cla_adder8b:u23_16.s
-s[21] <= cla_adder8b:u23_16.s
-s[22] <= cla_adder8b:u23_16.s
-s[23] <= cla_adder8b:u23_16.s
-s[24] <= cla_adder8b:u31_24.s
-s[25] <= cla_adder8b:u31_24.s
-s[26] <= cla_adder8b:u31_24.s
-s[27] <= cla_adder8b:u31_24.s
-s[28] <= cla_adder8b:u31_24.s
-s[29] <= cla_adder8b:u31_24.s
-s[30] <= cla_adder8b:u31_24.s
-s[31] <= cla_adder8b:u31_24.s
-s[32] <= cla_adder8b:u39_32.s
-s[33] <= cla_adder8b:u39_32.s
-s[34] <= cla_adder8b:u39_32.s
-s[35] <= cla_adder8b:u39_32.s
-s[36] <= cla_adder8b:u39_32.s
-s[37] <= cla_adder8b:u39_32.s
-s[38] <= cla_adder8b:u39_32.s
-s[39] <= cla_adder8b:u39_32.s
-s[40] <= cla_adder8b:u47_40.s
-s[41] <= cla_adder8b:u47_40.s
-s[42] <= cla_adder8b:u47_40.s
-s[43] <= cla_adder8b:u47_40.s
-s[44] <= cla_adder8b:u47_40.s
-s[45] <= cla_adder8b:u47_40.s
-s[46] <= cla_adder8b:u47_40.s
-s[47] <= cla_adder8b:u47_40.s
-s[48] <= cla_adder8b:u55_48.s
-s[49] <= cla_adder8b:u55_48.s
-s[50] <= cla_adder8b:u55_48.s
-s[51] <= cla_adder8b:u55_48.s
-s[52] <= cla_adder8b:u55_48.s
-s[53] <= cla_adder8b:u55_48.s
-s[54] <= cla_adder8b:u55_48.s
-s[55] <= cla_adder8b:u55_48.s
-s[56] <= cla_adder8b:u63_56.s
-s[57] <= cla_adder8b:u63_56.s
-s[58] <= cla_adder8b:u63_56.s
-s[59] <= cla_adder8b:u63_56.s
-s[60] <= cla_adder8b:u63_56.s
-s[61] <= cla_adder8b:u63_56.s
-s[62] <= cla_adder8b:u63_56.s
-s[63] <= cla_adder8b:u63_56.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u7_0|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u15_8|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u23_16|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u31_24|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u39_32|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u47_40|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u55_48|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56
-a[0] => a[0].IN1
-a[1] => a[1].IN1
-a[2] => a[2].IN1
-a[3] => a[3].IN1
-a[4] => a[4].IN1
-a[5] => a[5].IN1
-a[6] => a[6].IN1
-a[7] => a[7].IN1
-b[0] => b[0].IN1
-b[1] => b[1].IN1
-b[2] => b[2].IN1
-b[3] => b[3].IN1
-b[4] => b[4].IN1
-b[5] => b[5].IN1
-b[6] => b[6].IN1
-b[7] => b[7].IN1
-c_i => c_i.IN1
-c_o <= c08.DB_MAX_OUTPUT_PORT_TYPE
-s[0] <= partial_full_adder1b:u0.s
-s[1] <= partial_full_adder1b:u1.s
-s[2] <= partial_full_adder1b:u2.s
-s[3] <= partial_full_adder1b:u3.s
-s[4] <= partial_full_adder1b:u4.s
-s[5] <= partial_full_adder1b:u5.s
-s[6] <= partial_full_adder1b:u6.s
-s[7] <= partial_full_adder1b:u7.s
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u0
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u1
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u2
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u3
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u4
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u5
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u6
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|program_counter|adder64b:pc_branch_increment_adder|cla_adder8b:u63_56|partial_full_adder1b:u7
-a => U1.IN0
-a => U3.IN0
-a => U4.IN0
-b => U1.IN1
-b => U3.IN1
-b => U4.IN1
-c_i => U2.IN1
-s <= U2.DB_MAX_OUTPUT_PORT_TYPE
-p <= U3.DB_MAX_OUTPUT_PORT_TYPE
-g <= U4.DB_MAX_OUTPUT_PORT_TYPE
+|memory_management
+start => next.OUTPUTSELECT
+start => next.OUTPUTSELECT
+start => Selector0.IN2
+sel_mem_operation => next.DATAB
+sel_mem_operation => next.DATAB
+clk => data_load[7][0].CLK
+clk => data_load[7][1].CLK
+clk => data_load[7][2].CLK
+clk => data_load[7][3].CLK
+clk => data_load[7][4].CLK
+clk => data_load[7][5].CLK
+clk => data_load[7][6].CLK
+clk => data_load[7][7].CLK
+clk => data_load[6][0].CLK
+clk => data_load[6][1].CLK
+clk => data_load[6][2].CLK
+clk => data_load[6][3].CLK
+clk => data_load[6][4].CLK
+clk => data_load[6][5].CLK
+clk => data_load[6][6].CLK
+clk => data_load[6][7].CLK
+clk => data_load[5][0].CLK
+clk => data_load[5][1].CLK
+clk => data_load[5][2].CLK
+clk => data_load[5][3].CLK
+clk => data_load[5][4].CLK
+clk => data_load[5][5].CLK
+clk => data_load[5][6].CLK
+clk => data_load[5][7].CLK
+clk => data_load[4][0].CLK
+clk => data_load[4][1].CLK
+clk => data_load[4][2].CLK
+clk => data_load[4][3].CLK
+clk => data_load[4][4].CLK
+clk => data_load[4][5].CLK
+clk => data_load[4][6].CLK
+clk => data_load[4][7].CLK
+clk => data_load[3][0].CLK
+clk => data_load[3][1].CLK
+clk => data_load[3][2].CLK
+clk => data_load[3][3].CLK
+clk => data_load[3][4].CLK
+clk => data_load[3][5].CLK
+clk => data_load[3][6].CLK
+clk => data_load[3][7].CLK
+clk => data_load[2][0].CLK
+clk => data_load[2][1].CLK
+clk => data_load[2][2].CLK
+clk => data_load[2][3].CLK
+clk => data_load[2][4].CLK
+clk => data_load[2][5].CLK
+clk => data_load[2][6].CLK
+clk => data_load[2][7].CLK
+clk => data_load[1][0].CLK
+clk => data_load[1][1].CLK
+clk => data_load[1][2].CLK
+clk => data_load[1][3].CLK
+clk => data_load[1][4].CLK
+clk => data_load[1][5].CLK
+clk => data_load[1][6].CLK
+clk => data_load[1][7].CLK
+clk => data_load[0][0].CLK
+clk => data_load[0][1].CLK
+clk => data_load[0][2].CLK
+clk => data_load[0][3].CLK
+clk => data_load[0][4].CLK
+clk => data_load[0][5].CLK
+clk => data_load[0][6].CLK
+clk => data_load[0][7].CLK
+clk => data_mem[0]~reg0.CLK
+clk => data_mem[1]~reg0.CLK
+clk => data_mem[2]~reg0.CLK
+clk => data_mem[3]~reg0.CLK
+clk => data_mem[4]~reg0.CLK
+clk => data_mem[5]~reg0.CLK
+clk => data_mem[6]~reg0.CLK
+clk => data_mem[7]~reg0.CLK
+clk => write_mem~reg0.CLK
+clk => mem_addr[0]~reg0.CLK
+clk => mem_addr[1]~reg0.CLK
+clk => mem_addr[2]~reg0.CLK
+clk => mem_addr[3]~reg0.CLK
+clk => mem_addr[4]~reg0.CLK
+clk => mem_addr[5]~reg0.CLK
+clk => mem_addr[6]~reg0.CLK
+clk => mem_addr[7]~reg0.CLK
+clk => mem_addr[8]~reg0.CLK
+clk => mem_addr[9]~reg0.CLK
+clk => mem_addr[10]~reg0.CLK
+clk => mem_addr[11]~reg0.CLK
+clk => mem_addr[12]~reg0.CLK
+clk => mem_addr[13]~reg0.CLK
+clk => mem_addr[14]~reg0.CLK
+clk => mem_addr[15]~reg0.CLK
+clk => mem_addr[16]~reg0.CLK
+clk => mem_addr[17]~reg0.CLK
+clk => mem_addr[18]~reg0.CLK
+clk => mem_addr[19]~reg0.CLK
+clk => mem_addr[20]~reg0.CLK
+clk => mem_addr[21]~reg0.CLK
+clk => mem_addr[22]~reg0.CLK
+clk => mem_addr[23]~reg0.CLK
+clk => mem_addr[24]~reg0.CLK
+clk => mem_addr[25]~reg0.CLK
+clk => mem_addr[26]~reg0.CLK
+clk => mem_addr[27]~reg0.CLK
+clk => mem_addr[28]~reg0.CLK
+clk => mem_addr[29]~reg0.CLK
+clk => mem_addr[30]~reg0.CLK
+clk => mem_addr[31]~reg0.CLK
+clk => mem_addr[32]~reg0.CLK
+clk => mem_addr[33]~reg0.CLK
+clk => mem_addr[34]~reg0.CLK
+clk => mem_addr[35]~reg0.CLK
+clk => mem_addr[36]~reg0.CLK
+clk => mem_addr[37]~reg0.CLK
+clk => mem_addr[38]~reg0.CLK
+clk => mem_addr[39]~reg0.CLK
+clk => mem_addr[40]~reg0.CLK
+clk => mem_addr[41]~reg0.CLK
+clk => mem_addr[42]~reg0.CLK
+clk => mem_addr[43]~reg0.CLK
+clk => mem_addr[44]~reg0.CLK
+clk => mem_addr[45]~reg0.CLK
+clk => mem_addr[46]~reg0.CLK
+clk => mem_addr[47]~reg0.CLK
+clk => mem_addr[48]~reg0.CLK
+clk => mem_addr[49]~reg0.CLK
+clk => mem_addr[50]~reg0.CLK
+clk => mem_addr[51]~reg0.CLK
+clk => mem_addr[52]~reg0.CLK
+clk => mem_addr[53]~reg0.CLK
+clk => mem_addr[54]~reg0.CLK
+clk => mem_addr[55]~reg0.CLK
+clk => mem_addr[56]~reg0.CLK
+clk => mem_addr[57]~reg0.CLK
+clk => mem_addr[58]~reg0.CLK
+clk => mem_addr[59]~reg0.CLK
+clk => mem_addr[60]~reg0.CLK
+clk => mem_addr[61]~reg0.CLK
+clk => mem_addr[62]~reg0.CLK
+clk => mem_addr[63]~reg0.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+clk => done~reg0.CLK
+clk => state~1.DATAIN
+data_i[0] => Mux7.IN3
+data_i[1] => Mux6.IN3
+data_i[2] => Mux5.IN3
+data_i[3] => Mux4.IN3
+data_i[4] => Mux3.IN3
+data_i[5] => Mux2.IN3
+data_i[6] => Mux1.IN3
+data_i[7] => Mux0.IN3
+data_i[8] => Mux7.IN4
+data_i[9] => Mux6.IN4
+data_i[10] => Mux5.IN4
+data_i[11] => Mux4.IN4
+data_i[12] => Mux3.IN4
+data_i[13] => Mux2.IN4
+data_i[14] => Mux1.IN4
+data_i[15] => Mux0.IN4
+data_i[16] => Mux7.IN5
+data_i[17] => Mux6.IN5
+data_i[18] => Mux5.IN5
+data_i[19] => Mux4.IN5
+data_i[20] => Mux3.IN5
+data_i[21] => Mux2.IN5
+data_i[22] => Mux1.IN5
+data_i[23] => Mux0.IN5
+data_i[24] => Mux7.IN6
+data_i[25] => Mux6.IN6
+data_i[26] => Mux5.IN6
+data_i[27] => Mux4.IN6
+data_i[28] => Mux3.IN6
+data_i[29] => Mux2.IN6
+data_i[30] => Mux1.IN6
+data_i[31] => Mux0.IN6
+data_i[32] => Mux7.IN7
+data_i[33] => Mux6.IN7
+data_i[34] => Mux5.IN7
+data_i[35] => Mux4.IN7
+data_i[36] => Mux3.IN7
+data_i[37] => Mux2.IN7
+data_i[38] => Mux1.IN7
+data_i[39] => Mux0.IN7
+data_i[40] => Mux7.IN8
+data_i[41] => Mux6.IN8
+data_i[42] => Mux5.IN8
+data_i[43] => Mux4.IN8
+data_i[44] => Mux3.IN8
+data_i[45] => Mux2.IN8
+data_i[46] => Mux1.IN8
+data_i[47] => Mux0.IN8
+data_i[48] => Mux7.IN9
+data_i[49] => Mux6.IN9
+data_i[50] => Mux5.IN9
+data_i[51] => Mux4.IN9
+data_i[52] => Mux3.IN9
+data_i[53] => Mux2.IN9
+data_i[54] => Mux1.IN9
+data_i[55] => Mux0.IN9
+data_i[56] => Mux7.IN10
+data_i[57] => Mux6.IN10
+data_i[58] => Mux5.IN10
+data_i[59] => Mux4.IN10
+data_i[60] => Mux3.IN10
+data_i[61] => Mux2.IN10
+data_i[62] => Mux1.IN10
+data_i[63] => Mux0.IN10
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[0] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[1] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[2] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[3] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[4] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[5] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[6] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+mem_o[7] => data_load.DATAB
+addr[0] => Selector67.IN2
+addr[1] => Selector66.IN2
+addr[2] => Selector65.IN2
+addr[3] => Selector64.IN2
+addr[4] => Selector63.IN2
+addr[5] => Selector62.IN2
+addr[6] => Selector61.IN2
+addr[7] => Selector60.IN2
+addr[8] => Selector59.IN2
+addr[9] => Selector58.IN2
+addr[10] => Selector57.IN2
+addr[11] => Selector56.IN2
+addr[12] => Selector55.IN2
+addr[13] => Selector54.IN2
+addr[14] => Selector53.IN2
+addr[15] => Selector52.IN2
+addr[16] => Selector51.IN2
+addr[17] => Selector50.IN2
+addr[18] => Selector49.IN2
+addr[19] => Selector48.IN2
+addr[20] => Selector47.IN2
+addr[21] => Selector46.IN2
+addr[22] => Selector45.IN2
+addr[23] => Selector44.IN2
+addr[24] => Selector43.IN2
+addr[25] => Selector42.IN2
+addr[26] => Selector41.IN2
+addr[27] => Selector40.IN2
+addr[28] => Selector39.IN2
+addr[29] => Selector38.IN2
+addr[30] => Selector37.IN2
+addr[31] => Selector36.IN2
+addr[32] => Selector35.IN2
+addr[33] => Selector34.IN2
+addr[34] => Selector33.IN2
+addr[35] => Selector32.IN2
+addr[36] => Selector31.IN2
+addr[37] => Selector30.IN2
+addr[38] => Selector29.IN2
+addr[39] => Selector28.IN2
+addr[40] => Selector27.IN2
+addr[41] => Selector26.IN2
+addr[42] => Selector25.IN2
+addr[43] => Selector24.IN2
+addr[44] => Selector23.IN2
+addr[45] => Selector22.IN2
+addr[46] => Selector21.IN2
+addr[47] => Selector20.IN2
+addr[48] => Selector19.IN2
+addr[49] => Selector18.IN2
+addr[50] => Selector17.IN2
+addr[51] => Selector16.IN2
+addr[52] => Selector15.IN2
+addr[53] => Selector14.IN2
+addr[54] => Selector13.IN2
+addr[55] => Selector12.IN2
+addr[56] => Selector11.IN2
+addr[57] => Selector10.IN2
+addr[58] => Selector9.IN2
+addr[59] => Selector8.IN2
+addr[60] => Selector7.IN2
+addr[61] => Selector6.IN2
+addr[62] => Selector5.IN2
+addr[63] => Selector4.IN2
+sel_mem_size[0] => sel_mem_size[0].IN1
+sel_mem_size[1] => sel_mem_size[1].IN1
+done <= done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+write_mem <= write_mem~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[0] <= data_mem[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[1] <= data_mem[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[2] <= data_mem[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[3] <= data_mem[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[4] <= data_mem[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[5] <= data_mem[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[6] <= data_mem[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_mem[7] <= data_mem[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[0] <= mem_addr[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[1] <= mem_addr[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[2] <= mem_addr[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[3] <= mem_addr[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[4] <= mem_addr[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[5] <= mem_addr[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[6] <= mem_addr[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[7] <= mem_addr[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[8] <= mem_addr[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[9] <= mem_addr[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[10] <= mem_addr[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[11] <= mem_addr[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[12] <= mem_addr[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[13] <= mem_addr[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[14] <= mem_addr[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[15] <= mem_addr[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[16] <= mem_addr[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[17] <= mem_addr[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[18] <= mem_addr[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[19] <= mem_addr[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[20] <= mem_addr[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[21] <= mem_addr[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[22] <= mem_addr[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[23] <= mem_addr[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[24] <= mem_addr[24]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[25] <= mem_addr[25]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[26] <= mem_addr[26]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[27] <= mem_addr[27]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[28] <= mem_addr[28]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[29] <= mem_addr[29]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[30] <= mem_addr[30]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[31] <= mem_addr[31]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[32] <= mem_addr[32]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[33] <= mem_addr[33]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[34] <= mem_addr[34]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[35] <= mem_addr[35]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[36] <= mem_addr[36]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[37] <= mem_addr[37]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[38] <= mem_addr[38]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[39] <= mem_addr[39]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[40] <= mem_addr[40]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[41] <= mem_addr[41]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[42] <= mem_addr[42]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[43] <= mem_addr[43]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[44] <= mem_addr[44]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[45] <= mem_addr[45]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[46] <= mem_addr[46]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[47] <= mem_addr[47]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[48] <= mem_addr[48]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[49] <= mem_addr[49]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[50] <= mem_addr[50]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[51] <= mem_addr[51]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[52] <= mem_addr[52]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[53] <= mem_addr[53]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[54] <= mem_addr[54]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[55] <= mem_addr[55]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[56] <= mem_addr[56]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[57] <= mem_addr[57]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[58] <= mem_addr[58]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[59] <= mem_addr[59]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[60] <= mem_addr[60]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[61] <= mem_addr[61]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[62] <= mem_addr[62]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+mem_addr[63] <= mem_addr[63]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_o[0] <= data_load[0][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[1] <= data_load[0][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[2] <= data_load[0][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[3] <= data_load[0][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[4] <= data_load[0][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[5] <= data_load[0][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[6] <= data_load[0][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[7] <= data_load[0][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[8] <= data_load[1][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[9] <= data_load[1][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[10] <= data_load[1][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[11] <= data_load[1][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[12] <= data_load[1][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[13] <= data_load[1][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[14] <= data_load[1][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[15] <= data_load[1][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[16] <= data_load[2][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[17] <= data_load[2][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[18] <= data_load[2][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[19] <= data_load[2][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[20] <= data_load[2][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[21] <= data_load[2][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[22] <= data_load[2][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[23] <= data_load[2][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[24] <= data_load[3][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[25] <= data_load[3][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[26] <= data_load[3][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[27] <= data_load[3][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[28] <= data_load[3][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[29] <= data_load[3][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[30] <= data_load[3][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[31] <= data_load[3][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[32] <= data_load[4][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[33] <= data_load[4][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[34] <= data_load[4][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[35] <= data_load[4][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[36] <= data_load[4][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[37] <= data_load[4][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[38] <= data_load[4][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[39] <= data_load[4][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[40] <= data_load[5][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[41] <= data_load[5][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[42] <= data_load[5][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[43] <= data_load[5][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[44] <= data_load[5][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[45] <= data_load[5][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[46] <= data_load[5][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[47] <= data_load[5][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[48] <= data_load[6][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[49] <= data_load[6][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[50] <= data_load[6][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[51] <= data_load[6][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[52] <= data_load[6][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[53] <= data_load[6][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[54] <= data_load[6][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[55] <= data_load[6][7].DB_MAX_OUTPUT_PORT_TYPE
+data_o[56] <= data_load[7][0].DB_MAX_OUTPUT_PORT_TYPE
+data_o[57] <= data_load[7][1].DB_MAX_OUTPUT_PORT_TYPE
+data_o[58] <= data_load[7][2].DB_MAX_OUTPUT_PORT_TYPE
+data_o[59] <= data_load[7][3].DB_MAX_OUTPUT_PORT_TYPE
+data_o[60] <= data_load[7][4].DB_MAX_OUTPUT_PORT_TYPE
+data_o[61] <= data_load[7][5].DB_MAX_OUTPUT_PORT_TYPE
+data_o[62] <= data_load[7][6].DB_MAX_OUTPUT_PORT_TYPE
+data_o[63] <= data_load[7][7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|memory_management|decoder:dec2to4_size
+data_i[0] => Decoder0.IN1
+data_i[1] => Decoder0.IN0
+data_o[0] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+data_o[1] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+data_o[2] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+data_o[3] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
 
 
