@@ -62,6 +62,7 @@ module fsm_combined (
         .load_imm         (load_imm_array[1]),
         .sel_alu_a        (sel_alu_a_array[1]),
         .sel_alu_b        (sel_alu_b_array[1]),
+        .sel_alu_32b      (sel_alu_32b_array[1]),
         .sub_sra          (sub_sra_array[1]),
         .done             (done_array[1])
     );
