@@ -1,0 +1,60 @@
+
+main:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <main-0x8>:
+   0:	3e800113          	addi	x2,x0,1000
+   4:	4b000413          	addi	x8,x0,1200
+
+0000000000000008 <main>:
+   8:	fd010113          	addi	x2,x2,-48
+   c:	02113423          	sd	x1,40(x2)
+  10:	02813023          	sd	x8,32(x2)
+  14:	03010413          	addi	x8,x2,48
+  18:	04000793          	addi	x15,x0,64
+  1c:	fef43423          	sd	x15,-24(x8)
+  20:	01000793          	addi	x15,x0,16
+  24:	fef43023          	sd	x15,-32(x8)
+  28:	fe043583          	ld	x11,-32(x8)
+  2c:	fe843503          	ld	x10,-24(x8)
+  30:	00000097          	auipc	x1,0x0
+  34:	02c080e7          	jalr	x1,44(x1) # 5c <mdc_f>
+  38:	fca43c23          	sd	x10,-40(x8)
+  3c:	00001463          	bne	x0,x0,44 <main+0x3c>
+  40:	fc1ff06f          	jal	x0,0 <main-0x8>
+  44:	00000013          	addi	x0,x0,0
+  48:	00078513          	addi	x10,x15,0
+  4c:	02813083          	ld	x1,40(x2)
+  50:	02013403          	ld	x8,32(x2)
+  54:	03010113          	addi	x2,x2,48
+  58:	00008067          	jalr	x0,0(x1)
+
+000000000000005c <mdc_f>:
+  5c:	fe010113          	addi	x2,x2,-32
+  60:	00813c23          	sd	x8,24(x2)
+  64:	02010413          	addi	x8,x2,32
+  68:	fea43423          	sd	x10,-24(x8)
+  6c:	feb43023          	sd	x11,-32(x8)
+  70:	0340006f          	jal	x0,a4 <mdc_f+0x48>
+  74:	fe843703          	ld	x14,-24(x8)
+  78:	fe043783          	ld	x15,-32(x8)
+  7c:	00e7dc63          	bge	x15,x14,94 <mdc_f+0x38>
+  80:	fe843703          	ld	x14,-24(x8)
+  84:	fe043783          	ld	x15,-32(x8)
+  88:	40f707b3          	sub	x15,x14,x15
+  8c:	fef43423          	sd	x15,-24(x8)
+  90:	0140006f          	jal	x0,a4 <mdc_f+0x48>
+  94:	fe043703          	ld	x14,-32(x8)
+  98:	fe843783          	ld	x15,-24(x8)
+  9c:	40f707b3          	sub	x15,x14,x15
+  a0:	fef43023          	sd	x15,-32(x8)
+  a4:	fe843703          	ld	x14,-24(x8)
+  a8:	fe043783          	ld	x15,-32(x8)
+  ac:	fcf714e3          	bne	x14,x15,74 <mdc_f+0x18>
+  b0:	fe843783          	ld	x15,-24(x8)
+  b4:	00078513          	addi	x10,x15,0
+  b8:	01813403          	ld	x8,24(x2)
+  bc:	02010113          	addi	x2,x2,32
+  c0:	00008067          	jalr	x0,0(x1)
