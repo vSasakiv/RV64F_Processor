@@ -1,19 +1,44 @@
 [*]
-[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Jun  4 02:35:42 2023
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Jun 12 21:30:31 2023
 [*]
-[dumpfile] "/home/sasaki/Documentos/Verilog/RV64F_Processor/processor.vcd"
-[dumpfile_mtime] "Sun Jun  4 02:09:59 2023"
-[dumpfile_size] 341898
-[savefile] "/home/sasaki/Documentos/Verilog/RV64F_Processor/misc/Testes.gtkw"
-[timestart] 633500
-[size] 1366 710
-[pos] -183 -56
-*-15.000000 39900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[dumpfile] "C:\VERILOG\PROJETO2\RV64F_Processor\processor.vcd"
+[dumpfile_mtime] "Mon Jun 12 20:28:21 2023"
+[dumpfile_size] 677960
+[savefile] "C:\VERILOG\PROJETO2\RV64F_Processor\misc\Testes.gtkw"
+[timestart] 7353600
+[size] 1366 705
+[pos] -1 -1
+*-16.000000 7490000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] processor_tb.
 [treeopen] processor_tb.UUT.
-[treeopen] processor_tb.UUT.CU.
 [treeopen] processor_tb.UUT.CU.FSM_COMBINED.
+[treeopen] processor_tb.UUT.DP.
+[treeopen] processor_tb.UUT.DP.regfile.
+[treeopen] processor_tb.UUT.DP.regfile.registers[10].
+[treeopen] processor_tb.UUT.DP.regfile.registers[11].
+[treeopen] processor_tb.UUT.DP.regfile.registers[12].
+[treeopen] processor_tb.UUT.DP.regfile.registers[13].
+[treeopen] processor_tb.UUT.DP.regfile.registers[14].
+[treeopen] processor_tb.UUT.DP.regfile.registers[15].
+[treeopen] processor_tb.UUT.DP.regfile.registers[16].
+[treeopen] processor_tb.UUT.DP.regfile.registers[17].
+[treeopen] processor_tb.UUT.DP.regfile.registers[18].
+[treeopen] processor_tb.UUT.DP.regfile.registers[19].
+[treeopen] processor_tb.UUT.DP.regfile.registers[1].
+[treeopen] processor_tb.UUT.DP.regfile.registers[20].
+[treeopen] processor_tb.UUT.DP.regfile.registers[21].
+[treeopen] processor_tb.UUT.DP.regfile.registers[22].
+[treeopen] processor_tb.UUT.DP.regfile.registers[23].
+[treeopen] processor_tb.UUT.DP.regfile.registers[24].
+[treeopen] processor_tb.UUT.DP.regfile.registers[25].
+[treeopen] processor_tb.UUT.DP.regfile.registers[26].
+[treeopen] processor_tb.UUT.DP.regfile.registers[27].
+[treeopen] processor_tb.UUT.DP.regfile.registers[28].
+[treeopen] processor_tb.UUT.DP.regfile.registers[29].
+[treeopen] processor_tb.UUT.DP.regfile.registers[30].
+[treeopen] processor_tb.UUT.DP.regfile.registers[31].
+[treeopen] processor_tb.UUT.DP.regfile.registers[3].
 [sst_width] 212
 [signals_width] 195
 [sst_expanded] 1
@@ -22,6 +47,16 @@
 processor_tb.clk
 @22
 processor_tb.UUT.DP.insn_value[31:0]
+@23
+[color] 2
+processor_tb.memory.addr[11:0]
+@29
+[color] 2
+processor_tb.memory.write_mem
+@23
+[color] 2
+processor_tb.memory.data_i[7:0]
+@22
 processor_tb.UUT.DP.pc_value[63:0]
 processor_tb.UUT.DP.pc_alu_o[63:0]
 processor_tb.UUT.DP.pc_alu_value[63:0]
@@ -56,11 +91,7 @@ processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.sel_alu_a
 [color] 3
 processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.sel_alu_b
 [color] 3
-processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sub_sra
-[color] 3
 processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.state[2:0]
-[color] 5
-processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_alu
 [color] 5
 processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_pc_alu
 [color] 5
@@ -72,17 +103,11 @@ processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_rs1
 [color] 5
 processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_rs2
 [color] 5
-processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_a
-[color] 5
-processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_b
-[color] 5
 processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_pc_increment
 [color] 5
 processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_pc_jump
 [color] 5
 processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_pc_next
-[color] 5
-processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_rd[1:0]
 [color] 5
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_regfile
 [color] 5
@@ -92,22 +117,15 @@ processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_alu
 [color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_data_memory
 [color] 6
-processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_flags
-[color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_imm
 [color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_rs1
 [color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_rs2
 [color] 6
-processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_a
-[color] 6
-processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_b
-[color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_mem_next
 [color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_mem_operation
-@29
 [color] 6
 processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.memory_done
 [color] 6

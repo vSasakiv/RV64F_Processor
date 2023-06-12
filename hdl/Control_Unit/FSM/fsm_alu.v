@@ -33,7 +33,7 @@ always @(*) begin
     case (state)
         IDLE: next = (start == 1'b1) ? DECODE : IDLE; // apenas vamos sair do idle quando start = 1
         // dependendo do code, iremos para um estado (1 tipo de instrução) ou outro
-        DECODE: next = (code[12] == 1'b1) ? EXECUTE1 : EXECUTE2; 
+        DECODE: next = (code[12] == 1'b1 || code[14] == 1'b1) ? EXECUTE1 : EXECUTE2; 
         EXECUTE1: next = WRITEBACK;
         EXECUTE2: next = WRITEBACK;
         WRITEBACK: next = DONE;
@@ -70,6 +70,7 @@ always @(state, insn, code) begin
         EXECUTE2: begin
             load_alu = 1'b1; // ativamos o registrador na saída da alu
             sub_sra = (insn[14:12] == 3'b101) ? insn[30]: 1'b0; // caso seja srai, depende da ins
+            sel_alu_a = (code[5] == 1'b1) ? 1'b1 : 1'b0; // caso seja auipc, entrada A da alu vira o pc
             sel_alu_b = 1'b1; // seletor em b é sempre 1 para instruções tipo I
             sel_alu_32b = code[6] | code[14];
         end
@@ -89,6 +90,7 @@ always @(state, insn, code) begin
             sel_alu_b = 1'b0;
             sub_sra = 1'b0;
             done = 1'b0;
+            sel_alu_32b = 1'b0;
         end 
     endcase
 end

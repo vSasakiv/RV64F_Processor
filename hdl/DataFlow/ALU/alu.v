@@ -7,10 +7,11 @@ module alu (
   input [63:0] a, b, // Entradas A e B da ALU, sendo A o primeiro operando e B o segundo
   input [2:0] func, // Entrada seletora de func proveniente da C.U.
   input sub_sra, // Entrada que ativa / desativa subtração e shift aritmético
-  output reg [63:0] s, // Saída, que é selecionada pela entrada func
+  input sel_alu_32b,
+  output [63:0] s, // Saída, que é selecionada pela entrada func
   output wire eq, ls, lu  // Saídas de comparador, são sempre expostas para a C.U.
 );
-  
+  reg [63:0] value;
   wire [63:0] add, b_xor, b_and, b_or, shift_right, shift_left; // Guardam valores de possíveis operações que podem ser selecionados pelo func
   wire c_o; // Fio que contém o carry out da soma / subtração
   
@@ -27,15 +28,22 @@ module alu (
   always @(*) begin
     // Case baseado nas instruções presentes na ISA, para poupar o máximo da C.U.
     case (func)
-      3'b000: s = add;
-      3'b001: s = shift_left;
-      3'b010: s = {63'b0, ls};
-      3'b011: s = {63'b0, lu};
-      3'b100: s = b_xor;
-      3'b101: s = shift_right;
-      3'b110: s = b_or;
-      3'b111: s = b_and;
+      3'b000: value = add;
+      3'b001: value = shift_left;
+      3'b010: value = {63'b0, ls};
+      3'b011: value = {63'b0, lu};
+      3'b100: value = b_xor;
+      3'b101: value = shift_right;
+      3'b110: value = b_or;
+      3'b111: value = b_and;
     endcase
   end
+
+  mux_2to1 #(.Size(64)) mux_alu_out (
+    .sel(sel_alu_32b),
+    .i0(value),
+    .i1({{32{value[31]}}, value[31:0]}),
+    .data_o(s)
+  );
 
 endmodule

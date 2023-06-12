@@ -20,13 +20,23 @@ module dataflow (
   wire [63:0] imm_o, imm_value;
   wire [63:0] alu_o, alu_value, alu_value_extended;
   wire [63:0] alu_a_value, alu_b_value;
+  wire [63:0] rs1_alu, rs2_alu;
   wire [63:0] mem_extended, mem_value;
   wire [63:0] rd_i, rs1_o, rs2_o, rs1_value, rs2_value;
   wire [63:0] pc_alu_o, pc_alu_value, pc_selected, pc_alu_selected, pc_value;
 
   assign rs2_value_o = rs2_value;
   assign insn = insn_value;
-  
+
+  //assign rs1_alu = rs1_value;
+  //assign rs2_alu = rs2_value;
+
+  assign rs1_alu = (code[06] == 1'b1 || code[14] == 1'b1) ? 
+  ((insn_value[30] == 1'b1 && insn_value[14] == 1'b1) ? {{32{rs1_value[31]}}, rs1_value[31:0]}: {32'b0, rs1_value[31:0]}) : rs1_value;
+
+  assign rs2_alu = (code[06] == 1'b1 || code[14] == 1'b1) ? 
+  ((insn_value[30] == 1'b1 && insn_value[14] == 1'b1) ? {{32{rs2_value[31]}}, rs2_value[31:0]} : {32'b0, rs2_value[31:0]}) : rs2_value;  
+
   //Módulo memory extender, utilizado para corrigir o valor que será carregado em um registrador do regfile, de acordo com a instrução
   mem_extension mem_ex (
     .sel_mem_extension(sel_mem_extension),
@@ -140,17 +150,10 @@ module dataflow (
     .data_o(addr)
   );
 
-  mux_2to1 #(.Size(64)) mux_alu_out (
-    .sel(sel_alu_32b),
-    .i0(alu_value),
-    .i1({{32{alu_value[31]}}, alu_value[31:0]}),
-    .data_o(alu_value_extended)
-  );
-
   // multiplexador para selecionar qual valor irá entrar na ALU geral, podendo ser o PC ou o valor do rs1
   mux_2to1 #(.Size(64)) mux_alu_a (
     .sel   (sel_alu_a),
-    .i0    (rs1_value),
+    .i0    (rs1_alu),
     .i1    (pc_value),
     .data_o(alu_a_value) 
   );
@@ -158,7 +161,7 @@ module dataflow (
   // multiplexador para selecionar qual valor irá entrar na ALU geral, podendo ser um imediato ou o valor do rs2
   mux_2to1 #(.Size(64)) mux_alu_b (
     .sel   (sel_alu_b),
-    .i0    (rs2_value),
+    .i0    (rs2_alu),
     .i1    (imm_value),
     .data_o(alu_b_value) 
   );
@@ -168,7 +171,7 @@ module dataflow (
     .sel   (sel_rd),
     .i0    (mem_extended),
     .i1    (imm_value),
-    .i2    (alu_value_extended),
+    .i2    (alu_value),
     .i3    (pc_alu_value),
     .data_o(rd_i)  
   );
@@ -179,6 +182,7 @@ module dataflow (
     .b      (alu_b_value),
     .func   (func3),
     .sub_sra(sub_sra),
+    .sel_alu_32b(sel_alu_32b),
     .s      (alu_o),
     .eq     (eq),
     .lu     (lu),

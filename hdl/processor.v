@@ -10,7 +10,7 @@ module processor (
   output [63:0] data_o, //Saída que vai para entrada de dados da memória
   output [63:0] addr //Endereço a ser lido/gravado na memória
 );
-  wire sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, sub_sra;
+  wire sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, sel_alu_32b, sub_sra;
   wire load_data_memory, load_pc_alu, load_flags, load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_imm;
   wire sel_pc_increment, sel_pc_jump;
   wire [1:0] sel_rd;
@@ -46,6 +46,7 @@ module processor (
     .sel_pc_next      (sel_pc_next),
     .sel_pc_increment (sel_pc_increment),
     .sel_pc_jump      (sel_pc_jump), 
+    .sel_alu_32b      (sel_alu_32b),
     .load_data_memory (load_data_memory), 
     .load_pc_alu      (load_pc_alu), 
     .load_flags       (load_flags),
@@ -76,6 +77,7 @@ module processor (
     .sel_pc_jump      (sel_pc_jump), 
     .sel_alu_a        (sel_alu_a), 
     .sel_alu_b        (sel_alu_b),
+    .sel_alu_32b      (sel_alu_32b),
     .load_ins         (load_ins), 
     .load_imm         (load_imm), 
     .load_regfile     (load_regfile), 
