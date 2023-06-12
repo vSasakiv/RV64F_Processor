@@ -1,6 +1,13 @@
 # ignore all logs
 *.log
+# ignore all compiled
+*.out
+# ingore all waveforms
+*.vcd
 transcript
 
 # ignore work folder
 work
+synthesis/output_files
+synthesis/simulation
+synthesis/incremental_db

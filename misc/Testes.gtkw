@@ -1,0 +1,120 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Sun Jun  4 02:35:42 2023
+[*]
+[dumpfile] "/home/sasaki/Documentos/Verilog/RV64F_Processor/processor.vcd"
+[dumpfile_mtime] "Sun Jun  4 02:09:59 2023"
+[dumpfile_size] 341898
+[savefile] "/home/sasaki/Documentos/Verilog/RV64F_Processor/misc/Testes.gtkw"
+[timestart] 633500
+[size] 1366 710
+[pos] -183 -56
+*-15.000000 39900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] processor_tb.
+[treeopen] processor_tb.UUT.
+[treeopen] processor_tb.UUT.CU.
+[treeopen] processor_tb.UUT.CU.FSM_COMBINED.
+[sst_width] 212
+[signals_width] 195
+[sst_expanded] 1
+[sst_vpaned_height] 187
+@28
+processor_tb.clk
+@22
+processor_tb.UUT.DP.insn_value[31:0]
+processor_tb.UUT.DP.pc_value[63:0]
+processor_tb.UUT.DP.pc_alu_o[63:0]
+processor_tb.UUT.DP.pc_alu_value[63:0]
+processor_tb.UUT.DP.addr[63:0]
+processor_tb.UUT.DP.rs1_value[63:0]
+processor_tb.UUT.DP.rs2_value[63:0]
+processor_tb.UUT.DP.imm_value[63:0]
+@28
+processor_tb.UUT.DP.eq
+processor_tb.UUT.DP.ls
+processor_tb.UUT.DP.lu
+@22
+processor_tb.UUT.DP.mem_value[63:0]
+processor_tb.UUT.DP.mem_extended[63:0]
+processor_tb.UUT.DP.rs1_addr[4:0]
+processor_tb.UUT.DP.rs2_addr[4:0]
+@28
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.load_alu
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.load_imm
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.load_pc
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.load_regfile
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.load_rs1
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.load_rs2
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.sel_alu_a
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.sel_alu_b
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sub_sra
+[color] 3
+processor_tb.UUT.CU.FSM_COMBINED.FSM_ALU.state[2:0]
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_alu
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_pc_alu
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_imm
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_pc
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_rs1
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.load_rs2
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_a
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_b
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_pc_increment
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_pc_jump
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_pc_next
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.sel_rd[1:0]
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_regfile
+[color] 5
+processor_tb.UUT.CU.FSM_COMBINED.FSM_BRANCH_JUMP.state[2:0]
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_alu
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_data_memory
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_flags
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_imm
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_rs1
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_rs2
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_a
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_alu_b
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_mem_next
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.sel_mem_operation
+@29
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.memory_done
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.memory_start
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.load_pc
+[color] 6
+processor_tb.UUT.CU.FSM_COMBINED.FSM_LOAD_STORE.state[2:0]
+[pattern_trace] 1
+[pattern_trace] 0

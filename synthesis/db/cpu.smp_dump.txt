@@ -1,0 +1,37 @@
+
+State Machine - |processor|control_unit:CU|state
+Name state.FSM state.LOAD_IR state.FETCH state.IDLE 
+state.IDLE 0 0 0 0 
+state.FETCH 0 0 1 1 
+state.LOAD_IR 0 1 0 1 
+state.FSM 1 0 0 1 
+
+State Machine - |processor|control_unit:CU|fsm_combined:FSM_COMBINED|fsm_load_store:FSM_LOAD_STORE|state
+Name state.DONE state.WRITEBACK state.MEMORY_LOAD state.MEMORY_STORE state.EXECUTE state.DECODE state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.DECODE 0 0 0 0 0 1 1 
+state.EXECUTE 0 0 0 0 1 0 1 
+state.MEMORY_STORE 0 0 0 1 0 0 1 
+state.MEMORY_LOAD 0 0 1 0 0 0 1 
+state.WRITEBACK 0 1 0 0 0 0 1 
+state.DONE 1 0 0 0 0 0 1 
+
+State Machine - |processor|control_unit:CU|fsm_combined:FSM_COMBINED|fsm_branch_jump:FSM_BRANCH_JUMP|state
+Name state.DONE state.WRITEBACK2 state.WRITEBACK1 state.FLAGS state.EXECUTE2 state.EXECUTE1 state.DECODE state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 
+state.DECODE 0 0 0 0 0 0 1 1 
+state.EXECUTE1 0 0 0 0 0 1 0 1 
+state.EXECUTE2 0 0 0 0 1 0 0 1 
+state.FLAGS 0 0 0 1 0 0 0 1 
+state.WRITEBACK1 0 0 1 0 0 0 0 1 
+state.WRITEBACK2 0 1 0 0 0 0 0 1 
+state.DONE 1 0 0 0 0 0 0 1 
+
+State Machine - |processor|control_unit:CU|fsm_combined:FSM_COMBINED|fsm_alu:FSM_ALU|state
+Name state.DONE state.WRITEBACK state.EXECUTE2 state.EXECUTE1 state.DECODE state.IDLE 
+state.IDLE 0 0 0 0 0 0 
+state.DECODE 0 0 0 0 1 1 
+state.EXECUTE1 0 0 0 1 0 1 
+state.EXECUTE2 0 0 1 0 0 1 
+state.WRITEBACK 0 1 0 0 0 1 
+state.DONE 1 0 0 0 0 1 
