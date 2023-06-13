@@ -3,4 +3,3 @@
 40 53 84 33 // addr: 0008 ; sub x8, x7, x5 ; x8 <- x7 - x5 (10)
 01 40 02 93 // addr: 000c ; addi x5, x0, 20 ; x5 <- x0 + 20 (20)
 00 00 85 17 // addr: 0010 ; auipc x10, 8 ; x10 <- 0x10 + 0x8 (0x18)
-//TODO cansei amn termino
