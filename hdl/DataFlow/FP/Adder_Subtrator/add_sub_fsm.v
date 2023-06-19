@@ -4,8 +4,8 @@ module add_sub_fsm (
   input start, clk,
   output reg [1:0] sel_a_exp_operand, sel_b_exp_operand, sel_exp_operation,
   output reg sel_a_operand, sel_b_operand, sel_operation,
-  output reg load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized,
-  output reg load_effective_expoent, load_expoent_result, load_exp_normalized,
+  output reg load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized, load_overflow,
+  output reg load_effective_expoent, load_expoent_result, load_exp_normalized, load_inexact,
   output reg load_carry, load_real_operation, load_real_sign, load_underflow,
   output reg load_leading_zeros, load_result,
   output reg done
@@ -56,6 +56,8 @@ module add_sub_fsm (
         load_exp_normalized = 1'b0;
         load_underflow = 1'b0;
         load_result = 1'b0;
+        load_overflow = 1'b0;
+        load_inexact = 1'b0;
     case (state)
       PRE_NORMALIZING: begin
         sel_a_exp_operand = 2'b00;
@@ -109,6 +111,8 @@ module add_sub_fsm (
         sel_exp_operation = 2'b11;
         sel_operation = 1'b0;
         load_result = 1'b1;
+        load_overflow = 1'b1;
+        load_inexact = 1'b1;
       end
       RESULT: begin
         done = 1'b1;
@@ -134,6 +138,8 @@ module add_sub_fsm (
         load_exp_normalized = 1'b0;
         load_underflow = 1'b0;
         load_result = 1'b0;
+        load_overflow = 1'b0;
+        load_inexact = 1'b0;
       end
     endcase
   end

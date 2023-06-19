@@ -14,7 +14,7 @@ module add_sub_fp #(
   wire sel_a_operand, sel_b_operand, sel_operation;
   wire load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized, load_effective_expoent, load_expoent_result;
   wire load_exp_normalized, load_invalid, load_carry, load_real_operation, load_real_sign, load_underflow;
-  wire load_leading_zeros, load_result;
+  wire load_leading_zeros, load_result, load_overflow, load_inexact;
 
   add_sub_fsm fsm (  
     .start                 (start), 
@@ -38,6 +38,8 @@ module add_sub_fp #(
     .load_underflow        (load_underflow),
     .load_leading_zeros    (load_leading_zeros),
     .load_result           (load_result),
+    .load_overflow         (load_overflow),
+    .load_inexact          (load_inexact),
     .done                  (done)
   );
 
@@ -62,13 +64,15 @@ module add_sub_fp #(
     .load_underflow        (load_underflow),
     .load_leading_zeros    (load_leading_zeros),
     .load_result           (load_result),
+    .load_overflow         (load_overflow),
+    .load_inexact          (load_inexact),
     .rounding_mode         (rounding_mode),
     .sub                   (sub),
     .operand_a             (operand_a),
     .operand_b             (operand_b),
     .result_value          (result),
-    .overflow              (overflow),
-    .inexact               (inexact),
+    .overflow_value        (overflow),
+    .inexact_value         (inexact),
     .underflow_value       (underflow),
     .invalid               (invalid)
   );

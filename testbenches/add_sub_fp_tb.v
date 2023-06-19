@@ -44,7 +44,7 @@ initial begin
   start = 1'b1;
 
 /////////////////////////////////////////////// Single precision (Size = 32) /////////////////////////////////////////////////////////
-  /* 
+  /*  
   rounding_mode = 3'b000;
   sub = 1'b0;
   operand_a = 32'b0_01111101_00000000000000000000000;
@@ -53,14 +53,15 @@ initial begin
   #1
   while (done !== 1'b1) #1;
 
-  $display("Result addition: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
   sub = 1'b1;
   operand_a = 32'b0_10000001_10010001000000000000000;
   operand_b = 32'b0_10000000_11100000000000000000000;
   //Result        0_10000000_01000010000000000000000 = 0x40210000;
   #2
   while (done !== 1'b1) #1;
-  $display("Result subtraction: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
 
   sub = 1'b0;
   rounding_mode = 3'b010;
@@ -69,20 +70,20 @@ initial begin
   //Result        1_10000011_00101000000000000001000 = 0xC1940009; 
   #2
   while (done !== 1'b1) #1;
-  $display("Result addition: %h", result); 
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
   */
-
   ///////////////////////////////////////////////Double precision  (Size = 64) /////////////////////////////////////////////////////////
   
   
   sub = 1'b0;
   rounding_mode = 3'b000;
-  operand_a = 64'b0_01111111111_1000000000000000000000000000000000000000000000000000;
-  operand_b = 64'b1_01111111111_1000000000000000000000000000000000000000000000000000;
-  //Result        0 = 0x0;
+  operand_a = 64'b1_11111111110_0001111110010100000000011110000000000000101110000000;
+  operand_b = 64'b1_11111111111_0000000000000000000000000000000000000000000000000000;
+  //Result       invalid;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b1;
   rounding_mode = 3'b000;
@@ -91,7 +92,8 @@ initial begin
   //Result        0_10000000000_1000000000000000000000000000000000000000000000000000 = 0x4008000000000000;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b0;
   rounding_mode = 3'b000;
@@ -100,7 +102,8 @@ initial begin
   //Result        0 = 0x0;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b1;
   rounding_mode = 3'b000;
@@ -109,7 +112,8 @@ initial begin
   //Result        1_01111111110_0000000000000000000000000000000000000000000000000000 = 0xBFE0000000000000;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b0;
   rounding_mode = 3'b000;
@@ -118,7 +122,8 @@ initial begin
   //Result        0_11111111111_0000000000000000000000000000000000000000000000000000 = 0x7FF0000000000000;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b0;
   rounding_mode = 3'b000;
@@ -127,7 +132,8 @@ initial begin
   //Result        0_00000000010_0000000000000000000000000000000000000000000000000000 = 0x0020000000000000;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b1;
   rounding_mode = 3'b000;
@@ -136,7 +142,8 @@ initial begin
   //Result        1_00000000000_0000000111111111111111111111111111111111111111111111 = 0x80001FFFFFFFFFFF; 
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result);
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+
 
   sub = 1'b1;
   rounding_mode = 3'b000;
@@ -145,7 +152,17 @@ initial begin
   //Result        0_10000101011_0001111111110000001011000000000001000001000100110100 = 0x42B1FF02C0041134;
   #2
   while (done !== 1'b1) #1;
-  $display("Result: %h", result); 
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+ 
+  sub = 1'b1;
+  rounding_mode = 3'b000;
+  operand_a = 64'b1_11111010111_0001111110010100000000011110000000000000101110000000;
+  operand_b = 64'b0_10000101010_0000000000000000000000000000000000000000000000000000;
+  //Result        0_10000101011_0001111111110000001011000000000001000001000100110100 = 0x42B1FF02C0041134;
+  #2
+  while (done !== 1'b1) #1;
+  $display("Result: %h NV: %b OF: %b UF: %b NX: %b", result, invalid, overflow, underflow, inexact);
+ 
  
   $finish;
 end

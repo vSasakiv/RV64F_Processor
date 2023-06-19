@@ -5,8 +5,8 @@ module add_sub_dp #(
     input clk,
     input [1:0] sel_a_exp_operand, sel_b_exp_operand, sel_exp_operation,
     input sel_a_operand, sel_b_operand, sel_operation,
-    input load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized,
-    input load_effective_expoent, load_expoent_result, load_exp_normalized,
+    input load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized, load_overflow,
+    input load_effective_expoent, load_expoent_result, load_exp_normalized, load_inexact,
     input load_invalid, load_carry, load_real_operation, load_real_sign, load_underflow,
     input load_leading_zeros, load_result,
     input [2:0] rounding_mode,
@@ -14,7 +14,7 @@ module add_sub_dp #(
     input [Size - 1:0] operand_a,
     input [Size - 1:0] operand_b,
     output [Size - 1:0] result_value,
-    output overflow, inexact, underflow_value, invalid
+    output overflow_value, inexact_value, underflow_value, invalid
 );
 localparam ExpSize = (Size == 64) ? 11 : 8;
 localparam MantSize = (Size == 64) ? 52 : 23; 
@@ -252,7 +252,7 @@ assign invalid = (&operand_a[Size - 2:MantSize]) | (&operand_b[Size - 2:MantSize
   /* Se a mantissa for = 0,  assume valor do expoente.
   Caso não seja, se o expoente atual for subnormal assume 0, caso contrário é igual aos leading zeros */
   assign normalize_shift_amt = (~|mant_normalized_value) ? expoent_result_value : (~|expoent_result_value) ? 1'b0: leading_zeros_value;
-  assign underflow = data_o[ExpSize];
+  assign underflow = (~|mant_normalized_value) ? 1'b0 : (~|data_o[ExpSize - 1:0]);
 
   register #(.Size(ExpSize)) reg_exp_normalized (
     .clk(clk),
@@ -280,7 +280,7 @@ assign invalid = (&operand_a[Size - 2:MantSize]) | (&operand_b[Size - 2:MantSize
   );
 
   assign inexact = ~is_zero;
-  assign overflow = (&data_o[ExpSize - 1:0]) ? 1'b1 : 1'b0;
+  assign overflow = (&data_o[ExpSize - 1:0] || &expoent_result_value ) ? 1'b1 : 1'b0;
   assign result = (overflow) ? {real_sign_value, data_o[ExpSize - 1:0], {(MantSize){1'b0}}} : {real_sign_value, data_o[ExpSize - 1:0], mant_final[MantSize - 1:0]};
 
   register #(.Size(Size)) reg_result (
@@ -288,6 +288,20 @@ assign invalid = (&operand_a[Size - 2:MantSize]) | (&operand_b[Size - 2:MantSize
     .data_i(result),
     .load(load_result),
     .data_o(result_value)
+  );
+
+  register #(.Size(1'b1)) reg_overflow (
+    .clk(clk),
+    .data_i(overflow),
+    .load(load_overflow),
+    .data_o(overflow_value)
+  );
+
+  register #(.Size(1'b1)) reg_inexact (
+    .clk(clk),
+    .data_i(inexact),
+    .load(load_inexact),
+    .data_o(inexact_value)
   );
 
 endmodule
