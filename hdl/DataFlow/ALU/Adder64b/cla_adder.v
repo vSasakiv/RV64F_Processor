@@ -13,9 +13,9 @@ module cla_adder #(
   wire g[0:InputSize - 1];
   wire pc[0:InputSize - 1];
 	wire [InputSize - 1:0] c;
-	 
+	
   /* XOR entre cada bit de b e o sub, responsável por complementar b caso sub = 1*/
-	assign c = b ^ {64{sub}};
+	assign c = b ^ {InputSize{sub}};
 	assign c_o = carry[InputSize - 1];
   
   //Primerio propagate e generate, usando o carry_in como o sinal de sub
