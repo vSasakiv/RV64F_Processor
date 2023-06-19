@@ -20,7 +20,7 @@ module trailing_zero_counter #(
 
 	genvar j;
     generate
-        for (j = 1; j < SizeMantissa + 1; j = j + 1) begin : fg
+        for (j = 1; j <= SizeMantissa + 1; j = j + 1) begin : fg
             or oi (bit_or[j], bit_or[j - 1], mantissa[j]);
         end
     endgenerate
@@ -28,7 +28,7 @@ module trailing_zero_counter #(
 	integer i;
 	always @* begin
 		code = 0;
-		for (i = 1; i < SizeMantissa + 1; i = i + 1) begin
+		for (i = 1; i <= SizeMantissa + 1; i = i + 1) begin
 			if (bit_or[i] == 1 && bit_or[i - 1] == 0) begin
 				code[i] = 1;
 			end else if (bit_or[i] == 1 && bit_or[i - 1] == 1) begin
