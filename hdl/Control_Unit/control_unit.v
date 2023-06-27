@@ -1,14 +1,15 @@
 module control_unit (
     input [31:0] insn,
-    input clk, memory_done, start, reset,
+    input clk, memory_done, start, reset, done_fp,
     input lu, ls, eq,
     output [31:0] code,
     output [4:0] rs1_addr, rs2_addr, rd_addr,
-    output [2:0] sel_mem_extension, func3,
+    output [2:0] sel_mem_extension, func3, rounding_mode,
     output reg [1:0] sel_rd, sel_mem_size,// seletor rd
     output reg sub_sra, sel_pc_next, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,
     output reg sel_pc_increment, sel_pc_jump, sel_alu_32b,
     output reg load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm, load_ins,
+    output reg load_rs1_fp, load_rs2_fp, load_fp_regfile, sel_store_fp, sel_rd_fp, load_alu_fp, start_add_sub_fp, start_mult_fp, sub_fp,
     output reg load_data_memory, memory_start, sel_mem_next, sel_mem_operation
 );
     localparam IDLE = 2'b00;
@@ -16,7 +17,7 @@ module control_unit (
     localparam LOAD_IR = 2'b10;
     localparam FSM = 2'b11;
 
-    reg [2:0] start_fsm; // start_fsm[0] = fsm_alu, start_fsm[1] = fsm_branch_jump, start_fsm[2] = fsm_load_store
+    reg [3:0] start_fsm; // start_fsm[0] = fsm_alu, start_fsm[1] = fsm_branch_jump, start_fsm[2] = fsm_load_store, start_fsm[3] = fsm_fp_op
     reg [1:0] state, next;
     reg fsm_done;
     
@@ -39,9 +40,10 @@ module control_unit (
     sel_alu_a_fsm, sel_alu_b_fsm, sel_alu_32b_fsm, load_pc_alu_fsm, load_flags_fsm, sel_pc_increment_fsm,
     sel_pc_jump_fsm, load_pc_fsm, load_regfile_fsm, load_rs1_fsm, load_rs2_fsm, 
     load_alu_fsm, load_imm_fsm, load_data_memory_fsm, memory_start_fsm, sel_mem_next_fsm,
-    sel_mem_operation_fsm, done_fsm) begin
+    sel_mem_operation_fsm, load_rs1_fp_fsm, load_rs2_fp_fsm, load_fp_regfile_fsm, sel_store_fp_fsm,
+    sel_rd_fp_fsm, load_alu_fp_fsm, start_add_sub_fp_fsm, start_mult_fp_fsm, sub_fp_fsm, done_fsm) begin
         sel_mem_size = 2'b10; // tamanho w (32bits)
-        start_fsm = 3'b000;
+        start_fsm = 4'b000;
         fsm_done = 1'b0;
         load_ins = 1'b0;
         /* fsm signals */
@@ -65,6 +67,15 @@ module control_unit (
         memory_start = 1'b0;
         sel_mem_next = 1'b0;
         sel_mem_operation = 1'b0;
+        load_rs1_fp = 1'b0;
+        load_rs2_fp = 1'b0;
+        load_fp_regfile = 1'b0;
+        sel_store_fp = 1'b0;
+        sel_rd_fp = 1'b0;
+        load_alu_fp = 1'b0;
+        start_add_sub_fp = 1'b0;
+        start_mult_fp = 1'b0;
+        sub_fp = 1'b0;
 
         case (state)
             FETCH: begin
@@ -76,7 +87,8 @@ module control_unit (
             FSM: begin
                 start_fsm[0] = code[12] | code[4] | code[5] | code[6] | code[14];
                 start_fsm[1] = code[27] | code[25] | code[24];
-                start_fsm[2] = code[13] | code[8] | code[0];
+                start_fsm[2] = code[13] | code[8] | code[0] | code[9] | code[1];
+                start_fsm[3] = code[20];
                 sel_mem_size      = insn[13:12];
                 sel_rd            = sel_rd_fsm;
                 load_pc           = load_pc_fsm;
@@ -98,11 +110,20 @@ module control_unit (
                 sel_mem_next      = sel_mem_next_fsm;
                 memory_start      = memory_start_fsm;
                 sel_mem_operation = sel_mem_operation_fsm;
+                load_rs1_fp       = load_rs1_fp_fsm;
+                load_rs2_fp       = load_rs2_fp_fsm;
+                load_fp_regfile   = load_fp_regfile_fsm;
+                sel_store_fp      = sel_store_fp_fsm;
+                sel_rd_fp         = sel_rd_fp_fsm;
+                load_alu_fp       = load_alu_fp_fsm;
+                start_add_sub_fp  = start_add_sub_fp_fsm;
+                start_mult_fp     = start_mult_fp_fsm;
+                sub_fp            = sub_fp_fsm;
                 fsm_done          = done_fsm;
             end
             default: begin
                 sel_mem_size = 2'b10; 
-                start_fsm = 3'b000;
+                start_fsm = 4'b0000;
                 load_ins = 1'b0;
                 /* fsm signals */
                 sel_rd = 2'b00;
@@ -152,12 +173,22 @@ module control_unit (
     wire memory_start_fsm;
     wire sel_mem_next_fsm;
     wire sel_mem_operation_fsm;
+    wire load_rs1_fp_fsm;
+    wire load_rs2_fp_fsm;
+    wire load_fp_regfile_fsm;
+    wire sel_store_fp_fsm;
+    wire sel_rd_fp_fsm;
+    wire load_alu_fp_fsm;
+    wire start_add_sub_fp_fsm;
+    wire start_mult_fp_fsm;
+    wire sub_fp_fsm;
     wire done_fsm;
 
     fsm_combined FSM_COMBINED (
         .insn             (insn),
         .code             (code), 
-        .start            (start_fsm), 
+        .start            (start_fsm),
+        .done_fp          (done_fp),
         .clk              (clk), 
         .lu               (lu), 
         .ls               (ls), 
@@ -183,6 +214,15 @@ module control_unit (
         .memory_start     (memory_start_fsm),
         .sel_mem_operation(sel_mem_operation_fsm),
         .memory_done      (memory_done),
+        .load_rs1_fp      (load_rs1_fp_fsm),
+        .load_rs2_fp      (load_rs2_fp_fsm),
+        .load_fp_regfile  (load_fp_regfile_fsm),
+        .sel_store_fp     (sel_store_fp_fsm),
+        .sel_rd_fp        (sel_rd_fp_fsm),
+        .load_alu_fp      (load_alu_fp_fsm),
+        .start_add_sub_fp (start_add_sub_fp_fsm),
+        .start_mult_fp    (start_mult_fp_fsm),
+        .sub_fp           (sub_fp_fsm),
         .done             (done_fsm)
     );
 
@@ -191,7 +231,8 @@ module control_unit (
     assign rs1_addr = insn[19:15];
     assign rs2_addr = insn[24:20];
     assign rd_addr = insn[11:7];
-    assign func3 = (code[0] == 1'b1 || code[8] == 1'b1 || code[5] == 1'b1) ? 3'b000 : insn[14:12];
+    assign rounding_mode = insn[14:12];
+    assign func3 = (code[0] == 1'b1 || code[8] == 1'b1 || code[5] == 1'b1 || code[1] == 1'b1 || code[9] == 1'b1) ? 3'b000 : insn[14:12];
     assign sel_mem_extension = insn[14:12];
 
     /*   OPCDECODER   */

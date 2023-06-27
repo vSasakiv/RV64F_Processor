@@ -12,9 +12,10 @@ module processor (
 );
   wire sel_pc_next, sel_pc_alu, sel_alu_a, sel_alu_b, sel_alu_32b, sub_sra;
   wire load_data_memory, load_pc_alu, load_flags, load_pc, load_ins, load_regfile, load_rs1, load_rs2, load_alu, load_imm;
-  wire sel_pc_increment, sel_pc_jump;
+  wire load_rs1_fp, load_rs2_fp, load_fp_regfile, sel_store_fp, sel_rd_fp, load_alu_fp, start_add_sub_fp, start_mult_fp, sub_fp;
+  wire sel_pc_increment, sel_pc_jump, done_fp;
   wire [1:0] sel_rd;
-  wire [2:0] flags_value, func3;
+  wire [2:0] flags_value, func3, rounding_mode;
   wire [31:0] insn, code;
   wire [4:0] rs1_addr, rs2_addr, rd_addr;
 
@@ -32,6 +33,7 @@ module processor (
     .insn             (insn),
     .clk              (clk), 
     .reset            (reset),
+    .done_fp          (done_fp),
     .lu               (flags_value[2]), 
     .ls               (flags_value[1]), 
     .eq               (flags_value[0]), 
@@ -39,6 +41,7 @@ module processor (
     .rs1_addr         (rs1_addr), 
     .rs2_addr         (rs2_addr), 
     .rd_addr          (rd_addr),
+    .rounding_mode    (rounding_mode),
     .func3            (func3),
     .sel_mem_extension(sel_mem_extension),
     .sel_rd           (sel_rd),
@@ -64,13 +67,22 @@ module processor (
     .memory_start     (memory_start),
     .memory_done      (memory_done),
     .sel_mem_operation(sel_mem_operation),
-    .sel_mem_next     (sel_mem_next)
-
+    .sel_mem_next     (sel_mem_next),
+    .load_rs1_fp      (load_rs1_fp),
+    .load_rs2_fp      (load_rs2_fp),
+    .load_fp_regfile  (load_fp_regfile),
+    .sel_store_fp     (sel_store_fp),
+    .sel_rd_fp        (sel_rd_fp),
+    .load_alu_fp      (load_alu_fp),
+    .start_add_sub_fp (start_add_sub_fp),
+    .start_mult_fp    (start_mult_fp),
+    .sub_fp           (sub_fp)
   );
 
   dataflow DP (
     .clk              (clk),
     .sub_sra          (sub_sra),
+    .done_fp          (done_fp),
     .reset            (reset),
     .sel_pc_next      (sel_pc_next),
     .sel_pc_increment (sel_pc_increment),
@@ -88,7 +100,8 @@ module processor (
     .load_flags       (load_flags),
     .load_pc_alu      (load_pc_alu), 
     .load_data_memory (load_data_memory),
-    .sel_rd           (sel_rd), 
+    .sel_rd           (sel_rd),
+    .rounding_mode    (rounding_mode), 
     .func3            (func3),
     .sel_mem_extension(sel_mem_extension),
     .rd_addr          (rd_addr), 
@@ -99,8 +112,17 @@ module processor (
     .sel_mem_next     (sel_mem_next),
     .mem_i            (mem_i),
     .flags_value      (flags_value),
-    .rs2_value_o      (data_o),
-    .addr             (addr)
+    .store_value_o    (data_o),
+    .addr             (addr),
+    .load_rs1_fp      (load_rs1_fp),
+    .load_rs2_fp      (load_rs2_fp),
+    .load_fp_regfile  (load_fp_regfile),
+    .sel_store_fp     (sel_store_fp),
+    .sel_rd_fp        (sel_rd_fp),
+    .load_alu_fp      (load_alu_fp),
+    .start_add_sub_fp (start_add_sub_fp),
+    .start_mult_fp    (start_mult_fp),
+    .sub_fp           (sub_fp)
   );
 
 endmodule

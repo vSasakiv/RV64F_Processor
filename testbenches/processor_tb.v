@@ -57,7 +57,7 @@ module processor_tb ();
     reset = 0;
     #20;
     start = 0;
-    #10000;
+    #20000;
     $finish;
   end
 

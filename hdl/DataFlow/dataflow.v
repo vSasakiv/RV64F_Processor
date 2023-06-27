@@ -1,19 +1,20 @@
 /* Módulo que contém a junção de todos os módulos pertecentes ao dataflow */
 module dataflow (
   input clk,
-  input sub_sra,
-  input reset,
-  input sel_pc_next, sel_pc_increment, sel_pc_jump, sel_alu_a, sel_alu_b, sel_mem_next, sel_alu_32b,
-  input load_ins, load_imm, load_regfile, load_pc, load_rs1, load_rs2, load_alu, load_pc_alu, load_data_memory, load_flags,
+  input sub_sra, sub_fp,
+  input reset, start_add_sub_fp, start_mult_fp,
+  input sel_pc_next, sel_pc_increment, sel_pc_jump, sel_alu_a, sel_alu_b, sel_mem_next, sel_alu_32b, sel_store_fp,
+  input load_ins, load_imm, load_regfile, load_pc, load_rs1, load_rs2, load_alu, load_pc_alu, load_data_memory, load_flags, load_fp_regfile, load_rs1_fp, load_rs2_fp, load_alu_fp, sel_rd_fp,
   input [1:0] sel_rd,
-  input [2:0] func3,
+  input [2:0] func3, rounding_mode,
   input [2:0] sel_mem_extension,
   input [4:0] rd_addr, rs1_addr, rs2_addr,
   input [31:0] code,
   input [63:0] mem_i,
+  output done_fp,
   output [2:0] flags_value,
   output [31:0] insn,
-  output [63:0] addr, rs2_value_o
+  output [63:0] addr, store_value_o
 );
   wire eq, ls, lu;
   wire [31:0] insn_value;
@@ -23,9 +24,10 @@ module dataflow (
   wire [63:0] rs1_alu, rs2_alu;
   wire [63:0] mem_extended, mem_value;
   wire [63:0] rd_i, rs1_o, rs2_o, rs1_value, rs2_value;
+  wire [63:0] rd_fp_i, rs1_fp_o, rs2_fp_o, rs1_fp_value, rs2_fp_value, alu_fp_value, alu_fp_o;
   wire [63:0] pc_alu_o, pc_alu_value, pc_selected, pc_alu_selected, pc_value;
 
-  assign rs2_value_o = rs2_value;
+  assign store_value_o = sel_store_fp ? rs2_fp_value : rs2_value;
   assign insn = insn_value;
 
   //assign rs1_alu = rs1_value;
@@ -142,7 +144,58 @@ module dataflow (
     .rs2_o   (rs2_o)
   );
 
- //Multiplexador para selecionar o endereço a ser acessado na memória
+  //Registrador que guarda a saída rs1 do regfile fp
+  register #(.Size(64)) reg_alu_fp_a (
+    .clk   (clk),
+    .load  (load_rs1_fp),
+    .data_i(rs1_fp_o),
+    .data_o(rs1_fp_value)
+  );
+
+  //Registrador que guarda a saída rs2 do regfile fp
+  register #(.Size(64)) reg_alu_fp_b (
+    .clk   (clk),
+    .load  (load_rs2_fp),
+    .data_i(rs2_fp_o),
+    .data_o(rs2_fp_value)
+  );
+
+  // Floating point Regfile
+  regfile #(.Size(64)) f_regfile (
+    .clk     (clk),
+    .load    (load_fp_regfile),
+    .rd_addr (rd_addr),
+    .rs1_addr(rs1_addr),
+    .rs2_addr(rs2_addr),
+    .rd_i    (rd_fp_i),
+    .rs1_o   (rs1_fp_o),
+    .rs2_o   (rs2_fp_o)
+  );
+
+  assign rd_fp_i = sel_rd_fp ? mem_extended : alu_fp_value;
+
+  // ALU floating point
+  alu_fp #(.Size(32)) alu_fp_32b (
+    .clk           (clk),
+    .rounding_mode (rounding_mode),
+    .sub           (sub_fp),
+    .start_add_sub (start_add_sub_fp),
+    .start_mult    (start_mult_fp),
+    .operand_a     (rs1_fp_value),
+    .operand_b     (rs2_fp_value),
+    .done          (done_fp),
+    .result        (alu_fp_o)
+  );
+
+  //Registrador que guarda a saída da ALU fp
+  register #(.Size(64)) reg_alu_fp_o (
+    .clk   (clk),
+    .load  (load_alu_fp),
+    .data_i(alu_fp_o),
+    .data_o(alu_fp_value)
+  );
+
+  //Multiplexador para selecionar o endereço a ser acessado na memória
   mux_2to1 #(.Size(64)) mux_pc_addr  (
     .sel   (sel_mem_next),
     .i0    (pc_value),

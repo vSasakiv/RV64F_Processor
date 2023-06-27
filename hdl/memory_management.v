@@ -20,6 +20,7 @@ module memory_management (
     reg [2:0] state, next;
     reg [7:0] data_load [0:7];
     wire [7:0] data_store [0:7];
+    wire[63:0] teste;
 
     genvar i;
     generate
