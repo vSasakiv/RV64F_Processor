@@ -161,7 +161,7 @@ module dataflow (
   );
 
   // Floating point Regfile
-  regfile #(.Size(64)) f_regfile (
+  regfile_fp #(.Size(64)) f_regfile (
     .clk     (clk),
     .load    (load_fp_regfile),
     .rd_addr (rd_addr),
