@@ -8,6 +8,7 @@ module karatsuba_34b_dp (
 );
 
   wire [35:0] kara1_o, kara2_o, kara3_o;
+  wire [67:0] alu_a1s;
 
   karatsuba_18b kara1 (
     .clk   (clk),
@@ -81,7 +82,6 @@ module karatsuba_34b_dp (
     .data_o (alu_a)
   );
 
-  wire [67:0] alu_a1s;
   assign alu_a1s = shamt ? {32'b0, alu_a1} << 34 : {32'b0, alu_a1};
 
   mux_2to1 #(.Size(36)) mux2 (

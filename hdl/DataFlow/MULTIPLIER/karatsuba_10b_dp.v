@@ -13,6 +13,8 @@ module karatsuba_10b_dp (
   wire [19:0] reg2_i, reg3_i;
   wire [11:0] reg1_o, reg4_o;
   wire [19:0] reg2_o, reg3_o;
+  wire [19:0] adder_o;
+  wire [11:0] mult_o;
 
   register #(.Size(12)) reg1 (
     .clk    (clk),
@@ -71,7 +73,7 @@ module karatsuba_10b_dp (
   );
 
   wire [19:0] alu_a, alu_b, reg3s;
-  wire [19:0] adder_o;
+  
 
   cla_adder #(.InputSize(20)) add0 (
     .a   (alu_a),
@@ -111,7 +113,7 @@ module karatsuba_10b_dp (
     .data_o (alu_b2)
   );
 
-  wire [11:0] mult_o, addr;
+  wire [11:0] addr;
   wire [5:0] mult_a, mult_b, mult_a1, mult_b1;
 
   mux_2to1 #(.Size(6)) mux8 (
