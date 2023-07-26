@@ -1,5 +1,16 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
-  }
+},
+"customizations": {
+	"vscode": {
+		"extensions": [
+			"PKief.material-icon-theme",
+			"vscodevim.vim",
+			"mshr-h.veriloghdl"
+		]
+	}
+}
 }
