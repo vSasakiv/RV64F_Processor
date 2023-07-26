@@ -4,6 +4,8 @@
 *.out
 # ingore all waveforms
 *.vcd
+# ignore all hex output files
+*.hex
 transcript
 
 # ignore work folder
