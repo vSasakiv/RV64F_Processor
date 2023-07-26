@@ -9,5 +9,6 @@ FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 # RUN su node -c "npm install -g <your-package-list-here>"
 
 COPY library-scripts/github-debian.sh /tmp/library-scripts/
-RUN apt-get update && bash /tmp/library-scripts/github-debian.sh
+RUN apt-get update
 RUN apt-get iverilog
+RUN bash /tmp/library-scripts/github-debian.sh
