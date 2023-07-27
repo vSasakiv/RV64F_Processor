@@ -6,8 +6,8 @@ module fsm_combined (
     output [1:0] sel_rd, // seletor rd
     output sub_sra, sel_pc_next, sel_alu_a, sel_alu_b, load_pc_alu, load_flags,
     output sel_pc_increment, sel_pc_jump, sel_alu_32b,// seletores do program counter e da entrada A da alu
-    output load_pc, load_regfile, load_rs1, load_rs2, load_alu, load_imm,
-    output load_rs1_fp, load_rs2_fp, load_fp_regfile, sel_store_fp, sel_rd_fp,
+    output load_pc, load_regfile, load_alu,
+    output load_fp_regfile, sel_store_fp, sel_rd_fp,
     output start_add_sub_fp, start_mult_fp, load_alu_fp, sub_fp,
     output load_data_memory, memory_start, sel_mem_next, sel_mem_operation, done
 );

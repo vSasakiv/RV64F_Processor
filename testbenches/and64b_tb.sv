@@ -13,7 +13,7 @@ and64b UUT (.a, .b, .s);
 
 initial begin
     errors = 0;
-    
+
     // geramos números aleatórios para serem testados
     for (i = 0; i < 1000; i = i + 1) begin
         a = {$urandom, $urandom};

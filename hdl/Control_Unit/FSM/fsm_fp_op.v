@@ -42,14 +42,14 @@ always @(state, insn, code) begin
     done = 1'b0;
     case (state)
         DECODE: begin // caso o estado seja decode, ativamos os registradores na saída dos regfiles
-          load_rs1_fp = 1'b1;
-          load_rs2_fp = 1'b1;
+            load_rs1_fp = 1'b1;
+            load_rs2_fp = 1'b1;
         end
         EXECUTE: begin 
-          sub_fp = insn[27];
-          start_add_sub_fp = (insn[31:27] == 5'b0 || insn[31:27] == 5'b00001) ? 1'b1 : 1'b0;
-          start_mult_fp = (insn[31:27] == 5'b00010) ? 1'b1 : 1'b0;
-          load_alu_fp = 1'b1;
+            sub_fp = insn[27];
+            start_add_sub_fp = (insn[31:27] == 5'b0 || insn[31:27] == 5'b00001) ? 1'b1 : 1'b0;
+            start_mult_fp = (insn[31:27] == 5'b00010) ? 1'b1 : 1'b0;
+            load_alu_fp = 1'b1;
         end
         WRITEBACK: begin // escrevemos as mudanças no regfile, e podemos atualizar o pc
             load_pc = 1'b1;

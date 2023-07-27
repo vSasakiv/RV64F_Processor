@@ -5,7 +5,8 @@ Se algum valor for diferente do esperado ("xpect"), mostra os valores na saída 
 Ao final, mostra a quantidade total de erros obtidos */
 module xor64b_tb ();
 logic [63:0] a, b, correct_s, s;
-integer errors, i, j;
+int errors, i, j;
+
 // módulo testado
 xor64b UUT (.a, .b, .s);
 
