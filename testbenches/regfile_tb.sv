@@ -7,15 +7,15 @@ Verifica, para 16 pares de registradores, se a cada borda positiva  de clk no m�
 
 module regfile_tb ();
   parameter Size = 64; // Parâmetro que define o tamanho do registrador (quantidade de bits guardados)
-  reg clk; 
-  reg load;
-  reg [Size - 1:0] correct_rs1, correct_rs2; 
-  reg [Size - 1:0] rd_i; // entrada do registrador destino
-  reg [4:0] rs1_addr; // seletor de registrador 1
-  reg [4:0] rs2_addr; // seletor de registrador 2
-  reg [4:0] rd_addr; // seletor do registrador destino
-  wire [Size - 1:0] rs1_o; // saída 1 do registrador
-  wire [Size - 1:0] rs2_o; // saída 2 do registrador
+  logic clk; 
+  logic load;
+  logic [Size - 1:0] correct_rs1, correct_rs2; 
+  logic [Size - 1:0] rd_i; // entrada do registrador destino
+  logic [4:0] rs1_addr; // seletor de registrador 1
+  logic [4:0] rs2_addr; // seletor de registrador 2
+  logic [4:0] rd_addr; // seletor do registrador destino
+  logic [Size - 1:0] rs1_o; // saída 1 do registrador
+  logic [Size - 1:0] rs2_o; // saída 2 do registrador
   integer errors, i;
 
   initial
@@ -51,6 +51,17 @@ module regfile_tb ();
     end
   endtask
 
+  task display_error;
+    begin
+      errors += 1;
+      $display ("--Error--");
+      $display ("rd_i: %h rd_addr: %d, rs1_addr: %d, rs2_addr: %d, load: %b", rd_i, rd_addr, rs1_addr, rs2_addr, load);
+      $display ("Got values rs1_o: %h, rs2_o: %h", rs1_o, rs2_o);
+      $display ("Correct rs1_o: %h, rs2_o: %h", correct_rs1, correct_rs2);
+		  $display ("--------");
+    end
+  endtask
+
   initial begin
     errors = 0;
 
@@ -77,7 +88,8 @@ module regfile_tb ();
       rs1_addr = i;
       rs2_addr = (31 - i);
       #2
-      check (correct_rs1, correct_rs2);
+      assert (correct_rs1 == rs1_o) else display_error;
+      assert (correct_rs2 == rs2_o) else display_error;
 
       //Tentativa carregar novos valores nos endereços de rs1 e rs2, com load = 0
       rd_i = $urandom & {Size*(1'b1)};; 
@@ -88,7 +100,8 @@ module regfile_tb ();
       #3
 
       //Verifica se os valores de rs1 e rs2 foram alterados com load sendo 0
-      check (correct_rs1, correct_rs2);
+      assert (correct_rs1 == rs1_o) else display_error;
+      assert (correct_rs2 == rs2_o) else display_error;
     end
 
     $display ("Finished, got %2d errors", errors);

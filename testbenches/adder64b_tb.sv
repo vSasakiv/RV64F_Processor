@@ -5,26 +5,21 @@ Performa somas aleatórias com números de 64 bits e compara os resultados da so
 Caso algum resultado seja diferente do esperado ("xpect"), mostra os valores na saída e aumenta a contagem de erros.  
 Ao final, mostra a quantidade total de erros obtidos */
 module adder64b_tb ();
-reg [63:0] a, b, correct_s;
-reg [64:0] sum; // Variável responsável por armazenar a soma A + B ou A + (-B)
-reg sub, correct_cout;
-wire [63:0] s;
-wire c_o;
+logic [63:0] a, b, correct_s;
+logic [64:0] sum; // Variável responsável por armazenar a soma A + B ou A + (-B)
+logic sub, correct_cout;
+logic [63:0] s;
+logic c_o;
 integer errors, i; 
 
-// task que verifica se a saída do módulo é igual ao valor esperado*/
-task check; 
-    input [63:0] xpect_s;
-    input xpect_cout; 
-    begin 
-        if (s !== xpect_s) begin 
-            $display ("Error A: %64b, B: %64b, expected %64b, got S: %64b", a, b, xpect_s, s);
-            errors = errors + 1;
-        end
-        if (c_o !== xpect_cout) begin
-            $display ("Error A: %64b, B: %64b, expected %b, got COUT: %b", a, b, xpect_cout, c_o);
-            errors = errors + 1;
-        end
+task display_error;
+    begin
+        errors += 1;
+        $display ("--Error--");
+        $display ("Operand A: %h Operand B: %h Sub: %b", a, b, sub);
+        $display ("got value: %h , got cout: %b", s, c_o);
+        $display ("Correct value: %h, correct cout: %b.", correct_s, correct_cout);
+		$display ("--------");
     end
 endtask
 
@@ -39,15 +34,18 @@ initial begin
       a = {$urandom, $urandom};
       b = {$urandom, $urandom};
       sub = $urandom & 1'b1;
-      sum = (sub == 1'b0) ? a + b : a + (b ^ {(64){1'b1}}) + 1;
+      sum = (sub == 1'b0) ? a + b: a + (b ^ {(64){1'b1}}) + 1;
       correct_s = sum[63:0];
       correct_cout = sum[64];
       #10;
-      check (correct_s, correct_cout);
+      assert (correct_s == s) else display_error();
+      assert (correct_cout == c_o) else display_error();
     end
 
     $display ("Finished, got %2d errors", errors);
     $finish;
 end
+
+
 
 endmodule

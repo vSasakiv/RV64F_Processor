@@ -3,26 +3,21 @@
 //Testbench para o módulo do somador de n bits "adder".
 module cla_adder_tb ();
 parameter InputSize = 64;
-reg [InputSize - 1:0] a, b, correct_s;
-reg [InputSize:0] sum; // Variável responsável por armazenar a soma A + B ou A + (-B)
-reg sub, correct_cout;
-wire [InputSize - 1:0] s;
-wire c_o;
+logic [InputSize - 1:0] a, b, correct_s;
+logic [InputSize:0] sum; // Variável responsável por armazenar a soma A + B ou A + (-B)
+logic sub, correct_cout;
+logic [InputSize - 1:0] s;
+logic c_o;
 integer errors, i; 
 
-// task que verifica se a saída do módulo é igual ao valor esperado*/
-task check; 
-    input [InputSize - 1:0] xpect_s;
-    input xpect_cout; 
-    begin 
-        if (s !== xpect_s) begin 
-            $display ("Error A: %b, B: %b, expected %b, got S: %b", a, b, xpect_s, s);
-            errors = errors + 1;
-        end
-        if (c_o !== xpect_cout) begin
-            $display ("Error A: %b, B: %b, expected %b, got COUT: %b", a, b, xpect_cout, c_o);
-            errors = errors + 1;
-        end
+task display_error;
+    begin
+        errors += 1;
+        $display ("--Error--");
+        $display ("Operand A: %h Operand B: %h Sub: %b", a, b, sub);
+        $display ("got value: %h , got cout: %b", s, c_o);
+        $display ("Correct value: %h, correct cout: %b.", correct_s, correct_cout);
+		    $display ("--------");
     end
 endtask
 
@@ -42,11 +37,13 @@ initial begin
       correct_s = sum[InputSize - 1:0];
       correct_cout = sum[InputSize];
       #10;
-      check (correct_s, correct_cout);
+      assert (correct_s == s) else display_error();
+      assert (correct_cout == c_o) else display_error();
     end
 
     $display ("Finished, got %2d errors", errors);
     $finish;
 end
+
 
 endmodule
