@@ -62,7 +62,7 @@ module processor (
         .eq               (flags_value[0]),
         .sel_rd           (sel_rd),
         .sub_sra          (sub_sra),
-        .sel_pc_nexta     (sel_pc_next),
+        .sel_pc_next      (sel_pc_next),
         .sel_alu_a        (sel_alu_a),
         .sel_alu_b        (sel_alu_b),
         .load_pc_alu      (load_pc_alu),
