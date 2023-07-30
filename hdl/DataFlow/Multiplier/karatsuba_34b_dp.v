@@ -9,6 +9,11 @@ module karatsuba_34b_dp (
 
   wire [35:0] kara1_o, kara2_o, kara3_o;
   wire [67:0] alu_a1s;
+  wire [35:0] alu_a1;
+  wire [33:0] reg1_o, reg2_o;
+  wire [67:0] alu_a, alu_b, adder_o;
+  wire [35:0] reg3_o;
+  wire [67:0] reg3s;
 
   karatsuba_18b kara1 (
     .clk   (clk),
@@ -37,9 +42,6 @@ module karatsuba_34b_dp (
     .done  (done3)
   );
 
-  wire [33:0] reg1_o, reg2_o;
-  wire [35:0] reg3_o;
-
   register #(.Size(34)) rout1 (
     .clk    (clk),
     .data_i (adder_o[67:34]),
@@ -61,8 +63,6 @@ module karatsuba_34b_dp (
     .load   (load_reg3)
   );
 
-  wire [67:0] alu_a, alu_b, adder_o;
-
   cla_adder #(.InputSize(68)) add0 (
     .a   (alu_a),
     .b   (alu_b),
@@ -70,8 +70,6 @@ module karatsuba_34b_dp (
     .sub (sub),
     .s   (adder_o)
   );
-
-  wire [35:0] alu_a1;
 
   mux_4to1 #(.Size(68)) mux1 (
     .sel    (sel_alu_a),
@@ -90,8 +88,6 @@ module karatsuba_34b_dp (
     .i1     ({2'b0, kara1_o[33:0]}),
     .data_o (alu_a1)
   );
-
-  wire [67:0] reg3s;
   assign reg3s = shamt ? {32'b0, reg3_o} << 17 : {32'b0, reg3_o};
 
   mux_4to1 #(.Size(68)) mux3 (

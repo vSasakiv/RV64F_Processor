@@ -17,7 +17,7 @@ module memory #(
 
     assign data_o = memory[addr];
 
-    initial begin 
+    initial begin
         $readmemh({"misc/testes/","RAM.hex"}, memory);
     end
     always @(*) begin

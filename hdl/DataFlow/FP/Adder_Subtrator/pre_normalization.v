@@ -1,16 +1,15 @@
 /*Módulo que lida com as operações realizadas no estado "PRE-NORMALIZATION" do somador/subtrator de FP */
 module pre_normalization #(
-    parameter Size = 32
+    parameter Size = 32,
+    parameter MantSize = (Size == 64) ? 52 : 23, 
+    parameter ExpSize = (Size == 64) ? 11 : 8
 ) (
     input expa_ge_expb, exp_a_zero, exp_b_zero,
     input [ExpSize - 1:0] exp_data_o_c, data_o, exp_a, exp_b,
     input [Size - 1:0] operand_a, operand_b,
     output [MantSize + 3:0] mant_a, mant_b,
     output [ExpSize - 1:0] effective_expoent
-
 );
-localparam ExpSize = (Size == 64) ? 11 : 8;
-localparam MantSize = (Size == 64) ? 52 : 23; 
 
 wire [ExpSize - 1:0] exp_diff;
 wire [MantSize:0] smaller_mantissa, greater_mantissa;

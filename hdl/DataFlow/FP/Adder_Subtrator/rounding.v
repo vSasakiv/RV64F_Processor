@@ -12,7 +12,8 @@ magnitude
 */
 
 module rounding #(
-  parameter Size = 64
+  parameter Size = 64,
+  parameter MantSize = (Size == 64) ? 52 : 23
 ) (
   input [2:0] rounding_mode, 
   input real_sign,
@@ -21,7 +22,6 @@ module rounding #(
   output is_zero,
   output reg [MantSize:0] mant_final
 );
-  localparam MantSize = (Size == 64) ? 52 : 23; 
   localparam TiesToEven = 3'b000, TowardsZero = 3'b001, TowardNegInf = 3'b010, TowardPosInf = 3'b011, TiesToMax = 3'b100;
 
   wire is_halfway, carry;

@@ -1,6 +1,8 @@
 /*Módulo que lida com as operações realizadas no estado "OPERATION" do somador/subtrator de FP */
 module operation #(
-    parameter Size = 32
+    parameter Size = 32,
+    parameter MantSize = (Size == 64) ? 52 : 23,
+    parameter ExpSize = (Size == 64) ? 11 : 8
 ) (
   input [Size - 1:0] operand_a, operand_b,
   input sub, sign_a, sign_b, carry,
@@ -9,8 +11,6 @@ module operation #(
   output [MantSize + 3:0] mant_shifted,
   output real_sign, real_operation
 );
-localparam ExpSize = (Size == 64) ? 11 : 8;
-localparam MantSize = (Size == 64) ? 52 : 23; 
 
 wire [MantSize + 3:0] mant_result;
 

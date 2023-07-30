@@ -21,6 +21,6 @@ module imm_gen (
                (type_i & {64{(code[0] | code[4] | code[6] |code[25] | code[28] | code[1])}}) | 
                (type_u & {64{(code[5] | code[13])}}) |
                (type_b & {64{code[24]}}) |
-               (type_s & {64{code[8] | code[9]}});  
+               (type_s & {64{code[8] | code[9]}});
 
 endmodule

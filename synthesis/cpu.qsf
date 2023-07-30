@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C6GES
-set_global_assignment -name TOP_LEVEL_ENTITY karatsuba_64b
+set_global_assignment -name TOP_LEVEL_ENTITY no_rest_divisor
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:45:13 JUNE 17,2016"
 set_global_assignment -name LAST_QUARTUS_VERSION "21.1.1 Lite Edition"
@@ -247,6 +247,53 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/Divisor/no_rest_divisor.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_34b_dp.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_34b_cu.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_34b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_64b_dp.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_64b_cu.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_64b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_18b_dp.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_18b_cu.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_18b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/mult_lut.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_10b_dp.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_10b_cu.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_10b.v
+set_global_assignment -name VERILOG_FILE ../hdl/processor.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_combined.v
+set_global_assignment -name VERILOG_FILE ../hdl/memory_management.v
+set_global_assignment -name VERILOG_FILE ../hdl/memory.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/program_counter.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Shifters/right_shifter.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Shifters/left_lshifter.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Logic_Operations/and64b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Logic_Operations/or64b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Logic_Operations/xor64b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Comparators/comparator.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/partial_full_adder1b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/cla_adder8b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/cla_adder.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/adder64b.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/alu.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/register.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/regfile.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/reg_async_reset.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mux_4to1.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mux_2to1.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mem_extension.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/imm_gen.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/decoder.v
+set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/dataflow.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_load_store.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_branch_jump.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_alu.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/opdecoder.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/control_unit.v
+set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/clock_gen.v
+set_global_assignment -name VERILOG_FILE ../hdl/cpu.v
+set_global_assignment -name VERILOG_FILE DE10_LITE_Golden_Top.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -435,50 +482,4 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[32]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[33]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[34]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[35]
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_34b_dp.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_34b_cu.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_34b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_64b_dp.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_64b_cu.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_64b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_18b_dp.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_18b_cu.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_18b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/mult_lut.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_10b_dp.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_10b_cu.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/MULTIPLIER/karatsuba_10b.v
-set_global_assignment -name VERILOG_FILE ../hdl/processor.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_combined.v
-set_global_assignment -name VERILOG_FILE ../hdl/memory_management.v
-set_global_assignment -name VERILOG_FILE ../hdl/memory.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/program_counter.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Shifters/right_shifter.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Shifters/left_lshifter.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Logic_Operations/and64b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Logic_Operations/or64b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Logic_Operations/xor64b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Comparators/comparator.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/partial_full_adder1b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/cla_adder8b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/cla_adder.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/Adder64b/adder64b.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/ALU/alu.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/register.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/regfile.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/reg_async_reset.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mux_4to1.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mux_2to1.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/mem_extension.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/imm_gen.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/decoder.v
-set_global_assignment -name VERILOG_FILE ../hdl/DataFlow/dataflow.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_load_store.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_branch_jump.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/FSM/fsm_alu.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/opdecoder.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/control_unit.v
-set_global_assignment -name VERILOG_FILE ../hdl/Control_Unit/clock_gen.v
-set_global_assignment -name VERILOG_FILE ../hdl/cpu.v
-set_global_assignment -name VERILOG_FILE DE10_LITE_Golden_Top.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
