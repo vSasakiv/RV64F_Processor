@@ -7,9 +7,11 @@ module pre_normalization #(
     input expa_ge_expb, exp_a_zero, exp_b_zero,
     input [ExpSize - 1:0] exp_data_o_c, data_o, exp_a, exp_b,
     input [Size - 1:0] operand_a, operand_b,
+    output out_of_precision,
     output [MantSize + 3:0] mant_a, mant_b,
     output [ExpSize - 1:0] effective_expoent
 );
+localparam PrecisionSize = (Size == 64) ? 53 : 24;
 
 wire [ExpSize - 1:0] exp_diff;
 wire [MantSize:0] smaller_mantissa, greater_mantissa;
@@ -22,6 +24,8 @@ wire [MantSize + 3:0] smaller_mantissa_shifted;
     .sel(expa_ge_expb),
     .data_o(exp_diff)
   );
+
+  assign out_of_precision = exp_diff > PrecisionSize ? 1'b1 : 1'b0;  
 
   //Seleciona o maior expoente
   mux_2to1 #(.Size(ExpSize)) m1 (

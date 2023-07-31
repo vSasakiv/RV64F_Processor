@@ -8,18 +8,19 @@ module add_sub_dp #(
     input load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized, load_overflow,
     input load_effective_expoent, load_expoent_result, load_exp_normalized, load_inexact,
     input load_invalid, load_carry, load_real_operation, load_real_sign, load_underflow,
-    input load_leading_zeros, load_result,
+    input load_leading_zeros, load_result, load_out_of_precision, load_expa_ge_expb,
     input [2:0] rounding_mode,
     input sub, // 0 -> adição; 1 -> subtração
     input [Size - 1:0] operand_a,
     input [Size - 1:0] operand_b,
+    output out_of_precision,
     output [Size - 1:0] result_value,
     output overflow_value, inexact_value, underflow_value, invalid
 );
 localparam ExpSize = (Size == 64) ? 11 : 8;
 localparam MantSize = (Size == 64) ? 52 : 23; 
 
-wire underflow;
+wire underflow, out_of_precision_i, expa_ge_expb;
 wire [MantSize + 3:0] mant_a_value, mant_b_value, mant_shifted_value, mant_normalized_value;
 wire [ExpSize - 1:0] effective_expoent_value, expoent_result_value, exp_normalized_value;
 wire carry_value, real_operation_value, real_sign_value;
@@ -29,6 +30,7 @@ wire [Size - 1:0] result;
 wire sign_a, sign_b, real_operation, real_sign, operation, exp_operation;
 wire is_zero, exp_a_zero, exp_b_zero;
 wire carry_rounding, cout;
+wire [Size - 1: 0] greater_value;
 wire [ExpSize - 1:0] exp_data_o_c, effective_expoent, expoent_result, exp_normalized,  normalize_shift_amt; 
 wire [ExpSize - 1:0] exp_a, exp_b, exp_a_operand, exp_b_operand;
 wire [MantSize:0]  mant_final;
@@ -144,9 +146,24 @@ assign invalid = (&operand_a[Size - 2:MantSize]) | (&operand_b[Size - 2:MantSize
     .exp_b(exp_b),
     .operand_a(operand_a),
     .operand_b(operand_b),
+    .out_of_precision(out_of_precision_i),
     .mant_a(mant_a),
     .mant_b(mant_b),
     .effective_expoent(effective_expoent)
+  );
+
+  register #(.Size(1'b1)) reg_out_of_precision (
+    .clk(clk),
+    .data_i(out_of_precision_i),
+    .load(load_out_of_precision),
+    .data_o(out_of_precision)
+  );
+
+  register #(.Size(1'b1)) reg_expa_ge_expb (
+    .clk(clk),
+    .data_i(cout),
+    .load(load_expa_ge_expb),
+    .data_o(expa_ge_expb)
   );
 
   register #(.Size(MantSize + 4)) reg_mant_a (
@@ -279,13 +296,33 @@ assign invalid = (&operand_a[Size - 2:MantSize]) | (&operand_b[Size - 2:MantSize
     .mant_final(mant_final)
   );
 
+  wire manta_gt_mantb;
+  wire expa_gt_expb;
+  wire [Size - 1:0] greater_a, greater_b;
+
+  assign greater_a = {(invalid & sign_a) | (~invalid & real_sign_value), operand_a[Size - 2:MantSize], operand_a[MantSize - 1] | invalid,  operand_a[MantSize - 2:0]};
+  assign greater_b = {(invalid & sign_b) | (~invalid & real_sign_value), operand_b[Size - 2:MantSize], operand_b[MantSize - 1] | invalid,  operand_b[MantSize - 2:0]};
+
+
+  assign expa_gt_expb = (exp_a > exp_b) ? 1'b1 : 1'b0;
+  assign manta_gt_mantb = (operand_a[MantSize - 1:0] > mant_b[MantSize - 1:0]) ? 1'b1 : 1'b0;
+
+  assign greater_value = expa_gt_expb ? 
+                        greater_a :
+                        (&operand_b[Size - 2:MantSize]) & ~(&operand_a[Size - 2:MantSize]) ? 
+                        greater_b : 
+                        (manta_gt_mantb ^ sub) & expa_ge_expb ? greater_a : greater_b; 
+
+                        //manta_gt_mantb ^ sub? 
   assign inexact = ~is_zero;
   assign overflow = (&data_o[ExpSize - 1:0] || &expoent_result_value ) ? 1'b1 : 1'b0;
-  assign result = (overflow) ? {real_sign_value, data_o[ExpSize - 1:0], {(MantSize){1'b0}}} : {real_sign_value, data_o[ExpSize - 1:0], mant_final[MantSize - 1:0]};
+  assign result = out_of_precision | invalid ? greater_value : 
+                  (overflow) ? 
+                  {real_sign_value, data_o[ExpSize - 1:0], {(MantSize){1'b0}}} : {real_sign_value, data_o[ExpSize - 1:0], mant_final[MantSize - 1:0]};
 
   register #(.Size(Size)) reg_result (
     .clk(clk),
-    .data_i(result),
+    .data_i({result[Size - 1:MantSize], result[MantSize - 1] | invalid, result[MantSize - 2:0]}),
     .load(load_result),
     .data_o(result_value)
   );

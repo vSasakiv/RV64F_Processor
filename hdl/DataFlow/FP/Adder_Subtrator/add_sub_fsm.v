@@ -2,12 +2,13 @@
 Envia sinais de load e seletores para controlar as operações do circuito */
 module add_sub_fsm (
   input start, clk,
+  input out_of_precision,
   output reg [1:0] sel_a_exp_operand, sel_b_exp_operand, sel_exp_operation,
   output reg sel_a_operand, sel_b_operand, sel_operation,
   output reg load_mant_a, load_mant_b, load_mant_shifted, load_mant_normalized, load_overflow,
-  output reg load_effective_expoent, load_expoent_result, load_exp_normalized, load_inexact,
-  output reg load_carry, load_real_operation, load_real_sign, load_underflow,
-  output reg load_leading_zeros, load_result,
+  output reg load_effective_expoent, load_expoent_result, load_exp_normalized, load_inexact, load_expa_ge_expb,
+  output reg load_carry, load_real_operation, load_real_sign, load_underflow, load_out_of_precision,
+  output reg load_leading_zeros, load_result, 
   output reg done
 );
   localparam IDLE = 3'b000;
@@ -28,7 +29,7 @@ module add_sub_fsm (
     case (state)
         IDLE: next = (start == 1'b1) ? PRE_NORMALIZING : IDLE; 
         PRE_NORMALIZING: next = OPERATION;
-        OPERATION: next = NORMALIZING;
+        OPERATION: next = (out_of_precision == 1'b1) ? ROUNDING : NORMALIZING;
         NORMALIZING: next = SHIFTING_EXPOENT;
         SHIFTING_EXPOENT: next = ROUNDING;
         ROUNDING: next = RESULT;
@@ -39,25 +40,27 @@ module add_sub_fsm (
 
   always @(state) begin
     done = 1'b0;
-        sel_a_exp_operand = 2'b00;
-        sel_a_operand = 1'b0;
-        sel_b_exp_operand = 2'b00;
-        sel_b_operand = 1'b0;
-        load_mant_a = 1'b0;
-        load_mant_b = 1'b0;
-        load_effective_expoent = 1'b0;
-        load_carry = 1'b0;
-        load_leading_zeros = 1'b0;
-        load_mant_shifted = 1'b0;
-        load_real_operation = 1'b0;
-        load_real_sign = 1'b0;
-        load_expoent_result = 1'b0;
-        load_mant_normalized = 1'b0;
-        load_exp_normalized = 1'b0;
-        load_underflow = 1'b0;
-        load_result = 1'b0;
-        load_overflow = 1'b0;
-        load_inexact = 1'b0;
+    sel_a_exp_operand = 2'b00;
+    sel_a_operand = 1'b0;
+    sel_b_exp_operand = 2'b00;
+    sel_b_operand = 1'b0;
+    load_mant_a = 1'b0;
+    load_mant_b = 1'b0;
+    load_effective_expoent = 1'b0;
+    load_carry = 1'b0;
+    load_leading_zeros = 1'b0;
+    load_mant_shifted = 1'b0;
+    load_real_operation = 1'b0;
+    load_real_sign = 1'b0;
+    load_expoent_result = 1'b0;
+    load_mant_normalized = 1'b0;
+    load_exp_normalized = 1'b0;
+    load_underflow = 1'b0;
+    load_result = 1'b0;
+    load_overflow = 1'b0;
+    load_inexact = 1'b0;
+    load_out_of_precision = 1'b0;
+    load_expa_ge_expb = 1'b0;
     case (state)
       PRE_NORMALIZING: begin
         sel_a_exp_operand = 2'b00;
@@ -69,6 +72,8 @@ module add_sub_fsm (
         load_mant_a = 1'b1;
         load_mant_b = 1'b1;
         load_effective_expoent = 1'b1;
+        load_out_of_precision = 1'b1;
+        load_expa_ge_expb = 1'b1;
       end
       OPERATION: begin
         sel_a_exp_operand = 2'b00;
@@ -140,6 +145,8 @@ module add_sub_fsm (
         load_result = 1'b0;
         load_overflow = 1'b0;
         load_inexact = 1'b0;
+        load_out_of_precision = 1'b0;
+        load_expa_ge_expb = 1'b0;
       end
     endcase
   end
