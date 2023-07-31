@@ -4,6 +4,7 @@
 Define o modo de arredondamento, os operandos e a operação e revela o resultado obtido */
 module add_sub_fp_tb ();
 
+import "DPI-C" function longint sub_float(longint a, longint b);
 import "DPI-C" function longint add_float(longint a, longint b);
 
 parameter Size = 64; //Quad, double ou single precision (128, 64 ou 32, respectivamente)
@@ -77,22 +78,63 @@ initial begin
 	errors = 0;
     #2
     $dumpfile("add_sub_fp.vcd");
-    $dumpvars(100, add_sub_fp_tb);
+    $dumpvars(1000, add_sub_fp_tb);
     
     //Inicia FSM
     start = 1'b1;
-
+    #2
     rounding_mode = 3'b000;
-    sub = 1'b0;
+/*
+    #2
+    operand_a = 64'h81b5c9740e9ccc40;
+    operand_b = 64'h9b973da9a74f4d2e;
+    correct_result = add_float(operand_a, operand_b);
+    while (done_64 !== 1'b1) #2;
+    assert (correct_result === result_64) else display_error();
+    #2;
 
-    for (i = 0; i < 10000; i++) begin
+    #2
+    operand_a = 64'h7cb95f830fb7047f;
+    operand_b = 64'h7ffe5764ec2eeb3b;
+    correct_result = add_float(operand_a, operand_b);
+    while (done_64 !== 1'b1) #2;
+    assert (correct_result === result_64) else display_error();
+
+    #2
+    operand_a = 64'h7ffb24ae879fb04a;
+    operand_b = 64'h01c81b3ee53623e8;
+    correct_result = add_float(operand_a, operand_b);
+    while (done_64 !== 1'b1) #2;
+    assert (correct_result === result_64) else display_error();
+
+    #2
+    operand_a = 64'hFFF001840C818200;
+    operand_b = 64'h7FF0220002000000;
+    correct_result = add_float(operand_a, operand_b);
+    while (done_64 !== 1'b1) #2;
+    assert (correct_result === result_64) else display_error();
+ */
+
+     sub = 1'b0;
+    for (i = 0; i < 50000; i++) begin
+        #2
         operand_a = {$urandom, $urandom};
         operand_b = {$urandom, $urandom};
         correct_result = add_float(operand_a, operand_b);
-        while (done_32 !== 1'b1) #1;
+        while (done_64 !== 1'b1) #2;
         assert (correct_result === result_64) else display_error();
-        #1;
-    end
+        
+    end  
+
+    sub = 1'b1;
+    for (i = 0; i < 50000; i++) begin
+        #2
+        operand_a = {$urandom, $urandom};
+        operand_b = {$urandom, $urandom};
+        correct_result = sub_float(operand_a, operand_b);
+        while (done_64 !== 1'b1) #2;
+        assert (correct_result === result_64) else display_error();
+    end  
     $display("Got %d errors", errors);
     $stop;
 end
