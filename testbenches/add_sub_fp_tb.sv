@@ -4,8 +4,8 @@
 Define o modo de arredondamento, os operandos e a operação e revela o resultado obtido */
 module add_sub_fp_tb ();
 
-import "DPI-C" function longint sub_float(longint a, longint b);
-import "DPI-C" function longint add_float(longint a, longint b);
+import "DPI-C" function longint sub_double(longint a, longint b);
+import "DPI-C" function longint add_double(longint a, longint b);
 
 parameter Size = 64; //Quad, double ou single precision (128, 64 ou 32, respectivamente)
 logic [2:0] rounding_mode;
@@ -120,7 +120,7 @@ initial begin
         #2
         operand_a = {$urandom, $urandom};
         operand_b = {$urandom, $urandom};
-        correct_result = add_float(operand_a, operand_b);
+        correct_result = add_double(operand_a, operand_b);
         while (done_64 !== 1'b1) #2;
         assert (correct_result === result_64) else display_error();
         
@@ -131,7 +131,7 @@ initial begin
         #2
         operand_a = {$urandom, $urandom};
         operand_b = {$urandom, $urandom};
-        correct_result = sub_float(operand_a, operand_b);
+        correct_result = sub_double(operand_a, operand_b);
         while (done_64 !== 1'b1) #2;
         assert (correct_result === result_64) else display_error();
     end  
